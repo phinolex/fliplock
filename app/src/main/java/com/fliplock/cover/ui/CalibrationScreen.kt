@@ -153,6 +153,18 @@ fun CalibrationScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
                                 text = result.advice.text(),
                                 style = MaterialTheme.typography.bodyMedium,
                             )
+                            if (result.screenReflection) {
+                                ThinDivider()
+                                Text(
+                                    text = stringResource(
+                                        R.string.calib_screen_reflection,
+                                        formatLux(result.closed.median),
+                                        formatLux(result.minUsableAmbientLux),
+                                    ),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = StatusColors.warn,
+                                )
+                            }
                             Button(
                                 onClick = { viewModel.applyCalibration(result) },
                                 enabled = !state.applied,

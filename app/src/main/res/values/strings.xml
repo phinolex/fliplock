@@ -166,6 +166,7 @@
     <string name="calib_advice_poor_prox">The light measured with the flap open is too close to the flap-closed value. Proximity did report NEAR: switch on LIGHT + PROXIMITY mode.</string>
     <string name="calib_advice_poor">The light measured with the flap open is too close to the flap-closed value. Try again in a lit room, with the flap pressed flat against the screen.</string>
 
+    <string name="calib_screen_reflection">Your flap reads %1$s lux when closed, which is too high to be leaking daylight — it is your own screen reflecting off the inside of the flap and back into the sensor. That sets a floor detection cannot go below. FlipLock will work in a normally lit room, from roughly %2$s lux upwards, but not in a dim one. Lowering your screen brightness lowers that floor.</string>
     <string name="calib_open_median">Open (median)</string>
     <string name="calib_closed_median">Closed (median)</string>
     <string name="calib_closed_max">Closed (maximum)</string>

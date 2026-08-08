@@ -80,6 +80,17 @@ data class CalibrationResult(
     val proximityAvailable: Boolean,
     val proximityNearWhenClosed: Boolean,
     val advice: CalibrationAdvice,
+    /**
+     * Le rabat renvoie-t-il la lumiere de l'ecran vers le capteur ?
+     *
+     * Un rabat opaque devrait mesurer quelques lux. Au-dela, ce qui est lu est le
+     * reflet de l'ecran allume sur la face interne du rabat — une valeur a peu pres
+     * CONSTANTE, independante de l'eclairage de la piece. Elle impose un plancher
+     * sous lequel la detection ne peut pas descendre.
+     */
+    val screenReflection: Boolean,
+    /** Luminosite ambiante minimale sous laquelle la detection ne peut plus fonctionner. */
+    val minUsableAmbientLux: Float,
 )
 
 /** Resultat du test « Tester dans l'obscurite ». */
@@ -190,10 +201,17 @@ class CalibrationManager(
 
         val threshold = recommendedThreshold(openStats.median, closedStats.max)
 
-        // Marge PROPORTIONNELLE, pas fixe. Une separation mesuree de 87 % donnait
-        // un seuil a 79 %, et une fermeture reelle a 77,6 % etait refusee de justesse :
-        // la calibration est un echantillon unique, les fermetures reelles varient autour.
-        val recommendedDrop = (separation * 0.85f).coerceIn(55f, 92f)
+        // La chute relative est un garde-fou SECONDAIRE, pas le critere principal :
+        // le seuil absolu et la vitesse font le travail. Elle doit donc laisser une
+        // marge large, car la separation mesuree pendant la calibration n'est pas
+        // celle des fermetures reelles.
+        //
+        // Cas mesure sur un Galaxy SM-S948B : calibration a 497 lux ambiants ->
+        // separation 93,8 % -> seuil de chute 79,7 %. Les fermetures reelles, dans
+        // une piece a 112 lux, ne faisaient que 69 a 73 % et etaient toutes refusees.
+        // Le rabat renvoie la lumiere de l'ecran vers le capteur (~30 lux constants),
+        // donc la chute relative depend de l'eclairage de la piece, pas de la coque.
+        val recommendedDrop = (separation * 0.6f).coerceIn(45f, 85f)
         val recommendedAbsolute =
             ((openStats.median - closedStats.median) * 0.25f).coerceIn(3f, 30f)
 
@@ -234,6 +252,8 @@ class CalibrationManager(
             proximityAvailable = sensors.proximitySensor != null,
             proximityNearWhenClosed = closed.sawNear,
             advice = advice,
+            screenReflection = closedStats.median >= SCREEN_REFLECTION_LUX,
+            minUsableAmbientLux = threshold * 2f,
         )
     }
 
@@ -276,6 +296,9 @@ class CalibrationManager(
     companion object {
         const val MEASURE_WINDOW_MS = 2000L
         private const val PROGRESS_STEP_MS = 100L
+
+        /** Au-dela de cette valeur rabat ferme, c'est l'ecran qu'on mesure, pas la piece. */
+        private const val SCREEN_REFLECTION_LUX = 15f
 
         /**
          * Seuil de fermeture recommande, en lux.

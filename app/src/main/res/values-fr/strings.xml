@@ -148,6 +148,7 @@
     <string name="calib_advice_poor_prox">La lumière mesurée rabat ouvert est trop proche de celle rabat fermé. Le capteur de proximité a bien détecté NEAR : activez le mode LUMIÈRE + PROXIMITÉ.</string>
     <string name="calib_advice_poor">La lumière mesurée rabat ouvert est trop proche de celle rabat fermé. Recommencez dans une pièce éclairée, rabat bien plaqué sur l\'écran.</string>
 
+    <string name="calib_screen_reflection">Votre rabat mesure %1$s lux une fois fermé, ce qui est trop élevé pour être de la lumière qui filtre — c\'est votre propre écran qui se reflète sur la face interne du rabat et revient dans le capteur. Cela impose un plancher sous lequel la détection ne peut pas descendre. FlipLock fonctionnera dans une pièce normalement éclairée, à partir d\'environ %2$s lux, mais pas dans la pénombre. Baisser la luminosité de l\'écran abaisse ce plancher.</string>
     <string name="calib_open_median">Ouvert (médiane)</string>
     <string name="calib_closed_median">Fermé (médiane)</string>
     <string name="calib_closed_max">Fermé (maximum)</string>

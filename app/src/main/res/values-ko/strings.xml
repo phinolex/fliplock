@@ -149,6 +149,7 @@
     <string name="calib_advice_poor_prox">덮개를 열었을 때의 조도가 닫았을 때와 너무 비슷합니다. 근접 센서가 NEAR를 보고했으니 조도 + 근접 모드를 켜세요.</string>
     <string name="calib_advice_poor">덮개를 열었을 때의 조도가 닫았을 때와 너무 비슷합니다. 불이 켜진 곳에서 덮개를 화면에 밀착시켜 다시 시도하세요.</string>
 
+    <string name="calib_screen_reflection">덮개를 닫았을 때 %1$s lux가 측정됩니다. 새어 들어온 빛이라기에는 너무 높은 값으로, 화면 빛이 덮개 안쪽에 반사되어 센서로 되돌아온 것입니다. 이 값이 검출의 하한선이 됩니다. FlipLock은 약 %2$s lux 이상의 정상적인 조명에서는 작동하지만 어두운 곳에서는 어렵습니다. 화면 밝기를 낮추면 이 하한선도 낮아집니다.</string>
     <string name="calib_open_median">열림 (중앙값)</string>
     <string name="calib_closed_median">닫힘 (중앙값)</string>
     <string name="calib_closed_max">닫힘 (최댓값)</string>

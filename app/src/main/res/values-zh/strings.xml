@@ -149,6 +149,7 @@
     <string name="calib_advice_poor_prox">翻盖打开时测得的光线与合上时太接近。距离传感器确实报告了 NEAR：请启用“光线 + 距离”模式。</string>
     <string name="calib_advice_poor">翻盖打开时测得的光线与合上时太接近。请在有照明的房间重试，并让翻盖紧贴屏幕。</string>
 
+    <string name="calib_screen_reflection">合上翻盖时你的保护套读数为 %1$s lux，这个数值太高，不像是漏进来的环境光 —— 而是你自己的屏幕在翻盖内侧反射后回到了传感器。这形成了一个检测无法突破的下限。FlipLock 在正常照明的房间里（大约 %2$s lux 以上）可以工作，但在昏暗环境下不行。调低屏幕亮度可以降低这个下限。</string>
     <string name="calib_open_median">打开（中位数）</string>
     <string name="calib_closed_median">合上（中位数）</string>
     <string name="calib_closed_max">合上（最大值）</string>

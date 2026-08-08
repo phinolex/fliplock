@@ -149,6 +149,7 @@
     <string name="calib_advice_poor_prox">フタを開けたときの照度が、閉じたときと近すぎます。近接センサーは NEAR を報告したので、照度 + 近接モードを有効にしてください。</string>
     <string name="calib_advice_poor">フタを開けたときの照度が、閉じたときと近すぎます。照明のある部屋で、フタを画面にしっかり密着させてやり直してください。</string>
 
+    <string name="calib_screen_reflection">フタを閉じた状態で %1$s lux を測定しています。漏れ込む外光にしては高すぎる値で、画面の光がフタの内側で反射してセンサーに戻っているためです。これが検知の下限になります。FlipLock はおよそ %2$s lux 以上の普通の明るさの部屋では動作しますが、薄暗い場所では困難です。画面の明るさを下げるとこの下限も下がります。</string>
     <string name="calib_open_median">開いた状態（中央値）</string>
     <string name="calib_closed_median">閉じた状態（中央値）</string>
     <string name="calib_closed_max">閉じた状態（最大値）</string>
