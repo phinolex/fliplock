@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 한국어 -->
+<resources>
+    <string name="accessibility_service_label">FlipLock — 화면 잠금</string>
+    <string name="accessibility_service_summary">FlipLock이 화면을 잠글 수 있도록 허용합니다.</string>
+    <string name="accessibility_service_description">FlipLock이 이 권한을 요청하는 이유는 단 하나, 케이스를 덮었을 때 화면을 잠그기 위해서입니다.\n\n이 서비스는 앱 내용을 읽지 않고, 알림을 읽지 않으며, 키 입력을 기록하지 않고, 화면을 캡처하지도 않습니다. 사용하는 Android 동작은 “화면 잠금” 하나뿐입니다.</string>
+
+    <string name="fgs_channel_name">FlipLock 감시</string>
+    <string name="fgs_channel_description">FlipLock이 조도 센서를 감시하는 동안 표시되는 조용한 알림입니다.</string>
+    <string name="fgs_notification_title">FlipLock 실행 중</string>
+    <string name="fgs_notification_text">주변 조도 센서 감시 중</string>
+
+    <string name="screen_diagnostic">센서 진단</string>
+    <string name="screen_calibration">보정</string>
+    <string name="screen_advanced">고급 설정</string>
+    <string name="screen_tech_info">기술 정보</string>
+    <string name="action_back">뒤로</string>
+
+    <string name="value_yes">예</string>
+    <string name="value_no">아니요</string>
+    <string name="value_none">없음</string>
+
+    <string name="strategy_light_only">조도 전용</string>
+    <string name="strategy_light_proximity">조도 + 근접</string>
+
+    <string name="cover_open">열림</string>
+    <string name="cover_closing">닫힘 감지됨</string>
+    <string name="cover_cooldown">잠금됨 (대기 중)</string>
+    <string name="cover_screen_off">화면 꺼짐</string>
+    <string name="cover_monitoring_off">감시 중지됨</string>
+
+    <string name="origin_detection">자동 감지</string>
+    <string name="origin_test_button">테스트 버튼</string>
+
+    <string name="home_status">상태</string>
+    <string name="home_status_active">🟢 FlipLock 작동 중</string>
+    <string name="home_status_inactive">⚪ FlipLock 꺼짐</string>
+    <string name="home_permission_missing">FlipLock은 켜져 있지만 잠금 권한이 없습니다. 케이스를 덮어도 화면을 끌 수 없습니다.</string>
+    <string name="home_monitoring">센서 감시</string>
+    <string name="home_monitoring_running">작동 중</string>
+    <string name="home_monitoring_stopped">중지됨</string>
+
+    <string name="section_sensor">센서</string>
+    <string name="label_light">조도</string>
+    <string name="label_baseline">기준값 (케이스 열림)</string>
+    <string name="label_proximity">근접</string>
+    <string name="label_cover_state">케이스 상태</string>
+
+    <string name="section_lock_permission">잠금 권한</string>
+    <string name="permission_granted">🟢 사용 중</string>
+    <string name="permission_pending">🟠 사용 중, 연결 대기</string>
+    <string name="permission_denied">🔴 사용 안 함</string>
+    <string name="permission_explanation">FlipLock이 이 권한을 요청하는 이유는 단 하나, 케이스를 덮었을 때 화면을 잠그기 위해서입니다. 이 서비스는 앱도, 알림도, 화면도 읽지 않습니다.</string>
+    <string name="action_enable_permission">권한 사용 설정</string>
+    <string name="action_open_app_details">“앱 정보” 열기 (제한된 설정)</string>
+
+    <string name="section_actions">작업</string>
+    <string name="action_calibrate">내 케이스 보정하기</string>
+    <string name="action_test_lock">지금 화면 잠그기</string>
+    <string name="label_last_lock">마지막 잠금</string>
+    <string name="lock_succeeded">성공 (%1$s)</string>
+    <string name="lock_failed">실패 (%1$s)</string>
+
+    <string name="section_how_it_works">작동 방식</string>
+    <string name="how_it_works_body">1. 덮개를 닫으면 조도가 급격히 떨어집니다.\n2. FlipLock은 그 하강이 빠르고, 깊고, %1$d밀리초 동안 유지되는지 확인합니다.\n3. 화면이 잠깁니다.\n\n방이 서서히 어두워지거나 손이 휴대폰 위를 스쳐도 잠금은 발생하지 않습니다.</string>
+
+    <string name="msg_accessibility_off">접근성 서비스가 실행되고 있지 않습니다. 먼저 잠금 권한을 사용 설정하세요.</string>
+    <string name="msg_lock_refused">Android가 잠금 동작을 거부했습니다. 로그를 확인하세요.</string>
+    <string name="msg_defaults_restored">기본값으로 되돌렸습니다.</string>
+    <string name="msg_calibration_applied">보정을 적용했습니다.</string>
+    <string name="msg_diagnostic_copied">진단 정보를 클립보드에 복사했습니다.</string>
+    <string name="msg_copy_failed">복사하지 못했습니다.</string>
+
+    <string name="diag_current_light">현재 조도</string>
+    <string name="diag_possible_close">닫힘 가능성 감지됨</string>
+    <string name="diag_baseline">기준값 (이동 중앙값)</string>
+    <string name="diag_baseline_samples">기준값 표본 수</string>
+    <string name="diag_drop">하강폭</string>
+    <string name="diag_engine_state">엔진 상태</string>
+    <string name="diag_decision">판정</string>
+    <string name="diag_last_reading">마지막 측정</string>
+    <string name="diag_sensor_timestamp">센서 타임스탬프</string>
+    <string name="diag_preview_note">이 화면은 FlipLock의 판정을 시뮬레이션할 뿐, 실제로 잠그지 않습니다.</string>
+
+    <string name="diag_history">측정 기록</string>
+    <string name="diag_history_empty">받은 측정값이 없습니다.</string>
+    <string name="diag_history_candidate">[후보]</string>
+    <string name="diag_last_rejection">마지막 거부 사유</string>
+
+    <string name="diag_probe_section">센서 실측</string>
+    <string name="diag_probe_explanation">FlipLock은 “Android가 센서를 보고한다”는 사실만으로 만족하지 않습니다. 실제로 리스너를 등록하고 수신된 이벤트 수를 셉니다.</string>
+    <string name="diag_probe_declared">Android가 보고함</string>
+    <string name="diag_probe_accepted">리스너 등록 성공</string>
+    <string name="diag_probe_events">실제 이벤트 수신</string>
+    <string name="diag_probe_count">이벤트 개수</string>
+    <string name="diag_probe_verdict">판정</string>
+    <string name="diag_probe_running">실측 중…</string>
+    <string name="diag_probe_restart">실측 다시 하기</string>
+    <string name="diag_probe_all">모든 센서 실측 (3초)</string>
+    <string name="diag_proximity_value">근접 측정값</string>
+
+    <string name="diag_sensor_list">사용 가능한 센서 (%1$d)</string>
+    <string name="diag_sensor_list_explanation">getSensorList(Sensor.TYPE_ALL)가 반환한 전체 목록입니다. “관련 있음”으로 표시된 센서는 케이스를 감지할 가능성이 있는 것들입니다.</string>
+    <string name="diag_sensor_relevant">케이스 감지에 관련 있을 수 있는 센서</string>
+
+    <string name="diag_log">로그 (%1$d)</string>
+    <string name="diag_log_empty">(로그 없음)</string>
+    <string name="diag_log_local">로그는 휴대폰 메모리에만 남습니다. 어떤 데이터도 기기를 벗어나지 않습니다.</string>
+    <string name="action_copy_diagnostic">진단 정보 복사</string>
+    <string name="action_clear_logs">로그 지우기</string>
+
+    <string name="label_name">이름</string>
+    <string name="label_vendor">제조사</string>
+    <string name="label_version">버전</string>
+    <string name="label_type">유형</string>
+    <string name="label_max_range">최대 측정 범위</string>
+    <string name="label_resolution">분해능</string>
+    <string name="label_power">소비 전력</string>
+    <string name="label_reporting_mode">보고 방식</string>
+    <string name="label_wake_up">웨이크업</string>
+
+    <string name="calib_title">FlipLock 보정</string>
+    <string name="calib_intro_title">케이스를 완전히 열어 두세요.</string>
+    <string name="calib_intro_body">FlipLock이 2초 동안 조도를 측정한 뒤, 비교를 위해 덮개를 닫아 달라고 요청합니다.</string>
+    <string name="calib_start">시작</string>
+    <string name="calib_measuring_open">측정 중 — 케이스 열림</string>
+    <string name="calib_measuring_closed">측정 중 — 케이스 닫힘</string>
+    <string name="calib_measured_light">측정된 조도</string>
+    <string name="calib_close_now">이제 덮개를 완전히 닫으세요.</string>
+    <string name="calib_countdown">닫기까지</string>
+    <string name="calib_open_summary">케이스 열림</string>
+    <string name="calib_no_result">결과가 없습니다.</string>
+
+    <string name="calib_quality_excellent">훌륭합니다 — 이 케이스는 아주 잘 감지됩니다.</string>
+    <string name="calib_quality_good">양호합니다 — 닫힘을 안정적으로 감지합니다.</string>
+    <string name="calib_quality_weak">보통입니다 — 감지가 불안정할 수 있습니다.</string>
+    <string name="calib_quality_poor">부족합니다 — 이 환경에서는 센서가 열림과 닫힘을 구분하지 못합니다.</string>
+
+    <string name="calib_advice_light_enough">이 조건에서는 조도 전용 모드로 충분합니다.</string>
+    <string name="calib_advice_retry_brighter_prox">더 밝은 곳에서 다시 보정하세요. 근접 센서가 작동하므로 조도 + 근접 모드가 감지를 더 안정적으로 만들어 줍니다.</string>
+    <string name="calib_advice_retry_brighter">더 밝은 곳에서 다시 보정하세요. 근접 센서가 아무 이벤트도 내지 않아 조도만 사용할 수 있습니다.</string>
+    <string name="calib_advice_poor_prox">덮개를 열었을 때의 조도가 닫았을 때와 너무 비슷합니다. 근접 센서가 NEAR를 보고했으니 조도 + 근접 모드를 켜세요.</string>
+    <string name="calib_advice_poor">덮개를 열었을 때의 조도가 닫았을 때와 너무 비슷합니다. 불이 켜진 곳에서 덮개를 화면에 밀착시켜 다시 시도하세요.</string>
+
+    <string name="calib_open_median">열림 (중앙값)</string>
+    <string name="calib_closed_median">닫힘 (중앙값)</string>
+    <string name="calib_closed_max">닫힘 (최댓값)</string>
+    <string name="calib_difference">차이</string>
+    <string name="calib_computed">이 케이스에 맞게 계산된 설정</string>
+    <string name="calib_proximity_during">닫는 동안의 근접 센서</string>
+    <string name="calib_proximity_absent">센서 없음</string>
+    <string name="calib_proximity_near_seen">NEAR 감지됨</string>
+    <string name="calib_proximity_no_near">NEAR 없음</string>
+    <string name="calib_apply">이 설정 적용</string>
+    <string name="calib_applied">설정을 적용했습니다</string>
+    <string name="calib_enable_hybrid">조도 + 근접 모드 켜기</string>
+    <string name="calib_restart">다시 시작</string>
+
+    <string name="dark_test_title">어두운 곳에서 테스트</string>
+    <string name="dark_test_body">테스트하려는 조명 환경에서 케이스를 열어 둔 채로 측정을 시작하세요.</string>
+    <string name="dark_test_run">어두운 곳에서 테스트</string>
+    <string name="dark_test_running">측정 중…</string>
+    <string name="dark_test_ambient">주변 조도</string>
+    <string name="dark_test_threshold">현재 닫힘 임계값</string>
+    <string name="dark_test_reliable">주변 조도 %1$s lux: 충분합니다. 조도 센서가 열림과 닫힘을 뚜렷하게 구분합니다.</string>
+    <string name="dark_test_unreliable">주변 조도 %1$s lux (최소 %2$s 필요).\n이런 조명 환경에서는 조도 센서만으로 열림과 닫힘을 구분하지 못할 수 있습니다.</string>
+    <string name="dark_test_prox_works">좋은 소식입니다: 근접 센서가 이벤트를 내고 있습니다. 조도 + 근접 하이브리드 모드를 권장합니다.</string>
+    <string name="dark_test_prox_silent">Android는 근접 센서를 보고하지만 테스트 동안 아무 이벤트도 내지 않았습니다. 대체 수단으로 쓸 수 없습니다.</string>
+    <string name="dark_test_prox_absent">사용 가능한 근접 센서가 없습니다. FlipLock은 완전한 어둠에서는 잠그지 않습니다 (오작동을 막기 위한 의도된 동작입니다).</string>
+    <string name="dark_test_switch_hybrid">조도 + 근접 하이브리드 모드로 전환</string>
+
+    <string name="calib_saved">저장된 보정값</string>
+    <string name="calib_none">저장된 보정값이 없습니다.</string>
+    <string name="calib_open">열림</string>
+    <string name="calib_closed">닫힘</string>
+    <string name="calib_separation">구분도</string>
+    <string name="calib_active_threshold">적용 중인 임계값</string>
+
+    <string name="adv_detection">감지</string>
+    <string name="adv_close_threshold">닫힘 임계값</string>
+    <string name="adv_close_threshold_help">이 값보다 밝으면 FlipLock은 덮개가 닫히지 않았다고 판단합니다.</string>
+    <string name="adv_min_drop">최소 하강 비율</string>
+    <string name="adv_min_absolute_drop">최소 절대 하강량</string>
+    <string name="adv_confirmation">확인 시간</string>
+    <string name="adv_cooldown">재잠금 대기 시간</string>
+    <string name="adv_min_baseline">사용 가능한 최소 기준값</string>
+    <string name="adv_min_baseline_help">주변 조도가 이 값보다 낮으면 조도만으로는 “어두운 방”과 “닫힌 덮개”를 구분할 수 없습니다. 이때 FlipLock은 잠금을 거부합니다 (근접 센서가 확인해 주는 경우는 예외).</string>
+
+    <string name="adv_mode">모드</string>
+    <string name="adv_mode_help">AUTO: 조도로 판단이 가능할 때는 조도가 결정합니다. 방이 너무 어둡고 근접 센서가 실제로 이벤트를 낼 때에만 근접 센서가 대신합니다.</string>
+
+    <string name="adv_background">백그라운드 안정성</string>
+    <string name="adv_persistent_service">상시 실행 서비스</string>
+    <string name="adv_persistent_service_help">기본적으로 꺼져 있습니다. 접근성 서비스가 이미 센서를 감시하고 있어 알림도, 추가 서비스도 필요하지 않습니다.\n\n테스트 C가 실패할 때만 켜세요. 즉 FlipLock이 화면에 없을 때 케이스를 덮어도 잠기지 않는 경우입니다. Android가 백그라운드에서 센서를 끊지 못하도록 조용한 알림을 추가합니다.</string>
+
+    <string name="adv_wake_title">열 때 화면 켜기</string>
+    <string name="adv_wake_unavailable">이 기기에서는 자동 화면 켜기를 사용할 수 없습니다.</string>
+    <string name="adv_wake_unavailable_help">프로세서를 깨울 수 있는 “wake-up” 센서를 찾지 못했습니다. 화면이 꺼진 상태에서는 조도 센서만으로 이를 할 수 없습니다.</string>
+    <string name="adv_wake_switch">덮개를 열면 화면 켜기</string>
+    <string name="adv_wake_threshold">기상 임계값</string>
+    <string name="adv_wake_instant_window">잠금 직후 즉시 감시</string>
+    <string name="adv_wake_instant_disabled">꺼짐</string>
+    <string name="adv_wake_instant_seconds">%1$d초</string>
+    <string name="adv_wake_instant_help">이 시간 동안 FlipLock은 조도를 직접 감시합니다. 휴대폰을 손에 든 채로도 덮개를 열면 곧바로 화면이 켜집니다. “닫자마자 다시 여는” 상황을 정확히 이 단계가 처리합니다.\n\n실측 비용: 프로세서의 절전 진입을 막는 데 약 50 mW가 들며, 60초 기준으로 잠금 1회당 배터리 약 0.004%%입니다. 사용하는 웨이크락은 부분 웨이크락(화면은 꺼진 상태)이며 스스로 만료됩니다.</string>
+    <string name="adv_wake_triggers_help">이 시간이 지나면 하드웨어 웨이크업 트리거만 유지됩니다 (약 0.001 mA):\n%1$s\n\n이들은 “한동안 가만히 있던 휴대폰을 다시 집어 드는” 동작에 반응합니다. 그 후 FlipLock이 최대 1.5초 동안 조도를 확인합니다.</string>
+    <string name="adv_wake_limits">화면은 잠금 화면 상태로 켜집니다. PIN, 지문 또는 얼굴 인증은 그대로 필요합니다.\n\n제약: 완전히 어두운 방에서는 덮개를 열어도 조도가 변하지 않으므로 화면이 켜지지 않습니다. 또한 덮개가 닫힌 상태에서 화면이 꺼진 경우에만 기상 감시가 시작되므로, 책상 위에서 저절로 켜지지 않습니다.</string>
+
+    <string name="adv_reset">초기화</string>
+    <string name="adv_reset_button">기본값으로 되돌리기</string>
+    <string name="adv_reset_summary">임계값 2 lux · 하강 85%% · 절대 하강 5 lux · 확인 300 ms · 대기 1500 ms · AUTO 모드</string>
+
+    <string name="tech_phone">휴대폰</string>
+    <string name="tech_android">Android</string>
+    <string name="tech_light_sensor">조도 센서</string>
+    <string name="tech_proximity_sensor">근접 센서</string>
+    <string name="tech_sensor_absent">이 기기에는 해당 센서가 없습니다.</string>
+    <string name="tech_events_probe">수신 이벤트 수 (실측)</string>
+    <string name="tech_events_service">수신 이벤트 수 (서비스)</string>
+
+    <string name="tech_wake_title">열 때 자동으로 화면 켜기</string>
+    <string name="tech_wake_available">사용 가능한 웨이크업 트리거:\n%1$s</string>
+    <string name="tech_wake_light">웨이크업 조도 센서</string>
+    <string name="tech_wake_enabled">사용 중</string>
+    <string name="tech_wake_armed">트리거 대기 중</string>
+    <string name="tech_wake_last">마지막 기상</string>
+    <string name="tech_wake_ok">화면 켜짐</string>
+    <string name="tech_wake_ko">실패 (로그 참조)</string>
+    <string name="tech_wake_help">이 기기의 조도 센서는 “Non-wakeup” 유형이라 프로세서를 깨울 수 없습니다. 그래서 FlipLock은 하드웨어 웨이크업 모션 센서를 거친 뒤 1.5초 동안 조도를 확인합니다. 상시 웨이크락은 절대 사용하지 않습니다.</string>
+
+    <string name="tech_internal_state">내부 상태</string>
+    <string name="tech_accessibility_connected">접근성 서비스 연결됨</string>
+    <string name="tech_monitoring_active">감시 작동 중</string>
+    <string name="tech_screen_interactive">화면 사용 중</string>
+    <string name="tech_persistent_service">상시 실행 서비스</string>
+    <string name="tech_strategy">전략</string>
+
+    <string name="tech_privacy">개인정보</string>
+    <string name="tech_privacy_body">FlipLock은 인터넷, 카메라, 마이크, 연락처, SMS, 전화, 위치, 파일, 계정, 블루투스 권한을 일절 선언하지 않습니다.\n\n분석 도구도, Firebase도, 텔레메트리도, 서버도 없습니다. 측정값과 로그는 기기 메모리에만 남고 언제든지 지울 수 있습니다. Android 클라우드 백업은 비활성화되어 있습니다.</string>
+</resources>

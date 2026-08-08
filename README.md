@@ -1,33 +1,80 @@
-# FlipLock
+# FlipLock — lock your Android screen when you close a flip case that has no magnet
 
-**Close your wallet-case flap → the screen turns off and the phone locks.
-Open it → the screen comes back on.**
+**Your wallet / flip / folio case does not turn the screen off when you close it, because it has
+no magnet. FlipLock fixes that.** Close the flap → the phone locks. Open it → the screen comes
+back on.
 
 No magnet. No root. No ADB. No Shizuku. No server. No Internet.
 
-*[🇫🇷 Lire en français](README.fr.md)*
+**[⬇ Download the APK](../../releases/latest)** · [FAQ](docs/FAQ.md)
+
+**Languages:** English · [Français](README.fr.md) · [简体中文](README.zh.md) · [한국어](README.ko.md) · [日本語](README.ja.md)
 
 <p align="center">
   <img src="docs/flow.svg" alt="Close to lock, open to wake" width="100%">
 </p>
 
-Original flip covers use a magnet and a Hall sensor. Cheap third-party cases have no magnet, so
-Android has no idea they are closing. FlipLock detects the close from the **collapse in ambient
-light** — but it looks for an *event*, never for a fixed threshold, so your phone does not lock
-itself every time the room gets dark.
+## Is this your problem?
 
-- Package `com.fliplock.cover` · MIT licence · English / Français / 简体中文
+You bought a flip case that is not the manufacturer's own, and:
+
+- closing the flap **does not turn the screen off** — the phone stays awake inside your bag
+- opening the flap **does not wake** the phone
+- Samsung's *Smart View Cover* / *Cover screen* setting does nothing, or the option is not even
+  there
+- your phone burns battery and gets warm in your pocket because the screen never went off
+- the apps you found only offer *double tap to sleep*, or want root / ADB / Shizuku
+- "pocket mode" apps lock your phone **every time the room gets dark**, which is worse
+
+**Here is why.** Official flip covers hide a small **magnet**, and the phone has a **Hall sensor**
+that detects it. That is the whole mechanism. Third-party cases almost never include the magnet,
+so Android has literally no way to know the case is closed — there is nothing to detect. No
+setting will fix it, because the hardware signal does not exist.
+
+**What FlipLock does instead.** It watches the **ambient light sensor** on the front of the phone.
+An opaque flap closing over it makes the light collapse. FlipLock looks for that *event* — a drop
+that is fast, deep and sustained — rather than for a fixed lux value. That distinction is the
+entire point: a dark room, a passing hand, dusk falling or walking indoors all end at the same
+low lux, and none of them lock your phone.
+
+- Package `com.fliplock.cover` · MIT licence · English / Français / 简体中文 / 한국어 / 日本語
 - `minSdk` 28 (lowest API exposing `GLOBAL_ACTION_LOCK_SCREEN`) · `targetSdk` / `compileSdk` 36
 - No Internet permission. No analytics. No server. Entirely on-device.
+- Built and validated on a Samsung Galaxy **SM-S948B**, Android 16 / One UI, with a magnet-free
+  third-party wallet case
+
+**Also searched as:** flip cover not working, smart cover clone, folio case screen off, case
+close lock screen, no hall sensor, magnet-free flip case, cover screen not detected, auto lock
+when closing case, third-party flip cover Samsung · *coque à rabat qui n'éteint pas l'écran, étui
+portefeuille sans aimant, la coque ne verrouille pas le téléphone, capteur à effet Hall* ·
+*翻盖保护套 不能自动熄屏, 无磁铁 皮套 自动锁屏*
 
 ---
+
+## What it looks like
+
+| Home | Sensor diagnostics | Advanced settings |
+|:---:|:---:|:---:|
+| <img src="docs/screenshots/home.png" alt="FlipLock home screen showing live lux, case state and lock permission" width="240"> | <img src="docs/screenshots/diagnostics.png" alt="Diagnostics screen with live lux, rolling baseline and timestamped reading history" width="240"> | <img src="docs/screenshots/advanced.png" alt="Advanced settings with every detection threshold and the detection mode" width="240"> |
+| Live lux, case state and the lock permission at a glance | Every reading timestamped, the rolling baseline, and the exact decision the engine reached | Every threshold is yours, with the reasoning next to each one |
+
+And the screen that matters most — the engine **refusing** to lock:
+
+<p align="center">
+  <img src="docs/screenshots/rejected.png" alt="Diagnostics showing decision: drop too gradual (not a close), with 100 percent drop but no candidate" width="270">
+</p>
+
+The light really did reach **0.0 lux** and the drop really was **100 %**. FlipLock still said no:
+`drop too gradual (not a close)`. The last bright reading was more than 900 ms earlier, so this
+was a room going dark, not a flap coming down. That single decision is what stops your phone
+locking itself all day long.
 
 ## Why not just `if (lux < 2) lock()`
 
 Because your phone would lock every time you walk into a dark room.
 
 <p align="center">
-  <img src="docs/how-it-works.svg" alt="A threshold cannot tell a closing flap from a dimming room" width="100%">
+  <img src="docs/how-it-works.svg" alt="A threshold cannot tell a closing flap from a dimming room; an event can" width="100%">
 </p>
 
 `CoverDetectionEngine` requires **all** of these at once:

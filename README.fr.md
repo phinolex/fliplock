@@ -1,22 +1,67 @@
-# FlipLock
+# FlipLock — verrouiller l'écran quand on ferme une coque à rabat sans aimant
 
-**Fermez le rabat de votre coque portefeuille → l'écran s'éteint et le téléphone se verrouille.
-Rouvrez-le → l'écran se rallume.**
+**Votre coque portefeuille / à rabat / folio n'éteint pas l'écran quand vous la fermez, parce
+qu'elle n'a pas d'aimant. FlipLock corrige ça.** Rabat fermé → le téléphone se verrouille.
+Rabat ouvert → l'écran se rallume.
 
 Sans aimant, sans root, sans ADB, sans Shizuku, sans serveur, sans Internet.
 
-*[🇬🇧 Read in English](README.md)*
+**[⬇ Télécharger l'APK](../../releases/latest)** · [FAQ (anglais)](docs/FAQ.md)
+
+**Langues :** [English](README.md) · Français · [简体中文](README.zh.md) · [한국어](README.ko.md) · [日本語](README.ja.md)
 
 <p align="center">
   <img src="docs/flow.svg" alt="Fermer pour verrouiller, ouvrir pour réveiller" width="100%">
 </p>
 
+## C'est votre problème ?
+
+Vous avez acheté une coque à rabat qui n'est pas celle du constructeur, et :
+
+- fermer le rabat **n'éteint pas l'écran** — le téléphone reste allumé dans votre sac
+- ouvrir le rabat **ne réveille pas** le téléphone
+- le réglage *Coque à rabat* / *Écran de la coque* de Samsung ne fait rien, ou l'option n'existe
+  même pas
+- le téléphone chauffe et se vide dans la poche parce que l'écran ne s'est jamais éteint
+- les applications trouvées ne proposent que le *double tap pour éteindre*, ou exigent root / ADB /
+  Shizuku
+- les applications « mode poche » verrouillent **dès qu'il fait sombre**, ce qui est pire
+
+**Voici pourquoi.** Les coques à rabat d'origine cachent un petit **aimant**, et le téléphone
+possède un **capteur à effet Hall** qui le détecte. C'est tout le mécanisme. Les coques tierces
+n'ont presque jamais cet aimant : Android n'a donc littéralement aucun moyen de savoir que la
+coque est fermée — il n'y a rien à détecter. Aucun réglage n'y changera quoi que ce soit, parce
+que le signal matériel n'existe pas.
+
+**Ce que fait FlipLock à la place.** Il surveille le **capteur de luminosité** en façade. Un rabat
+opaque qui se referme dessus fait s'effondrer la lumière. FlipLock cherche cet **événement** — une
+chute rapide, profonde et durable — et non une valeur de lux fixe. Cette distinction est tout
+l'enjeu : une pièce sombre, une main qui passe, la tombée de la nuit ou le fait de rentrer à
+l'intérieur finissent tous au même niveau bas, et aucun ne verrouille votre téléphone.
+
+## À quoi ça ressemble
+
+| Accueil | Diagnostic capteurs | Réglages avancés |
+|:---:|:---:|:---:|
+| <img src="docs/screenshots/home.png" width="240"> | <img src="docs/screenshots/diagnostics.png" width="240"> | <img src="docs/screenshots/advanced.png" width="240"> |
+
+Et l'écran le plus parlant — le moteur qui **refuse** de verrouiller :
+
 <p align="center">
-  <img src="docs/how-it-works.svg" alt="Un seuil ne distingue pas un rabat qui se ferme d'une pièce qui s'assombrit" width="100%">
+  <img src="docs/screenshots/rejected.png" width="270">
 </p>
 
-L'application est disponible en **français, anglais et chinois simplifié** : elle suit la langue
-du téléphone.
+La lumière est bien descendue à **0,0 lux** et la chute était bien de **100 %**. FlipLock a quand
+même dit non : `drop too gradual` (chute trop progressive, pas une fermeture). La dernière mesure
+claire datait de plus de 900 ms : c'était une pièce qui s'assombrit, pas un rabat qui tombe. Cette
+décision-là est ce qui empêche votre téléphone de se verrouiller toute la journée.
+
+<p align="center">
+  <img src="docs/how-it-works.svg" alt="Un seuil ne distingue pas un rabat qui se ferme d'une pièce qui s'assombrit ; un événement, si" width="100%">
+</p>
+
+L'application est disponible en **français, anglais, chinois simplifié, coréen et japonais** :
+elle suit la langue du téléphone.
 
 Les coques à rabat d'origine utilisent un aimant et un capteur Hall. Les coques tierces
 bon marché n'ont pas d'aimant : Android ne sait donc pas qu'elles se ferment. FlipLock détecte

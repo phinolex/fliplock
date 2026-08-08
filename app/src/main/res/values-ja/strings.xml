@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 日本語 -->
+<resources>
+    <string name="accessibility_service_label">FlipLock — 画面ロック</string>
+    <string name="accessibility_service_summary">FlipLock が画面をロックできるようにします。</string>
+    <string name="accessibility_service_description">FlipLock がこの権限を必要とする理由はただ一つ、ケースを閉じたときに画面をロックするためです。\n\nこのサービスはアプリの内容を読み取らず、通知も読まず、キー入力も記録せず、画面もキャプチャしません。使用する Android の操作は「画面をロック」の一つだけです。</string>
+
+    <string name="fgs_channel_name">FlipLock の監視</string>
+    <string name="fgs_channel_description">FlipLock が照度センサーを監視している間に表示される控えめな通知です。</string>
+    <string name="fgs_notification_title">FlipLock 動作中</string>
+    <string name="fgs_notification_text">照度センサーを監視しています</string>
+
+    <string name="screen_diagnostic">センサー診断</string>
+    <string name="screen_calibration">キャリブレーション</string>
+    <string name="screen_advanced">詳細設定</string>
+    <string name="screen_tech_info">技術情報</string>
+    <string name="action_back">戻る</string>
+
+    <string name="value_yes">はい</string>
+    <string name="value_no">いいえ</string>
+    <string name="value_none">なし</string>
+
+    <string name="strategy_light_only">照度のみ</string>
+    <string name="strategy_light_proximity">照度 + 近接</string>
+
+    <string name="cover_open">開いている</string>
+    <string name="cover_closing">閉じたことを検知</string>
+    <string name="cover_cooldown">ロック済み（待機中）</string>
+    <string name="cover_screen_off">画面オフ</string>
+    <string name="cover_monitoring_off">監視停止中</string>
+
+    <string name="origin_detection">自動検知</string>
+    <string name="origin_test_button">テストボタン</string>
+
+    <string name="home_status">状態</string>
+    <string name="home_status_active">🟢 FlipLock 動作中</string>
+    <string name="home_status_inactive">⚪ FlipLock オフ</string>
+    <string name="home_permission_missing">FlipLock はオンですが、ロック権限がありません。ケースを閉じても画面を消せません。</string>
+    <string name="home_monitoring">センサー監視</string>
+    <string name="home_monitoring_running">動作中</string>
+    <string name="home_monitoring_stopped">停止中</string>
+
+    <string name="section_sensor">センサー</string>
+    <string name="label_light">照度</string>
+    <string name="label_baseline">基準値（ケースを開いた状態）</string>
+    <string name="label_proximity">近接</string>
+    <string name="label_cover_state">ケースの状態</string>
+
+    <string name="section_lock_permission">ロック権限</string>
+    <string name="permission_granted">🟢 有効</string>
+    <string name="permission_pending">🟠 有効、接続待ち</string>
+    <string name="permission_denied">🔴 無効</string>
+    <string name="permission_explanation">FlipLock がこの権限を必要とする理由はただ一つ、ケースを閉じたときに画面をロックするためです。このサービスはアプリも通知も画面も読み取りません。</string>
+    <string name="action_enable_permission">権限を有効にする</string>
+    <string name="action_open_app_details">「アプリ情報」を開く（制限された設定）</string>
+
+    <string name="section_actions">操作</string>
+    <string name="action_calibrate">ケースをキャリブレーション</string>
+    <string name="action_test_lock">今すぐ画面をロック</string>
+    <string name="label_last_lock">前回のロック</string>
+    <string name="lock_succeeded">成功（%1$s）</string>
+    <string name="lock_failed">失敗（%1$s）</string>
+
+    <string name="section_how_it_works">仕組み</string>
+    <string name="how_it_works_body">1. フタを閉じると照度が一気に落ちます。\n2. FlipLock はその低下が速く、深く、%1$d ミリ秒持続するかを確認します。\n3. 画面がロックされます。\n\n部屋がゆっくり暗くなる場合や、手が端末の上を横切る場合はロックされません。</string>
+
+    <string name="msg_accessibility_off">ユーザー補助サービスが動作していません。先にロック権限を有効にしてください。</string>
+    <string name="msg_lock_refused">Android がロック操作を拒否しました。ログを確認してください。</string>
+    <string name="msg_defaults_restored">初期値に戻しました。</string>
+    <string name="msg_calibration_applied">キャリブレーションを適用しました。</string>
+    <string name="msg_diagnostic_copied">診断情報をクリップボードにコピーしました。</string>
+    <string name="msg_copy_failed">コピーできませんでした。</string>
+
+    <string name="diag_current_light">現在の照度</string>
+    <string name="diag_possible_close">閉じた可能性を検知</string>
+    <string name="diag_baseline">基準値（移動中央値）</string>
+    <string name="diag_baseline_samples">基準値のサンプル数</string>
+    <string name="diag_drop">低下</string>
+    <string name="diag_engine_state">エンジンの状態</string>
+    <string name="diag_decision">判定</string>
+    <string name="diag_last_reading">最後の測定</string>
+    <string name="diag_sensor_timestamp">センサーのタイムスタンプ</string>
+    <string name="diag_preview_note">この画面は FlipLock の判定をシミュレートするだけで、実際にロックすることはありません。</string>
+
+    <string name="diag_history">測定履歴</string>
+    <string name="diag_history_empty">測定値をまだ受け取っていません。</string>
+    <string name="diag_history_candidate">[候補]</string>
+    <string name="diag_last_rejection">前回の却下理由</string>
+
+    <string name="diag_probe_section">センサーの実測</string>
+    <string name="diag_probe_explanation">FlipLock は「Android がセンサーを申告している」だけでは決して満足しません。実際にリスナーを登録し、受信したイベント数を数えます。</string>
+    <string name="diag_probe_declared">Android が申告</string>
+    <string name="diag_probe_accepted">リスナー登録に成功</string>
+    <string name="diag_probe_events">実際のイベント受信</string>
+    <string name="diag_probe_count">イベント数</string>
+    <string name="diag_probe_verdict">結論</string>
+    <string name="diag_probe_running">実測中…</string>
+    <string name="diag_probe_restart">実測をやり直す</string>
+    <string name="diag_probe_all">すべてのセンサーを実測（3 秒）</string>
+    <string name="diag_proximity_value">近接センサーの値</string>
+
+    <string name="diag_sensor_list">利用可能なセンサー（%1$d）</string>
+    <string name="diag_sensor_list_explanation">getSensorList(Sensor.TYPE_ALL) が返した完全なリストです。「関連あり」と表示されたセンサーは、ケースの検知に使える可能性があるものです。</string>
+    <string name="diag_sensor_relevant">ケース検知に関連する可能性のあるセンサー</string>
+
+    <string name="diag_log">ログ（%1$d）</string>
+    <string name="diag_log_empty">（ログなし）</string>
+    <string name="diag_log_local">ログは端末のメモリー内にのみ残ります。データが端末の外に出ることはありません。</string>
+    <string name="action_copy_diagnostic">診断情報をコピー</string>
+    <string name="action_clear_logs">ログを消去</string>
+
+    <string name="label_name">名前</string>
+    <string name="label_vendor">メーカー</string>
+    <string name="label_version">バージョン</string>
+    <string name="label_type">種類</string>
+    <string name="label_max_range">最大測定範囲</string>
+    <string name="label_resolution">分解能</string>
+    <string name="label_power">消費電力</string>
+    <string name="label_reporting_mode">報告モード</string>
+    <string name="label_wake_up">ウェイクアップ</string>
+
+    <string name="calib_title">FlipLock のキャリブレーション</string>
+    <string name="calib_intro_title">ケースを完全に開いたままにしてください。</string>
+    <string name="calib_intro_body">FlipLock が 2 秒間照度を測定し、そのあと比較のためフタを閉じるようお願いします。</string>
+    <string name="calib_start">開始</string>
+    <string name="calib_measuring_open">測定中 — ケースを開いた状態</string>
+    <string name="calib_measuring_closed">測定中 — ケースを閉じた状態</string>
+    <string name="calib_measured_light">測定された照度</string>
+    <string name="calib_close_now">では、フタを完全に閉じてください。</string>
+    <string name="calib_countdown">閉じるまで</string>
+    <string name="calib_open_summary">ケースを開いた状態</string>
+    <string name="calib_no_result">結果がありません。</string>
+
+    <string name="calib_quality_excellent">非常に良好 — このケースは簡単に検知できます。</string>
+    <string name="calib_quality_good">良好 — 閉じたことを安定して検知できます。</string>
+    <string name="calib_quality_weak">やや不安定 — 検知にばらつきが出る可能性があります。</string>
+    <string name="calib_quality_poor">不十分 — この環境ではセンサーが開閉を区別できません。</string>
+
+    <string name="calib_advice_light_enough">この条件では照度のみのモードで十分です。</string>
+    <string name="calib_advice_retry_brighter_prox">もっと明るい部屋でキャリブレーションをやり直してください。近接センサーが動作しているので、照度 + 近接モードにすると検知がより確実になります。</string>
+    <string name="calib_advice_retry_brighter">もっと明るい部屋でキャリブレーションをやり直してください。近接センサーはイベントを一切出さなかったため、照度だけが利用可能です。</string>
+    <string name="calib_advice_poor_prox">フタを開けたときの照度が、閉じたときと近すぎます。近接センサーは NEAR を報告したので、照度 + 近接モードを有効にしてください。</string>
+    <string name="calib_advice_poor">フタを開けたときの照度が、閉じたときと近すぎます。照明のある部屋で、フタを画面にしっかり密着させてやり直してください。</string>
+
+    <string name="calib_open_median">開いた状態（中央値）</string>
+    <string name="calib_closed_median">閉じた状態（中央値）</string>
+    <string name="calib_closed_max">閉じた状態（最大値）</string>
+    <string name="calib_difference">差</string>
+    <string name="calib_computed">このケース用に算出された設定</string>
+    <string name="calib_proximity_during">閉じる間の近接センサー</string>
+    <string name="calib_proximity_absent">センサーなし</string>
+    <string name="calib_proximity_near_seen">NEAR を検知</string>
+    <string name="calib_proximity_no_near">NEAR なし</string>
+    <string name="calib_apply">この設定を適用</string>
+    <string name="calib_applied">設定を適用しました</string>
+    <string name="calib_enable_hybrid">照度 + 近接モードを有効にする</string>
+    <string name="calib_restart">やり直す</string>
+
+    <string name="dark_test_title">暗所でのテスト</string>
+    <string name="dark_test_body">テストしたい明るさの環境でケースを開いたまま、測定を開始してください。</string>
+    <string name="dark_test_run">暗所でテスト</string>
+    <string name="dark_test_running">測定中…</string>
+    <string name="dark_test_ambient">周囲の照度</string>
+    <string name="dark_test_threshold">現在の閉じ判定しきい値</string>
+    <string name="dark_test_reliable">周囲の照度 %1$s lux: 十分です。照度センサーが開閉をはっきり区別できます。</string>
+    <string name="dark_test_unreliable">周囲の照度 %1$s lux（最低でも %2$s 必要）。\nこの明るさでは、照度センサーだけでは開閉を区別できない可能性があります。</string>
+    <string name="dark_test_prox_works">朗報です。近接センサーがイベントを出しています。照度 + 近接のハイブリッドモードをおすすめします。</string>
+    <string name="dark_test_prox_silent">Android は近接センサーを申告していますが、テスト中に一つもイベントを出しませんでした。代替手段としては使えません。</string>
+    <string name="dark_test_prox_absent">利用できる近接センサーがありません。FlipLock は完全な暗闇ではロックしません（誤作動を避けるための意図的な動作です）。</string>
+    <string name="dark_test_switch_hybrid">照度 + 近接のハイブリッドモードに切り替える</string>
+
+    <string name="calib_saved">保存されたキャリブレーション</string>
+    <string name="calib_none">保存されたキャリブレーションはありません。</string>
+    <string name="calib_open">開いた状態</string>
+    <string name="calib_closed">閉じた状態</string>
+    <string name="calib_separation">分離度</string>
+    <string name="calib_active_threshold">適用中のしきい値</string>
+
+    <string name="adv_detection">検知</string>
+    <string name="adv_close_threshold">閉じ判定しきい値</string>
+    <string name="adv_close_threshold_help">この値より明るい場合、FlipLock はフタが閉じていないと判断します。</string>
+    <string name="adv_min_drop">最小低下率</string>
+    <string name="adv_min_absolute_drop">最小絶対低下量</string>
+    <string name="adv_confirmation">確認時間</string>
+    <string name="adv_cooldown">クールダウン</string>
+    <string name="adv_min_baseline">利用可能な最小基準値</string>
+    <string name="adv_min_baseline_help">周囲の明るさがこの値を下回ると、照度だけでは「暗い部屋」と「閉じたフタ」を区別できません。そのとき FlipLock はロックを拒否します（近接センサーが裏づける場合を除く）。</string>
+
+    <string name="adv_mode">モード</string>
+    <string name="adv_mode_help">AUTO: 照度で判断できるときは照度が決めます。部屋が暗すぎて、かつ近接センサーが実際にイベントを出す場合にのみ近接センサーが引き継ぎます。</string>
+
+    <string name="adv_background">バックグラウンドでの信頼性</string>
+    <string name="adv_persistent_service">常駐サービス</string>
+    <string name="adv_persistent_service_help">既定ではオフです。ユーザー補助サービスがすでにセンサーを監視しているため、通知も追加サービスも必要ありません。\n\nテスト C が失敗する場合、つまり FlipLock が前面にないときにケースを閉じてもロックされない場合にのみ有効にしてください。Android がバックグラウンドでセンサーを止めないようにする、控えめな通知が追加されます。</string>
+
+    <string name="adv_wake_title">開いたときに点灯</string>
+    <string name="adv_wake_unavailable">この端末では自動点灯を利用できません。</string>
+    <string name="adv_wake_unavailable_help">プロセッサーを起こせる「wake-up」センサーが見つかりませんでした。画面が消えている間、照度センサーだけではそれができません。</string>
+    <string name="adv_wake_switch">フタを開けたら画面を点ける</string>
+    <string name="adv_wake_threshold">点灯しきい値</string>
+    <string name="adv_wake_instant_window">ロック直後の即時監視</string>
+    <string name="adv_wake_instant_disabled">オフ</string>
+    <string name="adv_wake_instant_seconds">%1$d 秒</string>
+    <string name="adv_wake_instant_help">この時間中、FlipLock は照度を直接監視します。端末を手に持ったままでも、フタを開けた瞬間に画面が点きます。「閉じてすぐ開ける」場面をこの段階がカバーします。\n\n実測コスト: プロセッサーのスリープを妨げるのに約 50 mW、60 秒あたりロック 1 回につきバッテリーの約 0.004%% です。取得するのは部分ウェイクロック（画面は消えたまま）で、自動的に期限切れになります。</string>
+    <string name="adv_wake_triggers_help">この時間を過ぎると、ハードウェアのウェイクアップトリガーだけが残ります（約 0.001 mA）:\n%1$s\n\nこれらは「しばらく置かれていた端末を再び手に取る」動作に反応します。その後 FlipLock が最大 1.5 秒間、照度を確認します。</string>
+    <string name="adv_wake_limits">画面はロック画面の状態で点灯します。PIN、指紋、顔認証は引き続き必要です。\n\n制限: 真っ暗な部屋ではフタを開けても照度が変わらないため、画面は点きません。また、フタが閉じた状態で画面が消えた場合にのみ点灯監視が始まるので、机の上で勝手に点くことはありません。</string>
+
+    <string name="adv_reset">リセット</string>
+    <string name="adv_reset_button">初期値に戻す</string>
+    <string name="adv_reset_summary">しきい値 2 lux · 低下 85%% · 絶対低下 5 lux · 確認 300 ms · クールダウン 1500 ms · AUTO モード</string>
+
+    <string name="tech_phone">端末</string>
+    <string name="tech_android">Android</string>
+    <string name="tech_light_sensor">照度センサー</string>
+    <string name="tech_proximity_sensor">近接センサー</string>
+    <string name="tech_sensor_absent">この端末にはこのセンサーがありません。</string>
+    <string name="tech_events_probe">受信イベント数（実測）</string>
+    <string name="tech_events_service">受信イベント数（サービス）</string>
+
+    <string name="tech_wake_title">開いたときの自動点灯</string>
+    <string name="tech_wake_available">利用可能なウェイクアップトリガー:\n%1$s</string>
+    <string name="tech_wake_light">ウェイクアップ対応の照度センサー</string>
+    <string name="tech_wake_enabled">有効</string>
+    <string name="tech_wake_armed">トリガー待機中</string>
+    <string name="tech_wake_last">前回の点灯</string>
+    <string name="tech_wake_ok">画面が点灯</string>
+    <string name="tech_wake_ko">失敗（ログ参照）</string>
+    <string name="tech_wake_help">この端末の照度センサーは「Non-wakeup」型で、プロセッサーを起こせません。そのため FlipLock はハードウェアのウェイクアップ用モーションセンサーを経由し、その後 1.5 秒間照度を確認します。恒久的なウェイクロックは一切取得しません。</string>
+
+    <string name="tech_internal_state">内部状態</string>
+    <string name="tech_accessibility_connected">ユーザー補助サービス接続済み</string>
+    <string name="tech_monitoring_active">監視動作中</string>
+    <string name="tech_screen_interactive">画面が操作可能</string>
+    <string name="tech_persistent_service">常駐サービス</string>
+    <string name="tech_strategy">方式</string>
+
+    <string name="tech_privacy">プライバシー</string>
+    <string name="tech_privacy_body">FlipLock はインターネット、カメラ、マイク、連絡先、SMS、電話、位置情報、ファイル、アカウント、Bluetooth の権限を一切宣言していません。\n\n解析ツールも Firebase もテレメトリーもサーバーもありません。測定値とログは端末のメモリー内にのみ残り、いつでも消去できます。Android のクラウドバックアップは無効化されています。</string>
+</resources>
