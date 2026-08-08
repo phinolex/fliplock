@@ -188,12 +188,7 @@ class CalibrationManager(
             else -> CalibrationQuality.POOR
         }
 
-        // Plancher : au-dessus du maximum mesure rabat ferme (bruit du capteur).
-        val floor = maxOf(closedStats.max * 1.5f, closedStats.max + 0.5f, 0.5f)
-        // Plafond : tres loin de la lumiere ambiante coque ouverte.
-        val ceiling = maxOf(openStats.median * 0.15f, 1.0f)
-        val threshold = (if (floor <= ceiling) (floor + ceiling) / 2f else floor)
-            .coerceIn(0.5f, 60f)
+        val threshold = recommendedThreshold(openStats.median, closedStats.max)
 
         // Marge PROPORTIONNELLE, pas fixe. Une separation mesuree de 87 % donnait
         // un seuil a 79 %, et une fermeture reelle a 77,6 % etait refusee de justesse :
@@ -281,5 +276,26 @@ class CalibrationManager(
     companion object {
         const val MEASURE_WINDOW_MS = 2000L
         private const val PROGRESS_STEP_MS = 100L
+
+        /**
+         * Seuil de fermeture recommande, en lux.
+         *
+         * Le seuil doit COLLER a ce qui est mesure rabat ferme, et surtout pas se
+         * placer a mi-chemin de la lumiere ambiante. L'ancienne formule faisait la
+         * moyenne du plancher et du plafond : avec un rabat parfaitement opaque
+         * (ferme = 0 lux) dans une piece a 629 lux, elle recommandait 48 lux — un
+         * seuil que la moindre ombre franchit, et qui creuse une bande morte enorme
+         * entre le seuil de fermeture et le seuil de relachement.
+         *
+         * On part donc du bruit mesure rabat ferme, borne par une fraction de la
+         * lumiere rabat ouvert pour le cas d'un rabat qui laisse passer la lumiere.
+         *
+         * Fonction pure : testable sans appareil.
+         */
+        fun recommendedThreshold(openMedianLux: Float, closedMaxLux: Float): Float {
+            val noiseFloor = maxOf(closedMaxLux * 2f + 1f, 2f)
+            val safetyCeiling = maxOf(openMedianLux * 0.25f, 3f)
+            return minOf(noiseFloor, safetyCeiling).coerceIn(0.5f, 60f)
+        }
     }
 }
