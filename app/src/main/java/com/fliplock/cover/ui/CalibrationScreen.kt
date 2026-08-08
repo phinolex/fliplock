@@ -216,7 +216,9 @@ fun CalibrationScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
                             formatLux(result.requiredAmbientLux),
                         ) + "\n" + stringResource(
                             when {
-                                result.proximityProducesEvents -> R.string.dark_test_prox_works
+                                // Seule une reaction AVEREE au rabat justifie le mode hybride.
+                                result.proximityReactsToFlap -> R.string.dark_test_prox_works
+                                result.proximityProducesEvents -> R.string.dark_test_prox_no_flap
                                 result.proximityAvailable -> R.string.dark_test_prox_silent
                                 else -> R.string.dark_test_prox_absent
                             }
@@ -227,7 +229,7 @@ fun CalibrationScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
                         style = MaterialTheme.typography.bodyMedium,
                         color = if (result.reliable) StatusColors.ok else StatusColors.warn,
                     )
-                    if (!result.reliable && result.proximityProducesEvents &&
+                    if (!result.reliable && result.proximityReactsToFlap &&
                         settings.strategy != DetectionStrategy.LIGHT_PLUS_PROXIMITY
                     ) {
                         Button(

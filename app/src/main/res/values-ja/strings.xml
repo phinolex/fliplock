@@ -36,6 +36,8 @@
     <string name="home_status_active">🟢 FlipLock 動作中</string>
     <string name="home_status_inactive">⚪ FlipLock オフ</string>
     <string name="home_permission_missing">FlipLock はオンですが、ロック権限がありません。ケースを閉じても画面を消せません。</string>
+    <string name="home_hybrid_broken">照度 + 近接モードが有効ですが、キャリブレーションの結果、フタを閉じても近接センサーが NEAR を報告しないことが分かりました。このモードでは近接が必須のため、すべての閉じ操作が拒否されています。AUTO モードに戻してください。</string>
+    <string name="home_switch_auto">AUTO モードに戻す</string>
     <string name="home_monitoring">センサー監視</string>
     <string name="home_monitoring_running">動作中</string>
     <string name="home_monitoring_stopped">停止中</string>
@@ -165,6 +167,7 @@
     <string name="dark_test_reliable">周囲の照度 %1$s lux: 十分です。照度センサーが開閉をはっきり区別できます。</string>
     <string name="dark_test_unreliable">周囲の照度 %1$s lux（最低でも %2$s 必要）。\nこの明るさでは、照度センサーだけでは開閉を区別できない可能性があります。</string>
     <string name="dark_test_prox_works">朗報です。近接センサーがイベントを出しています。照度 + 近接のハイブリッドモードをおすすめします。</string>
+    <string name="dark_test_prox_no_flap">近接センサーは動作していますが、キャリブレーションではフタを閉じても NEAR を報告しませんでした。多くの端末はカバーを無視する仮想近接センサーを使っています。ハイブリッドモードはすべての閉じ操作を拒否するため、ここでは提案しません。</string>
     <string name="dark_test_prox_silent">Android は近接センサーを申告していますが、テスト中に一つもイベントを出しませんでした。代替手段としては使えません。</string>
     <string name="dark_test_prox_absent">利用できる近接センサーがありません。FlipLock は完全な暗闇ではロックしません（誤作動を避けるための意図的な動作です）。</string>
     <string name="dark_test_switch_hybrid">照度 + 近接のハイブリッドモードに切り替える</string>

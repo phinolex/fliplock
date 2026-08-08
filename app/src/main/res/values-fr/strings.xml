@@ -35,6 +35,8 @@
     <string name="home_status_active">🟢 FlipLock actif</string>
     <string name="home_status_inactive">⚪ FlipLock désactivé</string>
     <string name="home_permission_missing">FlipLock est activé mais l\'autorisation de verrouillage est manquante : la fermeture de la coque ne pourra pas éteindre l\'écran.</string>
+    <string name="home_hybrid_broken">Le mode LUMIÈRE + PROXIMITÉ est actif, mais la calibration a montré que votre capteur de proximité ne signale jamais NEAR quand le rabat est fermé. Dans ce mode la proximité est obligatoire : toutes les fermetures sont donc rejetées. Revenez au mode AUTO.</string>
+    <string name="home_switch_auto">Revenir au mode AUTO</string>
     <string name="home_monitoring">Surveillance des capteurs</string>
     <string name="home_monitoring_running">en cours</string>
     <string name="home_monitoring_stopped">arrêtée</string>
@@ -164,6 +166,7 @@
     <string name="dark_test_reliable">Luminosité ambiante %1$s lux : suffisante. Le capteur de lumière distingue nettement l\'ouverture de la fermeture.</string>
     <string name="dark_test_unreliable">Luminosité ambiante %1$s lux (il en faudrait au moins %2$s).\nDans ces conditions de luminosité, le capteur de lumière seul risque de ne pas distinguer l\'ouverture de la fermeture.</string>
     <string name="dark_test_prox_works">Bonne nouvelle : le capteur de proximité produit des événements. Le mode hybride LUMIÈRE + PROXIMITÉ est recommandé.</string>
+    <string name="dark_test_prox_no_flap">Votre capteur de proximité fonctionne, mais la calibration a montré qu\'il ne signale jamais NEAR quand le rabat est fermé — beaucoup de téléphones utilisent une proximité virtuelle qui ignore les coques. Le mode hybride rejetterait toutes les fermetures : il n\'est donc pas proposé ici.</string>
     <string name="dark_test_prox_silent">Le capteur de proximité est annoncé par Android mais n\'a produit aucun événement pendant le test : il ne peut pas servir de secours.</string>
     <string name="dark_test_prox_absent">Aucun capteur de proximité n\'est disponible : FlipLock ne verrouillera pas dans le noir complet (c\'est volontaire, pour éviter les faux positifs).</string>
     <string name="dark_test_switch_hybrid">Passer en mode hybride LUMIÈRE + PROXIMITÉ</string>

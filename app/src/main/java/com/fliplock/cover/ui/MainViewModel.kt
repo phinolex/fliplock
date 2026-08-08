@@ -460,8 +460,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _probing.value = true
             val ambient = calibrationManager.measure(1800L)
             _darkTest.value = calibrationManager.buildDarkTest(
-                ambient,
-                settings.value.closedLuxThreshold,
+                ambient = ambient,
+                closedThreshold = settings.value.closedLuxThreshold,
+                // Verite terrain issue de la calibration, pas « le capteur a emis ».
+                proximityReactsToFlap = settings.value.calibrationProximityUsable,
             )
             _probing.value = false
         }

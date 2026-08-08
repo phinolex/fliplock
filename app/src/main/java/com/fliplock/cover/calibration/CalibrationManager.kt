@@ -90,6 +90,15 @@ data class DarkTestResult(
     val reliable: Boolean,
     val proximityAvailable: Boolean,
     val proximityProducesEvents: Boolean,
+    /**
+     * La proximite a-t-elle REELLEMENT reagi au rabat lors de la calibration ?
+     *
+     * A ne pas confondre avec [proximityProducesEvents], qui est presque toujours
+     * vrai : un capteur « on-change » renvoie sa valeur courante des l'abonnement.
+     * Recommander le mode hybride sur cette base condamne la detection, puisque
+     * ce mode EXIGE un NEAR qui n'arrivera jamais.
+     */
+    val proximityReactsToFlap: Boolean,
 )
 
 /** Mesure brute : luminosite + etats de proximite observes pendant la fenetre. */
@@ -186,7 +195,10 @@ class CalibrationManager(
         val threshold = (if (floor <= ceiling) (floor + ceiling) / 2f else floor)
             .coerceIn(0.5f, 60f)
 
-        val recommendedDrop = (separation - 8f).coerceIn(60f, 95f)
+        // Marge PROPORTIONNELLE, pas fixe. Une separation mesuree de 87 % donnait
+        // un seuil a 79 %, et une fermeture reelle a 77,6 % etait refusee de justesse :
+        // la calibration est un echantillon unique, les fermetures reelles varient autour.
+        val recommendedDrop = (separation * 0.85f).coerceIn(55f, 92f)
         val recommendedAbsolute =
             ((openStats.median - closedStats.median) * 0.25f).coerceIn(3f, 30f)
 
@@ -234,7 +246,11 @@ class CalibrationManager(
      * Test « piece sombre » : la lumiere ambiante actuelle permet-elle encore
      * de distinguer rabat ouvert et rabat ferme ?
      */
-    fun buildDarkTest(ambient: Measurement, closedThreshold: Float): DarkTestResult {
+    fun buildDarkTest(
+        ambient: Measurement,
+        closedThreshold: Float,
+        proximityReactsToFlap: Boolean,
+    ): DarkTestResult {
         val stats = ambient.stats
         // Il faut une marge nette entre l'ambiance et le seuil de fermeture.
         val requiredAmbient = maxOf(closedThreshold * 4f, 8f)
@@ -246,8 +262,8 @@ class CalibrationManager(
             LogCategory.CALIBRATION,
             String.format(
                 Locale.US,
-                "dark test: ambient=%.1f lux | reliable=%b | proximity=%b",
-                stats.median, reliable, proximityWorks,
+                "dark test: ambient=%.1f lux | reliable=%b | proximity emits=%b | reacts to flap=%b",
+                stats.median, reliable, proximityWorks, proximityReactsToFlap,
             ),
         )
 
@@ -258,6 +274,7 @@ class CalibrationManager(
             reliable = reliable,
             proximityAvailable = proximityAvailable,
             proximityProducesEvents = proximityWorks,
+            proximityReactsToFlap = proximityReactsToFlap,
         )
     }
 

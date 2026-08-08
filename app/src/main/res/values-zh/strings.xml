@@ -36,6 +36,8 @@
     <string name="home_status_active">🟢 FlipLock 已启用</string>
     <string name="home_status_inactive">⚪ FlipLock 已关闭</string>
     <string name="home_permission_missing">FlipLock 已开启，但缺少锁屏权限：合上保护套将无法关闭屏幕。</string>
+    <string name="home_hybrid_broken">「光线 + 距离」模式已开启，但校准显示：合上翻盖时你的距离传感器从不报告 NEAR。该模式下距离是必需的，因此所有合盖都会被拒绝。请切回 AUTO 模式。</string>
+    <string name="home_switch_auto">切回 AUTO 模式</string>
     <string name="home_monitoring">传感器监测</string>
     <string name="home_monitoring_running">运行中</string>
     <string name="home_monitoring_stopped">已停止</string>
@@ -165,6 +167,7 @@
     <string name="dark_test_reliable">环境光照度 %1$s lux：足够。光线传感器能清晰区分打开与合上。</string>
     <string name="dark_test_unreliable">环境光照度 %1$s lux（至少需要 %2$s）。\n在这样的光照条件下，仅凭光线传感器可能无法区分打开与合上。</string>
     <string name="dark_test_prox_works">好消息：距离传感器正在产生事件。建议使用“光线 + 距离”混合模式。</string>
+    <string name="dark_test_prox_no_flap">你的距离传感器工作正常，但校准显示合上翻盖时它从不报告 NEAR —— 许多手机使用会忽略保护套的虚拟距离传感器。混合模式会拒绝所有合盖，因此这里不再提供该选项。</string>
     <string name="dark_test_prox_silent">Android 声明了距离传感器，但测试期间它没有产生任何事件：无法作为备用方案。</string>
     <string name="dark_test_prox_absent">没有可用的距离传感器：FlipLock 在全黑环境下不会锁屏（这是刻意设计，以避免误触发）。</string>
     <string name="dark_test_switch_hybrid">切换到“光线 + 距离”混合模式</string>

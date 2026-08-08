@@ -51,6 +51,8 @@
     <string name="home_status_active">🟢 FlipLock active</string>
     <string name="home_status_inactive">⚪ FlipLock off</string>
     <string name="home_permission_missing">FlipLock is switched on but the lock permission is missing: closing the case will not be able to turn the screen off.</string>
+    <string name="home_hybrid_broken">LIGHT + PROXIMITY mode is on, but calibration found that your proximity sensor never reports NEAR when the flap is closed. In this mode proximity is mandatory, so every close is being rejected. Switch back to AUTO.</string>
+    <string name="home_switch_auto">Switch back to AUTO mode</string>
     <string name="home_monitoring">Sensor monitoring</string>
     <string name="home_monitoring_running">running</string>
     <string name="home_monitoring_stopped">stopped</string>
@@ -182,6 +184,7 @@
     <string name="dark_test_reliable">Ambient light %1$s lux: enough. The light sensor tells opening and closing clearly apart.</string>
     <string name="dark_test_unreliable">Ambient light %1$s lux (at least %2$s would be needed).\nIn these lighting conditions the light sensor alone may not tell opening from closing.</string>
     <string name="dark_test_prox_works">Good news: the proximity sensor is producing events. Hybrid LIGHT + PROXIMITY mode is recommended.</string>
+    <string name="dark_test_prox_no_flap">Your proximity sensor works, but calibration showed it never reports NEAR when the flap is closed — many phones use a virtual proximity sensor that ignores covers. Hybrid mode would reject every close, so it is not offered here.</string>
     <string name="dark_test_prox_silent">The proximity sensor is advertised by Android but produced no events during the test: it cannot act as a fallback.</string>
     <string name="dark_test_prox_absent">No proximity sensor is available: FlipLock will not lock in complete darkness (this is deliberate, to avoid false positives).</string>
     <string name="dark_test_switch_hybrid">Switch to hybrid LIGHT + PROXIMITY mode</string>

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.fliplock.cover.R
 import com.fliplock.cover.detection.CoverState
+import com.fliplock.cover.detection.DetectionStrategy
 import com.fliplock.cover.runtime.FlipLockRuntime
 
 @Composable
@@ -81,6 +82,25 @@ fun HomeScreen(
                         style = MaterialTheme.typography.bodySmall,
                         color = StatusColors.alert,
                     )
+                }
+                // Mode hybride actif alors que la proximite ne reagit pas au rabat :
+                // TOUTES les fermetures seront rejetees. Le dire, plutot que d'echouer
+                // en silence.
+                if (settings.strategy == DetectionStrategy.LIGHT_PLUS_PROXIMITY &&
+                    settings.calibrationDone && !settings.calibrationProximityUsable
+                ) {
+                    ThinDivider()
+                    Text(
+                        text = stringResource(R.string.home_hybrid_broken),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = StatusColors.alert,
+                    )
+                    Button(
+                        onClick = { viewModel.setStrategy(DetectionStrategy.AUTO) },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text(stringResource(R.string.home_switch_auto))
+                    }
                 }
                 InfoRow(
                     label = stringResource(R.string.home_monitoring),
