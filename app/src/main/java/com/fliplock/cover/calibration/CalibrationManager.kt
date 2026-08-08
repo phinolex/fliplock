@@ -211,7 +211,11 @@ class CalibrationManager(
         // une piece a 112 lux, ne faisaient que 69 a 73 % et etaient toutes refusees.
         // Le rabat renvoie la lumiere de l'ecran vers le capteur (~30 lux constants),
         // donc la chute relative depend de l'eclairage de la piece, pas de la coque.
-        val recommendedDrop = (separation * 0.6f).coerceIn(45f, 85f)
+        // Plancher a 20 % et non 45 % : en faible luminosite l'ecart mesure tombe a
+        // ~24 % (46 lux ouvert, 35 lux ferme), et un plancher a 45 % rendait ces
+        // conditions definitivement indetectables. Le moteur compense en exigeant
+        // une confirmation bien plus longue quand le contraste est faible.
+        val recommendedDrop = (separation * 0.6f).coerceIn(20f, 85f)
         val recommendedAbsolute =
             ((openStats.median - closedStats.median) * 0.25f).coerceIn(3f, 30f)
 

@@ -289,6 +289,57 @@ class CoverDetectionEngineTest {
         assertEquals(1, recorder.locks)
     }
 
+    // --- faible luminosite : contraste faible compense par la duree ------------
+
+    @Test
+    fun `faible luminosite - fermeture detectee mais apres une confirmation longue`() {
+        // Cas reel : piece a 46 lux, rabat ferme mesure 35 lux. 24 % de chute,
+        // 11 lux d'ecart. Le signal est faible, donc on exige 4x plus de temps.
+        val config = DetectionConfig.DEFAULT.copy(
+            closedLuxThreshold = 40f,
+            minimumDropPercent = 20f,
+            minimumAbsoluteDropLux = 8f,
+        )
+        val (engine, recorder) = newEngine(config)
+        feed(engine, 46f, from = 0L, count = 8, stepMs = 150L)
+
+        engine.onLightReading(35f, 1200L)
+        engine.tick(1500L) // 300 ms : suffirait pour une chute franche
+        assertEquals("ne doit pas verrouiller trop tot", 0, recorder.locks)
+
+        engine.tick(2450L) // 1250 ms : le rabat est reste ferme
+        assertEquals(1, recorder.locks)
+    }
+
+    @Test
+    fun `faible luminosite - une ombre passagere ne verrouille pas`() {
+        val config = DetectionConfig.DEFAULT.copy(
+            closedLuxThreshold = 40f,
+            minimumDropPercent = 20f,
+            minimumAbsoluteDropLux = 8f,
+        )
+        val (engine, recorder) = newEngine(config)
+        feed(engine, 46f, from = 0L, count = 8, stepMs = 150L)
+
+        engine.onLightReading(35f, 1200L)
+        engine.tick(1500L)
+        // L'ombre passe : la lumiere revient avant la fin de la confirmation longue.
+        engine.onLightReading(46f, 1700L)
+        engine.tick(2600L)
+
+        assertEquals(0, recorder.locks)
+    }
+
+    @Test
+    fun `chute franche - la confirmation reste courte`() {
+        val (engine, recorder) = newEngine()
+        feed(engine, 200f, from = 0L, count = 8)
+
+        engine.onLightReading(0f, 800L)
+        engine.tick(1120L) // 320 ms suffisent quand le contraste est net
+        assertEquals(1, recorder.locks)
+    }
+
     @Test
     fun `un refus est signale une seule fois par episode sombre`() {
         val (engine, recorder) = newEngine()

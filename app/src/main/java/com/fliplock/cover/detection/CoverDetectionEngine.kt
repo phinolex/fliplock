@@ -73,6 +73,8 @@ class CoverDetectionEngine(
     private var state = EngineState.DISABLED
     private var candidateStartMs = 0L
     private var frozenBaseline = 0f
+    private var frozenDropPercent = 0f
+    private var frozenAbsoluteDrop = 0f
     private var lastLockTimeMs = NEVER
     private var lastConfirmedAtMs = 0L
 
@@ -258,6 +260,8 @@ class CoverDetectionEngine(
         state = EngineState.CANDIDATE
         candidateStartMs = minOf(lastLuxTimeMs, nowMs)
         frozenBaseline = baseline
+        frozenDropPercent = dropPercent
+        frozenAbsoluteDrop = absoluteDrop
         onEvent(DetectionEvent.CandidateStarted(lux, baseline, dropPercent, reason))
         return publish(nowMs, "candidate: $reason")
     }
@@ -273,11 +277,12 @@ class CoverDetectionEngine(
             return publish(nowMs, "candidate cancelled: proximity FAR")
         }
         val elapsed = nowMs - candidateStartMs
-        if (elapsed >= cfg.confirmationDurationMs) {
+        val required = requiredConfirmationMs()
+        if (elapsed >= required) {
             confirm(lux, elapsed, nowMs)
             return publish(nowMs, "close confirmed after $elapsed ms")
         }
-        return publish(nowMs, "confirming ($elapsed/${cfg.confirmationDurationMs} ms)")
+        return publish(nowMs, "confirming ($elapsed/$required ms)")
     }
 
     private fun confirm(lux: Float, elapsedMs: Long, nowMs: Long) {
@@ -372,6 +377,24 @@ class CoverDetectionEngine(
         gaps.sort()
         val mid = gaps.size / 2
         return if (gaps.size % 2 == 1) gaps[mid] else (gaps[mid - 1] + gaps[mid]) / 2
+    }
+
+    /**
+     * Duree de confirmation exigee pour la candidature en cours.
+     *
+     * Chute franche -> la duree configuree. Contraste faible (piece sombre, rabat
+     * qui laisse filtrer) -> on exige bien plus longtemps, parce que la seule chose
+     * qui distingue encore une fermeture d'une ombre est sa PERSISTANCE.
+     */
+    private fun requiredConfirmationMs(): Long {
+        val cfg = config
+        // La proximite NEAR est une certitude physique : elle vaut un contraste franc.
+        val strong = proximityNear == true ||
+            (frozenDropPercent >= cfg.strongDropPercent &&
+                frozenAbsoluteDrop >= cfg.strongAbsoluteDropLux)
+        if (strong) return cfg.confirmationDurationMs
+        val stretched = (cfg.confirmationDurationMs * cfg.weakContrastConfirmFactor).toLong()
+        return stretched.coerceIn(cfg.confirmationDurationMs, cfg.maxConfirmationMs)
     }
 
     private fun baselineLux(): Float {

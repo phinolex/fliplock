@@ -72,6 +72,26 @@ data class DetectionConfig(
     /** Delai d'inhibition apres un verrouillage. */
     val cooldownMs: Long = 1500L,
 
+    /**
+     * Contraste au-dela duquel la chute est jugee franche : confirmation normale.
+     * En dessous, on exige beaucoup plus de temps (voir [weakContrastConfirmFactor]).
+     */
+    val strongDropPercent: Float = 80f,
+    val strongAbsoluteDropLux: Float = 40f,
+
+    /**
+     * Multiplicateur applique a la duree de confirmation quand le contraste est faible.
+     *
+     * En faible luminosite, l'ecart entre « rabat ouvert » et « rabat ferme » peut
+     * tomber a une dizaine de lux : le signal ne permet plus de trancher vite. On
+     * compense par la DUREE — une main ou une ombre ne restent pas immobiles une
+     * seconde et demie, un rabat ferme si.
+     */
+    val weakContrastConfirmFactor: Float = 4f,
+
+    /** Plafond absolu de la confirmation, meme a contraste tres faible. */
+    val maxConfirmationMs: Long = 1600L,
+
     /** Strategie choisie par l'utilisateur. */
     val strategy: DetectionStrategy = DetectionStrategy.AUTO,
 
@@ -128,9 +148,15 @@ data class DetectionConfig(
     /**
      * Seuil de relachement (hysteresis). Tant que la mesure reste en dessous,
      * la candidature se poursuit ; au-dessus, c'est un artefact (main, reflet...).
+     *
+     * Marge ABSOLUE et non multiplicative. Un facteur 2,5 se comporte correctement
+     * a 2 lux mais devient absurde des que le seuil monte : a 40 lux il placait le
+     * relachement a 101, au-dessus d'une piece eclairee a 46 lux. Plus aucune mesure
+     * ne comptait alors comme « claire », la baseline restait vide, et la detection
+     * etait impossible — exactement le cas « faible luminosite ».
      */
     val releaseLuxThreshold: Float
-        get() = closedLuxThreshold * 2.5f + 1.0f
+        get() = closedLuxThreshold + maxOf(3f, closedLuxThreshold * 0.1f)
 
     companion object {
         val DEFAULT = DetectionConfig()

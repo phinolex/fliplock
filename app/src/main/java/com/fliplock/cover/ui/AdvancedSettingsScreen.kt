@@ -80,7 +80,7 @@ fun AdvancedSettingsScreen(viewModel: MainViewModel, modifier: Modifier = Modifi
                     label = stringResource(R.string.adv_min_drop),
                     valueText = formatPercent(dropPercent),
                     value = dropPercent,
-                    range = 50f..99f,
+                    range = 15f..99f,
                     onValueChange = { dropPercent = it },
                     onValueChangeFinished = {
                         viewModel.updateSettings { it.copy(minimumDropPercent = dropPercent) }
@@ -91,7 +91,7 @@ fun AdvancedSettingsScreen(viewModel: MainViewModel, modifier: Modifier = Modifi
                     label = stringResource(R.string.adv_min_absolute_drop),
                     valueText = lux(absoluteDrop),
                     value = absoluteDrop,
-                    range = 1f..60f,
+                    range = 2f..60f,
                     onValueChange = { absoluteDrop = it },
                     onValueChangeFinished = {
                         viewModel.updateSettings { it.copy(minimumAbsoluteDropLux = absoluteDrop) }
