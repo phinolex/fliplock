@@ -137,6 +137,38 @@ Google forbids using the accessibility API for anything that is not accessibilit
 it to lock the screen, so Play policy would reject it — even though the use is honest, minimal and
 fully disclosed. Install the APK from Releases, or use Obtainium to track updates.
 
+### Android says "App not installed" / "Application non installée"
+
+Four causes, in order of likelihood.
+
+**1. You already have a build signed with a different key.** Android refuses to replace an app
+with a version signed by a different certificate — that is a security guarantee, not a bug,
+because otherwise anyone could push a malicious "update" over your apps. It shows up as
+`INSTALL_FAILED_UPDATE_INCOMPATIBLE`.
+
+This happens if you were running a **debug build** (signed with Android's shared debug key) and
+are now installing a release from this repo (signed with the project key). Fix: uninstall
+FlipLock, then install the APK. **Uninstalling erases your settings and calibration**, so redo
+*Calibrate my case* and re-enable the accessibility permission afterwards — about a minute.
+
+Releases published here all use the same key, so updating from one release to the next never has
+this problem.
+
+**2. Samsung Auto Blocker.** *Settings → Security and privacy → Auto Blocker* — turn it off long
+enough to install, then turn it back on.
+
+**3. Play Protect.** It sometimes blocks unknown sideloaded apps. Play Store → your avatar → Play
+Protect → *Scan apps with Play Protect*, install, then re-enable.
+
+**4. A truncated download.** Compare the size with the one on the Releases page, and check the
+signing certificate with `apksigner verify --print-certs`.
+
+### Why is the APK only 2 MB?
+
+Because release builds go through R8, which strips unused code and resources. The unminified debug
+build is around 26 MB, almost all of it Jetpack Compose. 2 MB is the normal size for the shipped
+app — nothing is missing.
+
 ### It does not detect my case. What now?
 
 Open **Sensor diagnostics**, tap **Probe ALL sensors**, then **Copy diagnostic**, and paste that

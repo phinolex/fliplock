@@ -159,6 +159,12 @@ Do not disable Auto Blocker globally.
 **App sleeping.** *Settings → Battery → Background usage limits → Never sleeping apps* → add
 FlipLock, otherwise One UI may kill the service after a few days.
 
+**"App not installed"?** If you were running a build signed with a different key — a debug build,
+for instance — Android refuses to replace it. Uninstall FlipLock first, then install the APK.
+Uninstalling erases your settings, so redo the calibration afterwards. Updating from one published
+release to the next never has this problem: they all share the same signing key. Other causes are
+covered in the [FAQ](docs/FAQ.md).
+
 ## Privacy
 
 Permissions in the APK, verified with `aapt2 dump permissions`:
