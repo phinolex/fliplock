@@ -351,6 +351,15 @@ class FlipLockAccessibilityService : AccessibilityService() {
                 startTicking()
             }
 
+            is DetectionEvent.CandidateRejected -> logger.log(
+                LogCategory.ENGINE,
+                String.format(
+                    Locale.US,
+                    "lux=%.1f | baseline=%.1f | REJECTED: %s",
+                    event.lux, event.baseline, event.reason,
+                ),
+            )
+
             is DetectionEvent.CandidateCancelled -> {
                 logger.log(
                     LogCategory.ENGINE,

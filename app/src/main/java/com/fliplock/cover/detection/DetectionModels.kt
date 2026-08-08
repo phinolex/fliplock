@@ -81,8 +81,37 @@ data class DetectionConfig(
     /**
      * Duree maximale autorisee entre la derniere mesure « claire » et la mesure sombre.
      * C'est le critere de VITESSE : une extinction progressive de la piece ne le satisfait pas.
+     *
+     * ATTENTION : c'est un PLANCHER, pas une valeur absolue. Le capteur de lumiere
+     * est « on-change » et Android ralentit fortement sa cadence quand une autre
+     * application est au premier plan. Avec une mesure toutes les 1,5 s, aucune
+     * fermeture ne peut tenir dans 900 ms. Le moteur elargit donc cette fenetre en
+     * fonction de la cadence reellement observee — voir CoverDetectionEngine.
      */
     val fallWindowMs: Long = 900L,
+
+    /**
+     * Multiplicateur applique a la cadence observee du capteur pour obtenir la
+     * fenetre de chute effective. Une fermeture reelle passe de clair a sombre en
+     * une a deux mesures ; une piece qui s'assombrit sejourne bien plus longtemps
+     * dans la zone intermediaire.
+     */
+    val fallWindowSampleFactor: Float = 2.5f,
+
+    /** Plafond absolu de la fenetre de chute, quelle que soit la lenteur du capteur. */
+    val maxFallWindowMs: Long = 2600L,
+
+    /**
+     * Critere de PLATEAU : la derniere mesure claire doit valoir au moins cette
+     * fraction de la baseline.
+     *
+     * C'est ce qui distingue une fermeture d'un assombrissement progressif, et le
+     * critere tient meme quand le capteur est ralenti. Une fermeture ressemble a un
+     * plateau suivi d'une falaise (140, 140, 140, puis 0). Un assombrissement est une
+     * pente : les mesures claires elles-memes decroissent (140, 120, 90, 60, 30),
+     * et la derniere passe donc largement sous la mediane.
+     */
+    val baselinePlateauRatio: Float = 0.5f,
 
     /**
      * En dessous de cette baseline, la lumiere seule ne permet physiquement pas
@@ -120,6 +149,18 @@ sealed interface DetectionEvent {
     data class CandidateCancelled(
         val reason: String,
         val elapsedMs: Long,
+    ) : DetectionEvent
+
+    /**
+     * L'obscurite a bien ete atteinte mais la candidature a ete refusee.
+     *
+     * Emis une seule fois par episode sombre : sans cela, un echec de detection
+     * ne laisse AUCUNE trace dans le journal et devient impossible a diagnostiquer.
+     */
+    data class CandidateRejected(
+        val lux: Float,
+        val baseline: Float,
+        val reason: String,
     ) : DetectionEvent
 
     data class Confirmed(

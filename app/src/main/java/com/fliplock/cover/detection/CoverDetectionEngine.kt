@@ -61,6 +61,7 @@ class CoverDetectionEngine(
     private var lastLux: Float? = null
     private var lastLuxTimeMs = 0L
     private var lastBrightTimeMs = NEVER
+    private var lastBrightLux = 0f
 
     private var proximitySupported = false
     private var proximityNear: Boolean? = null
@@ -73,6 +74,7 @@ class CoverDetectionEngine(
     private var lastConfirmedAtMs = 0L
 
     private var snapshot = EngineSnapshot.EMPTY
+    private var rejectionReported = false
 
     // ---------------------------------------------------------------- entrees
 
@@ -123,7 +125,10 @@ class CoverDetectionEngine(
         if (state != EngineState.CANDIDATE && lux > config.releaseLuxThreshold) {
             brightSamples.addLast(LuxSample(lux, nowMs))
             lastBrightTimeMs = nowMs
+            lastBrightLux = lux
             trimBrightSamples(nowMs)
+            // La lumiere est revenue : le prochain episode sombre pourra etre signale.
+            rejectionReported = false
         }
         return evaluate(nowMs)
     }
@@ -180,10 +185,14 @@ class CoverDetectionEngine(
         val absoluteDrop = (baseline - lux).coerceAtLeast(0f)
         val dropPercent = if (baseline > 0f) (absoluteDrop / baseline) * 100f else 0f
         val fallDelay = lastLuxTimeMs - lastBrightTimeMs
-        val fastFall = fallDelay in 0L..cfg.fallWindowMs
+        val fallWindow = effectiveFallWindowMs()
+        val fastFall = fallDelay in 0L..fallWindow
         val baselineUsable = brightSamples.size >= 2 && baseline >= cfg.minBaselineLux
+        // Plateau puis falaise (fermeture) plutot que pente (piece qui s'assombrit).
+        val steadyBaseline = lastBrightLux >= baseline * cfg.baselinePlateauRatio
 
         val lightStrong = fastFall &&
+            steadyBaseline &&
             baselineUsable &&
             absoluteDrop >= cfg.minimumAbsoluteDropLux &&
             dropPercent >= cfg.minimumDropPercent
@@ -227,7 +236,16 @@ class CoverDetectionEngine(
             }
         }
 
-        if (!accept) return publish(nowMs, reason)
+        if (!accept) {
+            // Un echec de detection doit laisser une trace, sinon il est indiagnosticable.
+            // Une seule ligne par episode sombre : le rearmement se fait quand la
+            // lumiere repasse au-dessus du seuil de relachement.
+            if (!rejectionReported) {
+                rejectionReported = true
+                onEvent(DetectionEvent.CandidateRejected(lux, baseline, reason))
+            }
+            return publish(nowMs, reason)
+        }
 
         state = EngineState.CANDIDATE
         candidateStartMs = minOf(lastLuxTimeMs, nowMs)
@@ -285,7 +303,16 @@ class CoverDetectionEngine(
         if (!baselineUsable) {
             return "baseline unusable (${fmt(baseline)} lux, ${brightSamples.size} sample(s))"
         }
-        if (!fastFall) return "drop too gradual (not a close)"
+        if (lastBrightLux < baseline * config.baselinePlateauRatio) {
+            return "light was already fading (last bright ${fmt(lastBrightLux)} lux vs baseline ${fmt(baseline)} lux)"
+        }
+        if (!fastFall) {
+            val delay = lastLuxTimeMs - lastBrightTimeMs
+            val window = effectiveFallWindowMs()
+            val cadence = medianBrightIntervalMs()
+            return "drop too gradual: last bright reading ${delay} ms ago > ${window} ms window" +
+                (cadence?.let { " (sensor cadence ~${it} ms)" } ?: "")
+        }
         if (absoluteDrop < config.minimumAbsoluteDropLux) {
             return "absolute drop ${fmt(absoluteDrop)} lux < ${fmt(config.minimumAbsoluteDropLux)} lux"
         }
@@ -306,6 +333,42 @@ class CoverDetectionEngine(
         }
     }
 
+    /**
+     * Fenetre de chute effective, adaptee a la cadence REELLE du capteur.
+     *
+     * Le capteur de luminosite est « on-change », et Android reduit fortement sa
+     * frequence quand une autre application est au premier plan : on peut passer
+     * de 20 mesures/s a une mesure toutes les 1,5 s. Avec une fenetre fixe de
+     * 900 ms, plus AUCUNE fermeture ne serait detectable dans ces conditions —
+     * c'est le bug « je ferme le rabat depuis une autre appli et rien ne se passe ».
+     *
+     * On exige donc que la chute tienne en quelques MESURES plutot qu'en un nombre
+     * fixe de millisecondes. La protection anti-faux-positif reste entiere : une
+     * piece qui s'assombrit progressivement sejourne plusieurs mesures dans la zone
+     * intermediaire (entre le seuil de fermeture et le seuil de relachement), ce qui
+     * eloigne d'autant la derniere mesure claire.
+     */
+    private fun effectiveFallWindowMs(): Long {
+        val cadence = medianBrightIntervalMs() ?: return config.fallWindowMs
+        val scaled = (cadence * config.fallWindowSampleFactor).toLong()
+        return scaled.coerceIn(config.fallWindowMs, config.maxFallWindowMs)
+    }
+
+    /** Ecart median entre deux mesures claires consecutives, ou null si trop peu de donnees. */
+    private fun medianBrightIntervalMs(): Long? {
+        if (brightSamples.size < 3) return null
+        val samples = brightSamples.toList()
+        val gaps = ArrayList<Long>(samples.size - 1)
+        for (i in 1 until samples.size) {
+            val gap = samples[i].timeMs - samples[i - 1].timeMs
+            if (gap > 0L) gaps.add(gap)
+        }
+        if (gaps.isEmpty()) return null
+        gaps.sort()
+        val mid = gaps.size / 2
+        return if (gaps.size % 2 == 1) gaps[mid] else (gaps[mid - 1] + gaps[mid]) / 2
+    }
+
     private fun baselineLux(): Float {
         if (brightSamples.isEmpty()) return 0f
         val sorted = brightSamples.map { it.lux }.sorted()
@@ -316,6 +379,7 @@ class CoverDetectionEngine(
     private fun clearHistory() {
         brightSamples.clear()
         lastBrightTimeMs = NEVER
+        lastBrightLux = 0f
     }
 
     private fun cooldownRemaining(nowMs: Long): Long {

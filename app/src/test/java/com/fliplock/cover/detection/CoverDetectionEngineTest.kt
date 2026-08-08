@@ -15,11 +15,13 @@ class CoverDetectionEngineTest {
         var confirmations = 0
         var locks = 0
         val cancellations = mutableListOf<String>()
+        val rejections = mutableListOf<String>()
 
         fun handle(event: DetectionEvent) {
             when (event) {
                 is DetectionEvent.CandidateStarted -> candidates++
                 is DetectionEvent.CandidateCancelled -> cancellations += event.reason
+                is DetectionEvent.CandidateRejected -> rejections += event.reason
                 is DetectionEvent.Confirmed -> confirmations++
                 DetectionEvent.LockRequested -> locks++
             }
@@ -232,6 +234,53 @@ class CoverDetectionEngineTest {
         engine.tick(900L)
 
         assertEquals(0, recorder.locks)
+    }
+
+    // --- cadence lente du capteur (application en arriere-plan) --------------
+
+    @Test
+    fun `capteur ralenti par Android - une fermeture reste detectee`() {
+        // Android reduit la cadence du capteur quand une autre application est au
+        // premier plan : ici une mesure toutes les 800 ms. Avec une fenetre de chute
+        // fixe a 900 ms, la fermeture serait rejetee alors qu'elle est instantanee.
+        val (engine, recorder) = newEngine()
+        feed(engine, 140f, from = 0L, count = 6, stepMs = 800L)
+
+        engine.onLightReading(0f, 5000L) // mesure suivante : 800 ms apres la derniere claire
+        engine.tick(5400L)
+
+        assertEquals(1, recorder.locks)
+    }
+
+    @Test
+    fun `capteur ralenti - une extinction progressive reste refusee`() {
+        // Meme cadence lente, mais la piece s'assombrit par paliers : la lumiere
+        // sejourne dans la zone intermediaire, ce qui eloigne la derniere mesure
+        // claire. La fenetre elargie ne doit PAS laisser passer ce cas.
+        val (engine, recorder) = newEngine()
+        var time = 0L
+        listOf(140f, 120f, 90f, 60f, 30f, 12f, 5f, 3f, 1f, 0f).forEach { lux ->
+            engine.onLightReading(lux, time)
+            time += 800L
+        }
+        engine.tick(time + 1000L)
+
+        assertEquals(0, recorder.locks)
+    }
+
+    @Test
+    fun `un refus est signale une seule fois par episode sombre`() {
+        val (engine, recorder) = newEngine()
+        // Piece deja sombre : aucune baseline exploitable, donc refus.
+        engine.onLightReading(1f, 0L)
+        engine.onLightReading(0f, 200L)
+        engine.onLightReading(0f, 400L)
+        assertEquals(1, recorder.rejections.size)
+
+        // La lumiere revient puis repart : nouvel episode, nouveau signalement.
+        engine.onLightReading(150f, 600L)
+        engine.onLightReading(0f, 800L)
+        assertEquals(2, recorder.rejections.size)
     }
 
     @Test

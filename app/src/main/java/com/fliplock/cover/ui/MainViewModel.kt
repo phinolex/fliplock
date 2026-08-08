@@ -132,6 +132,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         onEvent = ::onPreviewEvent,
     )
 
+    private var backgroundedAtEventCount = -1L
     private var liveJob: Job? = null
     private var previewTickJob: Job? = null
     private var calibrationJob: Job? = null
@@ -154,6 +155,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun onForeground() {
         refreshAccessibility()
+        // Temoin d'arriere-plan : combien d'evenements le SERVICE a-t-il recus
+        // pendant que l'application n'etait pas a l'ecran ? C'est la mesure qui
+        // distingue « Android a coupe les capteurs » de « le seuil n'etait pas atteint ».
+        if (backgroundedAtEventCount >= 0L) {
+            val delta = FlipLockRuntime.lightEventCount.value - backgroundedAtEventCount
+            logger.log(
+                LogCategory.SYSTEM,
+                "app foregrounded — light events received by the service while in background: $delta",
+            )
+            backgroundedAtEventCount = -1L
+        }
         if (liveJob?.isActive == true) return
         liveJob = viewModelScope.launch {
             launch {
@@ -166,6 +178,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun onBackground() {
+        backgroundedAtEventCount = FlipLockRuntime.lightEventCount.value
+        logger.log(
+            LogCategory.SYSTEM,
+            "app backgrounded — service light events so far: $backgroundedAtEventCount",
+        )
         liveJob?.cancel()
         liveJob = null
         previewTickJob?.cancel()
@@ -225,6 +242,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 )
 
             is DetectionEvent.CandidateCancelled ->
+                _detectionTrace.value = _detectionTrace.value.copy(lastCancelReason = event.reason)
+
+            // Affiche dans le diagnostic POURQUOI une obscurite n'a pas ete retenue.
+            is DetectionEvent.CandidateRejected ->
                 _detectionTrace.value = _detectionTrace.value.copy(lastCancelReason = event.reason)
 
             is DetectionEvent.Confirmed ->
