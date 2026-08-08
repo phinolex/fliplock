@@ -38,6 +38,8 @@
     <string name="home_permission_missing">FlipLock은 켜져 있지만 잠금 권한이 없습니다. 케이스를 덮어도 화면을 끌 수 없습니다.</string>
     <string name="home_hybrid_broken">조도 + 근접 모드가 켜져 있지만, 보정 결과 덮개를 닫아도 근접 센서가 NEAR를 보고하지 않습니다. 이 모드에서는 근접이 필수이므로 모든 닫힘이 거부됩니다. AUTO 모드로 되돌리세요.</string>
     <string name="home_switch_auto">AUTO 모드로 되돌리기</string>
+    <string name="home_wake_label">열 때 화면 켜기</string>
+    <string name="home_wake_disabled">꺼짐 — 고급 설정</string>
     <string name="home_monitoring">센서 감시</string>
     <string name="home_monitoring_running">작동 중</string>
     <string name="home_monitoring_stopped">중지됨</string>

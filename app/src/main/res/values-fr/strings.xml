@@ -37,6 +37,8 @@
     <string name="home_permission_missing">FlipLock est activé mais l\'autorisation de verrouillage est manquante : la fermeture de la coque ne pourra pas éteindre l\'écran.</string>
     <string name="home_hybrid_broken">Le mode LUMIÈRE + PROXIMITÉ est actif, mais la calibration a montré que votre capteur de proximité ne signale jamais NEAR quand le rabat est fermé. Dans ce mode la proximité est obligatoire : toutes les fermetures sont donc rejetées. Revenez au mode AUTO.</string>
     <string name="home_switch_auto">Revenir au mode AUTO</string>
+    <string name="home_wake_label">Réveil à l\'ouverture</string>
+    <string name="home_wake_disabled">désactivé — Réglages avancés</string>
     <string name="home_monitoring">Surveillance des capteurs</string>
     <string name="home_monitoring_running">en cours</string>
     <string name="home_monitoring_stopped">arrêtée</string>

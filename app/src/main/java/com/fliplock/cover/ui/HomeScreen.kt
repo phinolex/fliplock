@@ -108,6 +108,21 @@ fun HomeScreen(
                         if (monitoring) R.string.home_monitoring_running else R.string.home_monitoring_stopped
                     ),
                 )
+                // Le reveil a l'ouverture est optionnel et revient a OFF apres une
+                // reinstallation : sans cette ligne, son etat reste invisible tant
+                // qu'on n'ouvre pas les reglages avances.
+                if (viewModel.wakeOnOpenSupported) {
+                    InfoRow(
+                        label = stringResource(R.string.home_wake_label),
+                        value = stringResource(
+                            if (settings.wakeOnOpenEnabled) {
+                                R.string.tech_wake_enabled
+                            } else {
+                                R.string.home_wake_disabled
+                            }
+                        ),
+                    )
+                }
             }
         }
 

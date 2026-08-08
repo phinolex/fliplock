@@ -53,6 +53,8 @@
     <string name="home_permission_missing">FlipLock is switched on but the lock permission is missing: closing the case will not be able to turn the screen off.</string>
     <string name="home_hybrid_broken">LIGHT + PROXIMITY mode is on, but calibration found that your proximity sensor never reports NEAR when the flap is closed. In this mode proximity is mandatory, so every close is being rejected. Switch back to AUTO.</string>
     <string name="home_switch_auto">Switch back to AUTO mode</string>
+    <string name="home_wake_label">Wake on open</string>
+    <string name="home_wake_disabled">off — Advanced settings</string>
     <string name="home_monitoring">Sensor monitoring</string>
     <string name="home_monitoring_running">running</string>
     <string name="home_monitoring_stopped">stopped</string>
