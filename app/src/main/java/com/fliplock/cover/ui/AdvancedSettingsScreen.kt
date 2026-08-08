@@ -1,10 +1,5 @@
 package com.fliplock.cover.ui
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +10,6 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,9 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.fliplock.cover.R
@@ -37,24 +29,6 @@ import kotlin.math.roundToLong
 @Composable
 fun AdvancedSettingsScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
-    val context = LocalContext.current
-
-    // La notification du service persistant nécessite POST_NOTIFICATIONS depuis Android 13.
-    // Elle n'est demandée QUE si l'utilisateur active cette option facultative.
-    val notificationPermissionLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestPermission(),
-    ) { viewModel.setPersistentService(true) }
-
-    fun enablePersistentService() {
-        val needsPermission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-            context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) !=
-            PackageManager.PERMISSION_GRANTED
-        if (needsPermission) {
-            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-        } else {
-            viewModel.setPersistentService(true)
-        }
-    }
 
     var threshold by remember(settings.closedLuxThreshold) {
         mutableFloatStateOf(settings.closedLuxThreshold)
@@ -195,33 +169,6 @@ fun AdvancedSettingsScreen(viewModel: MainViewModel, modifier: Modifier = Modifi
         }
 
         item {
-            SectionCard(title = stringResource(R.string.adv_background)) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        text = stringResource(R.string.adv_persistent_service),
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Medium,
-                    )
-                    Switch(
-                        checked = settings.persistentServiceEnabled,
-                        onCheckedChange = { checked ->
-                            if (checked) enablePersistentService() else viewModel.setPersistentService(false)
-                        },
-                    )
-                }
-                Text(
-                    text = stringResource(R.string.adv_persistent_service_help),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
-
-        item {
             SectionCard(title = stringResource(R.string.adv_wake_title)) {
                 if (!viewModel.wakeOnOpenSupported) {
                     Text(
@@ -235,21 +182,12 @@ fun AdvancedSettingsScreen(viewModel: MainViewModel, modifier: Modifier = Modifi
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 } else {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            text = stringResource(R.string.adv_wake_switch),
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Medium,
-                        )
-                        Switch(
-                            checked = settings.wakeOnOpenEnabled,
-                            onCheckedChange = { viewModel.setWakeOnOpen(it) },
-                        )
-                    }
+                    // L'interrupteur vit sur l'accueil : ici on ne regle que le detail.
+                    Text(
+                        text = stringResource(R.string.adv_toggle_on_home),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                     InfoRow(
                         stringResource(R.string.adv_wake_threshold),
                         lux(viewModel.wakeLuxThreshold()),

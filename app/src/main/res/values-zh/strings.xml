@@ -38,8 +38,11 @@
     <string name="home_permission_missing">FlipLock 已开启，但缺少锁屏权限：合上保护套将无法关闭屏幕。</string>
     <string name="home_hybrid_broken">「光线 + 距离」模式已开启，但校准显示：合上翻盖时你的距离传感器从不报告 NEAR。该模式下距离是必需的，因此所有合盖都会被拒绝。请切回 AUTO 模式。</string>
     <string name="home_switch_auto">切回 AUTO 模式</string>
+    <string name="home_features">功能</string>
     <string name="home_wake_label">打开时唤醒</string>
-    <string name="home_wake_disabled">已关闭 —— 见高级设置</string>
+    <string name="home_wake_desc">打开翻盖时重新点亮屏幕。需要房间里有光线。</string>
+    <string name="home_persistent_desc">保留一条低调通知，防止 Android 在后台切断传感器。如果离开 FlipLock 后合盖失效，请开启此项。</string>
+    <string name="adv_toggle_on_home">此功能在主界面开启。下面是精细调节。</string>
     <string name="home_monitoring">传感器监测</string>
     <string name="home_monitoring_running">运行中</string>
     <string name="home_monitoring_stopped">已停止</string>
@@ -69,7 +72,7 @@
     <string name="how_it_works_body">1. 您合上翻盖：光照度骤降。\n2. FlipLock 确认这次下降足够快、足够深且持续（%1$d 毫秒）。\n3. 屏幕锁定。\n\n房间逐渐变暗，或有手从手机上方掠过，都不会触发锁定。</string>
 
     <string name="msg_accessibility_off">无障碍服务未运行。请先启用锁屏权限。</string>
-    <string name="msg_lock_refused">Android 拒绝了锁屏操作。请查看日志。</string>
+    <string name="msg_lock_refused">Android 拒绝了锁屏操作。请关闭再重新开启无障碍权限，然后重试。</string>
     <string name="msg_defaults_restored">已恢复默认值。</string>
     <string name="msg_calibration_applied">校准已应用。</string>
     <string name="msg_diagnostic_copied">诊断信息已复制到剪贴板。</string>

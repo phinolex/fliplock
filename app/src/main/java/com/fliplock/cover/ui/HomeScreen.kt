@@ -1,5 +1,10 @@
 package com.fliplock.cover.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,6 +39,24 @@ fun HomeScreen(
 ) {
     val context = LocalContext.current
     val settings by viewModel.settings.collectAsStateWithLifecycle()
+
+    // La notification du service persistant exige POST_NOTIFICATIONS depuis Android 13.
+    // Elle n'est demandee QUE si l'utilisateur active cette fonction facultative.
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { viewModel.setPersistentService(true) }
+
+    fun enablePersistentService() {
+        val needsPermission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) !=
+            PackageManager.PERMISSION_GRANTED
+        if (needsPermission) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            viewModel.setPersistentService(true)
+        }
+    }
+
     val accessibilityEnabled by viewModel.accessibilityEnabled.collectAsStateWithLifecycle()
     val accessibilityConnected by FlipLockRuntime.accessibilityConnected.collectAsStateWithLifecycle()
     val monitoring by FlipLockRuntime.monitoring.collectAsStateWithLifecycle()
@@ -108,21 +131,37 @@ fun HomeScreen(
                         if (monitoring) R.string.home_monitoring_running else R.string.home_monitoring_stopped
                     ),
                 )
-                // Le reveil a l'ouverture est optionnel et revient a OFF apres une
-                // reinstallation : sans cette ligne, son etat reste invisible tant
-                // qu'on n'ouvre pas les reglages avances.
+            }
+        }
+
+        // Ce sont des FONCTIONS, pas du reglage fin : elles decident de ce que
+        // l'application fait. Leur place est ici, pas au fond des reglages avances
+        // a cote des curseurs de lux.
+        item {
+            SectionCard(title = stringResource(R.string.home_features)) {
                 if (viewModel.wakeOnOpenSupported) {
-                    InfoRow(
+                    SwitchRow(
                         label = stringResource(R.string.home_wake_label),
-                        value = stringResource(
-                            if (settings.wakeOnOpenEnabled) {
-                                R.string.tech_wake_enabled
-                            } else {
-                                R.string.home_wake_disabled
-                            }
-                        ),
+                        description = stringResource(R.string.home_wake_desc),
+                        checked = settings.wakeOnOpenEnabled,
+                        onCheckedChange = { viewModel.setWakeOnOpen(it) },
+                    )
+                } else {
+                    Text(
+                        text = stringResource(R.string.adv_wake_unavailable),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = StatusColors.off,
                     )
                 }
+                ThinDivider()
+                SwitchRow(
+                    label = stringResource(R.string.adv_persistent_service),
+                    description = stringResource(R.string.home_persistent_desc),
+                    checked = settings.persistentServiceEnabled,
+                    onCheckedChange = { checked ->
+                        if (checked) enablePersistentService() else viewModel.setPersistentService(false)
+                    },
+                )
             }
         }
 

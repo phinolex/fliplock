@@ -53,8 +53,11 @@
     <string name="home_permission_missing">FlipLock is switched on but the lock permission is missing: closing the case will not be able to turn the screen off.</string>
     <string name="home_hybrid_broken">LIGHT + PROXIMITY mode is on, but calibration found that your proximity sensor never reports NEAR when the flap is closed. In this mode proximity is mandatory, so every close is being rejected. Switch back to AUTO.</string>
     <string name="home_switch_auto">Switch back to AUTO mode</string>
+    <string name="home_features">Features</string>
     <string name="home_wake_label">Wake on open</string>
-    <string name="home_wake_disabled">off — Advanced settings</string>
+    <string name="home_wake_desc">Turn the screen back on when you open the flap. Needs light in the room.</string>
+    <string name="home_persistent_desc">Keeps a quiet notification so Android cannot cut off the sensors in the background. Turn this on if closing the flap stops working outside FlipLock.</string>
+    <string name="adv_toggle_on_home">This feature is switched on from the home screen. What follows is fine-tuning.</string>
     <string name="home_monitoring">Sensor monitoring</string>
     <string name="home_monitoring_running">running</string>
     <string name="home_monitoring_stopped">stopped</string>
@@ -84,7 +87,7 @@
     <string name="how_it_works_body">1. You close the flap: the light level collapses.\n2. FlipLock checks that the drop is fast, deep and sustained (%1$d ms).\n3. The screen locks.\n\nA room dimming gradually, or a hand passing over the phone, will not trigger a lock.</string>
 
     <string name="msg_accessibility_off">The accessibility service is not running. Enable the lock permission first.</string>
-    <string name="msg_lock_refused">Android refused the lock action. Check the log.</string>
+    <string name="msg_lock_refused">Android refused the lock action. Turn the accessibility permission off and back on, then try again.</string>
     <string name="msg_defaults_restored">Default values restored.</string>
     <string name="msg_calibration_applied">Calibration applied.</string>
     <string name="msg_diagnostic_copied">Diagnostic copied to the clipboard.</string>

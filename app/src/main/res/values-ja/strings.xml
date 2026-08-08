@@ -38,8 +38,11 @@
     <string name="home_permission_missing">FlipLock はオンですが、ロック権限がありません。ケースを閉じても画面を消せません。</string>
     <string name="home_hybrid_broken">照度 + 近接モードが有効ですが、キャリブレーションの結果、フタを閉じても近接センサーが NEAR を報告しないことが分かりました。このモードでは近接が必須のため、すべての閉じ操作が拒否されています。AUTO モードに戻してください。</string>
     <string name="home_switch_auto">AUTO モードに戻す</string>
+    <string name="home_features">機能</string>
     <string name="home_wake_label">開いたときに点灯</string>
-    <string name="home_wake_disabled">オフ — 詳細設定</string>
+    <string name="home_wake_desc">フタを開けると画面を再び点けます。部屋に明かりが必要です。</string>
+    <string name="home_persistent_desc">控えめな通知を保持し、Android がバックグラウンドでセンサーを止めないようにします。FlipLock の外で閉じ動作が効かない場合にオンにしてください。</string>
+    <string name="adv_toggle_on_home">この機能はホーム画面でオンにします。以下は細かい調整です。</string>
     <string name="home_monitoring">センサー監視</string>
     <string name="home_monitoring_running">動作中</string>
     <string name="home_monitoring_stopped">停止中</string>
@@ -69,7 +72,7 @@
     <string name="how_it_works_body">1. フタを閉じると照度が一気に落ちます。\n2. FlipLock はその低下が速く、深く、%1$d ミリ秒持続するかを確認します。\n3. 画面がロックされます。\n\n部屋がゆっくり暗くなる場合や、手が端末の上を横切る場合はロックされません。</string>
 
     <string name="msg_accessibility_off">ユーザー補助サービスが動作していません。先にロック権限を有効にしてください。</string>
-    <string name="msg_lock_refused">Android がロック操作を拒否しました。ログを確認してください。</string>
+    <string name="msg_lock_refused">Android がロック操作を拒否しました。ユーザー補助の権限をオフにしてから再度オンにし、もう一度お試しください。</string>
     <string name="msg_defaults_restored">初期値に戻しました。</string>
     <string name="msg_calibration_applied">キャリブレーションを適用しました。</string>
     <string name="msg_diagnostic_copied">診断情報をクリップボードにコピーしました。</string>

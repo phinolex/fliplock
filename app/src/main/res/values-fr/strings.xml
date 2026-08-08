@@ -37,8 +37,11 @@
     <string name="home_permission_missing">FlipLock est activé mais l\'autorisation de verrouillage est manquante : la fermeture de la coque ne pourra pas éteindre l\'écran.</string>
     <string name="home_hybrid_broken">Le mode LUMIÈRE + PROXIMITÉ est actif, mais la calibration a montré que votre capteur de proximité ne signale jamais NEAR quand le rabat est fermé. Dans ce mode la proximité est obligatoire : toutes les fermetures sont donc rejetées. Revenez au mode AUTO.</string>
     <string name="home_switch_auto">Revenir au mode AUTO</string>
+    <string name="home_features">Fonctions</string>
     <string name="home_wake_label">Réveil à l\'ouverture</string>
-    <string name="home_wake_disabled">désactivé — Réglages avancés</string>
+    <string name="home_wake_desc">Rallume l\'écran quand vous ouvrez le rabat. Nécessite de la lumière dans la pièce.</string>
+    <string name="home_persistent_desc">Garde une notification discrète pour qu\'Android ne coupe pas les capteurs en arrière-plan. À activer si la fermeture cesse de fonctionner hors de FlipLock.</string>
+    <string name="adv_toggle_on_home">Cette fonction s\'active depuis l\'écran d\'accueil. Ce qui suit est du réglage fin.</string>
     <string name="home_monitoring">Surveillance des capteurs</string>
     <string name="home_monitoring_running">en cours</string>
     <string name="home_monitoring_stopped">arrêtée</string>
@@ -68,7 +71,7 @@
     <string name="how_it_works_body">1. Vous fermez le rabat : la luminosité s\'effondre.\n2. FlipLock vérifie que la chute est rapide, profonde et durable (%1$d ms).\n3. L\'écran se verrouille.\n\nUne pièce qui s\'assombrit progressivement, ou une main qui passe devant le téléphone, ne déclenchent pas le verrouillage.</string>
 
     <string name="msg_accessibility_off">Le service d\'accessibilité n\'est pas actif. Activez d\'abord l\'autorisation de verrouillage.</string>
-    <string name="msg_lock_refused">Android a refusé l\'action de verrouillage. Consultez le journal.</string>
+    <string name="msg_lock_refused">Android a refusé l\'action de verrouillage. Désactivez puis réactivez l\'autorisation d\'accessibilité, et réessayez.</string>
     <string name="msg_defaults_restored">Valeurs par défaut restaurées.</string>
     <string name="msg_calibration_applied">Calibration appliquée.</string>
     <string name="msg_diagnostic_copied">Diagnostic copié dans le presse-papiers.</string>

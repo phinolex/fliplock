@@ -408,6 +408,22 @@ class FlipLockAccessibilityService : AccessibilityService() {
             false
         }
         logger.log(LogCategory.ACTION, "result=$success")
+
+        // performGlobalAction ne renvoie qu'un booleen, sans motif. Quand il echoue,
+        // on releve ce qui permet de distinguer les deux causes possibles :
+        //  - serviceInfo == null : Android nous a delie, la connexion est morte
+        //    (typiquement apres une reinstallation) -> desactiver/reactiver l'autorisation ;
+        //  - serviceInfo present mais action refusee : restriction systeme.
+        if (!success) {
+            val info = runCatching { serviceInfo }.getOrNull()
+            val stillEnabled = runCatching { AccessibilityStatus.isServiceEnabled(this) }.getOrDefault(false)
+            logger.log(
+                LogCategory.ACCESSIBILITY,
+                "lock refused — serviceInfo=${if (info == null) "null (connexion morte)" else "present"}" +
+                    " | enabledInSettings=$stillEnabled" +
+                    " | capabilities=${info?.capabilities ?: -1}",
+            )
+        }
         FlipLockRuntime.lastLockAttempt.value =
             LockAttempt(System.currentTimeMillis(), success, origin)
         return success

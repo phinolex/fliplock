@@ -63,6 +63,9 @@ class CoverDetectionEngine(
     private var lastBrightTimeMs = NEVER
     private var lastBrightLux = 0f
 
+    /** Derniere fois que la lumiere etait encore au niveau du plateau. */
+    private var lastPlateauTimeMs = NEVER
+
     private var proximitySupported = false
     private var proximityNear: Boolean? = null
     private var proximityNearSinceMs = NEVER
@@ -130,6 +133,14 @@ class CoverDetectionEngine(
             // La lumiere est revenue : le prochain episode sombre pourra etre signale.
             rejectionReported = false
         }
+        // Instant ou la lumiere etait encore AU NIVEAU DU PLATEAU. C'est de la que
+        // se mesure la vitesse de chute : un rabat traverse les valeurs
+        // intermediaires en une fraction de seconde, une piece qui s'assombrit y
+        // sejourne plusieurs secondes.
+        val baseline = baselineLux()
+        if (baseline > 0f && lux >= baseline * config.baselinePlateauRatio) {
+            lastPlateauTimeMs = nowMs
+        }
         return evaluate(nowMs)
     }
 
@@ -184,15 +195,12 @@ class CoverDetectionEngine(
         val baseline = baselineLux()
         val absoluteDrop = (baseline - lux).coerceAtLeast(0f)
         val dropPercent = if (baseline > 0f) (absoluteDrop / baseline) * 100f else 0f
-        val fallDelay = lastLuxTimeMs - lastBrightTimeMs
+        val fallDelay = lastLuxTimeMs - lastPlateauTimeMs
         val fallWindow = effectiveFallWindowMs()
         val fastFall = fallDelay in 0L..fallWindow
         val baselineUsable = brightSamples.size >= 2 && baseline >= cfg.minBaselineLux
-        // Plateau puis falaise (fermeture) plutot que pente (piece qui s'assombrit).
-        val steadyBaseline = lastBrightLux >= baseline * cfg.baselinePlateauRatio
 
         val lightStrong = fastFall &&
-            steadyBaseline &&
             baselineUsable &&
             absoluteDrop >= cfg.minimumAbsoluteDropLux &&
             dropPercent >= cfg.minimumDropPercent
@@ -303,14 +311,11 @@ class CoverDetectionEngine(
         if (!baselineUsable) {
             return "baseline unusable (${fmt(baseline)} lux, ${brightSamples.size} sample(s))"
         }
-        if (lastBrightLux < baseline * config.baselinePlateauRatio) {
-            return "light was already fading (last bright ${fmt(lastBrightLux)} lux vs baseline ${fmt(baseline)} lux)"
-        }
         if (!fastFall) {
-            val delay = lastLuxTimeMs - lastBrightTimeMs
+            val delay = lastLuxTimeMs - lastPlateauTimeMs
             val window = effectiveFallWindowMs()
             val cadence = medianBrightIntervalMs()
-            return "drop too gradual: last bright reading ${delay} ms ago > ${window} ms window" +
+            return "drop too gradual: light left the ${fmt(baseline)} lux plateau ${delay} ms ago > ${window} ms window" +
                 (cadence?.let { " (sensor cadence ~${it} ms)" } ?: "")
         }
         if (absoluteDrop < config.minimumAbsoluteDropLux) {
@@ -380,6 +385,7 @@ class CoverDetectionEngine(
         brightSamples.clear()
         lastBrightTimeMs = NEVER
         lastBrightLux = 0f
+        lastPlateauTimeMs = NEVER
     }
 
     private fun cooldownRemaining(nowMs: Long): Long {

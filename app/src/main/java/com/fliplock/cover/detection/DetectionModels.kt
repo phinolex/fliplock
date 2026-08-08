@@ -102,16 +102,16 @@ data class DetectionConfig(
     val maxFallWindowMs: Long = 2600L,
 
     /**
-     * Critere de PLATEAU : la derniere mesure claire doit valoir au moins cette
-     * fraction de la baseline.
+     * Fraction de la baseline en dessous de laquelle on considere que la lumiere a
+     * QUITTE le plateau.
      *
-     * C'est ce qui distingue une fermeture d'un assombrissement progressif, et le
-     * critere tient meme quand le capteur est ralenti. Une fermeture ressemble a un
-     * plateau suivi d'une falaise (140, 140, 140, puis 0). Un assombrissement est une
-     * pente : les mesures claires elles-memes decroissent (140, 120, 90, 60, 30),
-     * et la derniere passe donc largement sous la mediane.
+     * Le critere de vitesse se mesure depuis cet instant, et non depuis la derniere
+     * mesure « claire ». C'est ce qui distingue une fermeture d'un assombrissement,
+     * meme quand le capteur est ralenti : une fermeture quitte le plateau et atteint
+     * l'obscurite en une fraction de seconde, alors qu'une piece qui s'assombrit
+     * descend lentement et sejourne longtemps entre les deux.
      */
-    val baselinePlateauRatio: Float = 0.5f,
+    val baselinePlateauRatio: Float = 0.7f,
 
     /**
      * En dessous de cette baseline, la lumiere seule ne permet physiquement pas

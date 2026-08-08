@@ -269,6 +269,27 @@ class CoverDetectionEngineTest {
     }
 
     @Test
+    fun `seuil eleve - le rabat qui traverse les valeurs intermediaires est detecte`() {
+        // Seuil a 27 lux, donc relachement a 68,5 : le rabat qui descend passe par
+        // 55 lux, une valeur qui ne compte ni comme sombre ni comme claire. La
+        // vitesse se mesure depuis le plateau (200 lux), pas depuis la derniere
+        // mesure au-dessus du relachement.
+        val config = DetectionConfig.DEFAULT.copy(
+            closedLuxThreshold = 27f,
+            minimumDropPercent = 79f,
+            minimumAbsoluteDropLux = 30f,
+        )
+        val (engine, recorder) = newEngine(config)
+        feed(engine, 200f, from = 0L, count = 6, stepMs = 160L)
+        // Descente du rabat : passage par la zone intermediaire, puis obscurite.
+        engine.onLightReading(55f, 960L)
+        engine.onLightReading(26f, 1120L)
+        engine.tick(1500L)
+
+        assertEquals(1, recorder.locks)
+    }
+
+    @Test
     fun `un refus est signale une seule fois par episode sombre`() {
         val (engine, recorder) = newEngine()
         // Piece deja sombre : aucune baseline exploitable, donc refus.

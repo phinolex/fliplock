@@ -25,8 +25,8 @@ android {
         // API 28 = version minimale exposant GLOBAL_ACTION_LOCK_SCREEN.
         minSdk = 28
         targetSdk = 36
-        versionCode = 8
-        versionName = "1.7"
+        versionCode = 9
+        versionName = "1.8"
     }
 
     signingConfigs {
