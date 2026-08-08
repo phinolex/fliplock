@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accessibility_service_label">FlipLock — verrouillage de l\'écran</string>
+    <string name="accessibility_service_summary">Permet à FlipLock de verrouiller l\'écran.</string>
+    <string name="accessibility_service_description">FlipLock a besoin de cette autorisation uniquement pour verrouiller l\'écran lorsque vous fermez votre coque.\n\nCe service ne lit pas le contenu des applications, ne lit pas vos notifications, n\'enregistre aucune frappe et ne capture pas l\'écran. Il utilise une seule action Android : « verrouiller l\'écran ».</string>
+
+    <string name="fgs_channel_name">Surveillance FlipLock</string>
+    <string name="fgs_channel_description">Notification discrète indiquant que FlipLock surveille le capteur de luminosité.</string>
+    <string name="fgs_notification_title">FlipLock actif</string>
+    <string name="fgs_notification_text">Surveillance du capteur de luminosité</string>
+
+    <string name="screen_diagnostic">Diagnostic capteurs</string>
+    <string name="screen_calibration">Calibration</string>
+    <string name="screen_advanced">Réglages avancés</string>
+    <string name="screen_tech_info">Informations techniques</string>
+    <string name="action_back">Retour</string>
+
+    <string name="value_yes">OUI</string>
+    <string name="value_no">NON</string>
+    <string name="value_none">aucun</string>
+
+    <string name="strategy_light_only">LUMIÈRE UNIQUEMENT</string>
+    <string name="strategy_light_proximity">LUMIÈRE + PROXIMITÉ</string>
+
+    <string name="cover_open">OUVERTE</string>
+    <string name="cover_closing">FERMETURE DÉTECTÉE</string>
+    <string name="cover_cooldown">VERROUILLÉ (cooldown)</string>
+    <string name="cover_screen_off">ÉCRAN ÉTEINT</string>
+    <string name="cover_monitoring_off">SURVEILLANCE INACTIVE</string>
+
+    <string name="origin_detection">détection</string>
+    <string name="origin_test_button">bouton test</string>
+
+    <string name="home_status">État</string>
+    <string name="home_status_active">🟢 FlipLock actif</string>
+    <string name="home_status_inactive">⚪ FlipLock désactivé</string>
+    <string name="home_permission_missing">FlipLock est activé mais l\'autorisation de verrouillage est manquante : la fermeture de la coque ne pourra pas éteindre l\'écran.</string>
+    <string name="home_monitoring">Surveillance des capteurs</string>
+    <string name="home_monitoring_running">en cours</string>
+    <string name="home_monitoring_stopped">arrêtée</string>
+
+    <string name="section_sensor">Capteur</string>
+    <string name="label_light">Luminosité</string>
+    <string name="label_baseline">Baseline (coque ouverte)</string>
+    <string name="label_proximity">Proximité</string>
+    <string name="label_cover_state">État coque</string>
+
+    <string name="section_lock_permission">Autorisation de verrouillage</string>
+    <string name="permission_granted">🟢 Activée</string>
+    <string name="permission_pending">🟠 Activée, en attente de connexion</string>
+    <string name="permission_denied">🔴 Désactivée</string>
+    <string name="permission_explanation">FlipLock a besoin de cette autorisation uniquement pour verrouiller l\'écran lorsque vous fermez votre coque. Le service ne lit ni vos applications, ni vos notifications, ni votre écran.</string>
+    <string name="action_enable_permission">Activer l\'autorisation</string>
+    <string name="action_open_app_details">Ouvrir « Infos sur l\'appli » (paramètres restreints)</string>
+
+    <string name="section_actions">Actions</string>
+    <string name="action_calibrate">Calibrer ma coque</string>
+    <string name="action_test_lock">Tester l\'extinction maintenant</string>
+    <string name="label_last_lock">Dernier verrouillage</string>
+    <string name="lock_succeeded">réussi (%1$s)</string>
+    <string name="lock_failed">échec (%1$s)</string>
+
+    <string name="section_how_it_works">Comment ça marche</string>
+    <string name="how_it_works_body">1. Vous fermez le rabat : la luminosité s\'effondre.\n2. FlipLock vérifie que la chute est rapide, profonde et durable (%1$d ms).\n3. L\'écran se verrouille.\n\nUne pièce qui s\'assombrit progressivement, ou une main qui passe devant le téléphone, ne déclenchent pas le verrouillage.</string>
+
+    <string name="msg_accessibility_off">Le service d\'accessibilité n\'est pas actif. Activez d\'abord l\'autorisation de verrouillage.</string>
+    <string name="msg_lock_refused">Android a refusé l\'action de verrouillage. Consultez le journal.</string>
+    <string name="msg_defaults_restored">Valeurs par défaut restaurées.</string>
+    <string name="msg_calibration_applied">Calibration appliquée.</string>
+    <string name="msg_diagnostic_copied">Diagnostic copié dans le presse-papiers.</string>
+    <string name="msg_copy_failed">Copie impossible.</string>
+
+    <string name="diag_current_light">Luminosité actuelle</string>
+    <string name="diag_possible_close">FERMETURE POTENTIELLE DÉTECTÉE</string>
+    <string name="diag_baseline">Baseline (médiane glissante)</string>
+    <string name="diag_baseline_samples">Échantillons de baseline</string>
+    <string name="diag_drop">Chute</string>
+    <string name="diag_engine_state">État moteur</string>
+    <string name="diag_decision">Décision</string>
+    <string name="diag_last_reading">Dernière mesure</string>
+    <string name="diag_sensor_timestamp">Timestamp capteur</string>
+    <string name="diag_preview_note">Cet écran simule la décision de FlipLock sans jamais verrouiller.</string>
+
+    <string name="diag_history">Historique des mesures</string>
+    <string name="diag_history_empty">Aucune mesure reçue.</string>
+    <string name="diag_history_candidate">[CANDIDAT]</string>
+    <string name="diag_last_rejection">DERNIER REFUS</string>
+
+    <string name="diag_probe_section">Sondage réel des capteurs</string>
+    <string name="diag_probe_explanation">FlipLock ne se contente jamais de vérifier que le capteur est annoncé par Android : il enregistre un vrai listener et compte les événements effectivement reçus.</string>
+    <string name="diag_probe_declared">Annoncé par Android</string>
+    <string name="diag_probe_accepted">Écoute acceptée</string>
+    <string name="diag_probe_events">Événements réels</string>
+    <string name="diag_probe_count">Nombre d\'événements</string>
+    <string name="diag_probe_verdict">Verdict</string>
+    <string name="diag_probe_running">Sondage en cours…</string>
+    <string name="diag_probe_restart">Relancer le sondage</string>
+    <string name="diag_probe_all">Sonder TOUS les capteurs (3 s)</string>
+    <string name="diag_proximity_value">Valeur proximité</string>
+
+    <string name="diag_sensor_list">Capteurs disponibles (%1$d)</string>
+    <string name="diag_sensor_list_explanation">Liste complète renvoyée par getSensorList(Sensor.TYPE_ALL). Les capteurs marqués « pertinent » sont ceux susceptibles de détecter une coque.</string>
+    <string name="diag_sensor_relevant">Capteur potentiellement pertinent pour la détection de coque</string>
+
+    <string name="diag_log">Journal (%1$d)</string>
+    <string name="diag_log_empty">(journal vide)</string>
+    <string name="diag_log_local">Les journaux restent en mémoire sur le téléphone. Aucune donnée ne quitte l\'appareil.</string>
+    <string name="action_copy_diagnostic">Copier le diagnostic</string>
+    <string name="action_clear_logs">Effacer les logs</string>
+
+    <string name="label_name">Nom</string>
+    <string name="label_vendor">Fabricant</string>
+    <string name="label_version">Version</string>
+    <string name="label_type">Type</string>
+    <string name="label_max_range">Portée max</string>
+    <string name="label_resolution">Résolution</string>
+    <string name="label_power">Consommation</string>
+    <string name="label_reporting_mode">Mode de report</string>
+    <string name="label_wake_up">Wake-up</string>
+
+    <string name="calib_title">Calibration FlipLock</string>
+    <string name="calib_intro_title">Laissez votre coque complètement ouverte.</string>
+    <string name="calib_intro_body">FlipLock va mesurer la luminosité pendant 2 secondes, puis vous demandera de fermer le rabat pour comparer.</string>
+    <string name="calib_start">Commencer</string>
+    <string name="calib_measuring_open">Mesure en cours — coque OUVERTE</string>
+    <string name="calib_measuring_closed">Mesure en cours — coque FERMÉE</string>
+    <string name="calib_measured_light">Luminosité mesurée</string>
+    <string name="calib_close_now">Maintenant, fermez complètement le rabat.</string>
+    <string name="calib_countdown">Fermeture dans</string>
+    <string name="calib_open_summary">Coque ouverte</string>
+    <string name="calib_no_result">Aucun résultat.</string>
+
+    <string name="calib_quality_excellent">Excellent — votre coque est facilement détectable.</string>
+    <string name="calib_quality_good">Bon — la fermeture sera détectée de façon fiable.</string>
+    <string name="calib_quality_weak">Moyen — la détection risque d\'être irrégulière.</string>
+    <string name="calib_quality_poor">Insuffisant — le capteur ne distingue pas ouvert de fermé ici.</string>
+
+    <string name="calib_advice_light_enough">Le mode LUMIÈRE suffit dans ces conditions.</string>
+    <string name="calib_advice_retry_brighter_prox">Refaites la calibration dans une pièce plus éclairée. Le capteur de proximité fonctionne : le mode LUMIÈRE + PROXIMITÉ fiabilisera la détection.</string>
+    <string name="calib_advice_retry_brighter">Refaites la calibration dans une pièce plus éclairée. Le capteur de proximité n\'a produit aucun événement : seule la lumière est exploitable.</string>
+    <string name="calib_advice_poor_prox">La lumière mesurée rabat ouvert est trop proche de celle rabat fermé. Le capteur de proximité a bien détecté NEAR : activez le mode LUMIÈRE + PROXIMITÉ.</string>
+    <string name="calib_advice_poor">La lumière mesurée rabat ouvert est trop proche de celle rabat fermé. Recommencez dans une pièce éclairée, rabat bien plaqué sur l\'écran.</string>
+
+    <string name="calib_open_median">Ouvert (médiane)</string>
+    <string name="calib_closed_median">Fermé (médiane)</string>
+    <string name="calib_closed_max">Fermé (maximum)</string>
+    <string name="calib_difference">Différence</string>
+    <string name="calib_computed">Réglages calculés pour votre coque</string>
+    <string name="calib_proximity_during">Proximité pendant la fermeture</string>
+    <string name="calib_proximity_absent">capteur absent</string>
+    <string name="calib_proximity_near_seen">NEAR détecté</string>
+    <string name="calib_proximity_no_near">aucun NEAR</string>
+    <string name="calib_apply">Appliquer ces réglages</string>
+    <string name="calib_applied">Réglages appliqués</string>
+    <string name="calib_enable_hybrid">Activer le mode LUMIÈRE + PROXIMITÉ</string>
+    <string name="calib_restart">Recommencer</string>
+
+    <string name="dark_test_title">Tester dans l\'obscurité</string>
+    <string name="dark_test_body">Gardez la coque OUVERTE dans les conditions de luminosité que vous voulez tester, puis lancez la mesure.</string>
+    <string name="dark_test_run">Tester dans l\'obscurité</string>
+    <string name="dark_test_running">Mesure en cours…</string>
+    <string name="dark_test_ambient">Luminosité ambiante</string>
+    <string name="dark_test_threshold">Seuil de fermeture actuel</string>
+    <string name="dark_test_reliable">Luminosité ambiante %1$s lux : suffisante. Le capteur de lumière distingue nettement l\'ouverture de la fermeture.</string>
+    <string name="dark_test_unreliable">Luminosité ambiante %1$s lux (il en faudrait au moins %2$s).\nDans ces conditions de luminosité, le capteur de lumière seul risque de ne pas distinguer l\'ouverture de la fermeture.</string>
+    <string name="dark_test_prox_works">Bonne nouvelle : le capteur de proximité produit des événements. Le mode hybride LUMIÈRE + PROXIMITÉ est recommandé.</string>
+    <string name="dark_test_prox_silent">Le capteur de proximité est annoncé par Android mais n\'a produit aucun événement pendant le test : il ne peut pas servir de secours.</string>
+    <string name="dark_test_prox_absent">Aucun capteur de proximité n\'est disponible : FlipLock ne verrouillera pas dans le noir complet (c\'est volontaire, pour éviter les faux positifs).</string>
+    <string name="dark_test_switch_hybrid">Passer en mode hybride LUMIÈRE + PROXIMITÉ</string>
+
+    <string name="calib_saved">Calibration enregistrée</string>
+    <string name="calib_none">Aucune calibration enregistrée.</string>
+    <string name="calib_open">Ouvert</string>
+    <string name="calib_closed">Fermé</string>
+    <string name="calib_separation">Séparation</string>
+    <string name="calib_active_threshold">Seuil actif</string>
+
+    <string name="adv_detection">Détection</string>
+    <string name="adv_close_threshold">Seuil fermeture</string>
+    <string name="adv_close_threshold_help">Au-dessus de cette valeur, FlipLock considère que le rabat n\'est pas fermé.</string>
+    <string name="adv_min_drop">Chute minimale</string>
+    <string name="adv_min_absolute_drop">Chute absolue minimale</string>
+    <string name="adv_confirmation">Durée de confirmation</string>
+    <string name="adv_cooldown">Cooldown</string>
+    <string name="adv_min_baseline">Baseline minimale exploitable</string>
+    <string name="adv_min_baseline_help">En dessous de cette luminosité ambiante, la lumière seule ne peut pas distinguer une pièce sombre d\'un rabat fermé : FlipLock refuse alors de verrouiller (sauf confirmation par la proximité).</string>
+
+    <string name="adv_mode">Mode</string>
+    <string name="adv_mode_help">AUTO : la lumière décide quand elle est concluante ; la proximité prend le relais uniquement quand la pièce est trop sombre et que le capteur produit réellement des événements.</string>
+
+    <string name="adv_background">Fiabilité en arrière-plan</string>
+    <string name="adv_persistent_service">Service persistant</string>
+    <string name="adv_persistent_service_help">Désactivé par défaut. Le service d\'accessibilité surveille déjà les capteurs, sans notification ni service supplémentaire.\n\nActivez cette option UNIQUEMENT si le TEST C échoue, c\'est-à-dire si la fermeture de la coque ne verrouille pas l\'écran lorsque FlipLock n\'est pas à l\'écran. Elle ajoute une notification discrète qui empêche Android de couper les capteurs en arrière-plan.</string>
+
+    <string name="adv_wake_title">Réveil à l\'ouverture</string>
+    <string name="adv_wake_unavailable">Réveil automatique non disponible sur cet appareil.</string>
+    <string name="adv_wake_unavailable_help">Aucun capteur « wake-up » capable de réveiller le processeur n\'a été trouvé. Le capteur de luminosité seul ne peut pas le faire lorsque l\'écran est éteint.</string>
+    <string name="adv_wake_switch">Allumer l\'écran à l\'ouverture</string>
+    <string name="adv_wake_threshold">Seuil de réveil</string>
+    <string name="adv_wake_instant_window">Veille instantanée après verrouillage</string>
+    <string name="adv_wake_instant_disabled">désactivée</string>
+    <string name="adv_wake_instant_seconds">%1$d s</string>
+    <string name="adv_wake_instant_help">Pendant ce délai, FlipLock écoute directement la luminosité : l\'écran se rallume dès l\'ouverture, même téléphone en main. C\'est la phase qui couvre le cas « je ferme puis je rouvre tout de suite ».\n\nCoût mesuré : empêcher la mise en veille du processeur consomme environ 50 mW, soit environ 0,004 %% de batterie par verrouillage pour 60 s. Le WakeLock est partiel (écran éteint) et expire tout seul.</string>
+    <string name="adv_wake_triggers_help">Passé ce délai, seuls les déclencheurs matériels wake-up restent armés (environ 0,001 mA) :\n%1$s\n\nIls réagissent au fait de reprendre le téléphone après une période de repos ; FlipLock vérifie alors la lumière pendant 1,5 s maximum.</string>
+    <string name="adv_wake_limits">L\'écran s\'allume sur l\'écran de verrouillage : votre code, empreinte ou visage restent nécessaires.\n\nLimites : dans une pièce totalement noire, ouvrir le rabat ne change pas la luminosité — l\'écran ne s\'allumera pas. Et le réveil ne s\'arme que si l\'écran s\'est éteint alors que le rabat était fermé, pour ne pas se rallumer tout seul sur un bureau.</string>
+
+    <string name="adv_reset">Réinitialisation</string>
+    <string name="adv_reset_button">Réinitialiser les valeurs par défaut</string>
+    <string name="adv_reset_summary">Seuil 2 lux · chute 85 %% · chute absolue 5 lux · confirmation 300 ms · cooldown 1500 ms · mode AUTO</string>
+
+    <string name="tech_phone">Téléphone</string>
+    <string name="tech_android">Android</string>
+    <string name="tech_light_sensor">Capteur de luminosité</string>
+    <string name="tech_proximity_sensor">Capteur de proximité</string>
+    <string name="tech_sensor_absent">Capteur absent de cet appareil.</string>
+    <string name="tech_events_probe">Événements reçus (sondage)</string>
+    <string name="tech_events_service">Événements reçus (service)</string>
+
+    <string name="tech_wake_title">Réveil automatique à l\'ouverture</string>
+    <string name="tech_wake_available">Déclencheurs wake-up disponibles :\n%1$s</string>
+    <string name="tech_wake_light">Capteur de luminosité wake-up</string>
+    <string name="tech_wake_enabled">Activé</string>
+    <string name="tech_wake_armed">Déclencheurs armés</string>
+    <string name="tech_wake_last">Dernier réveil</string>
+    <string name="tech_wake_ok">écran allumé</string>
+    <string name="tech_wake_ko">échec (voir journal)</string>
+    <string name="tech_wake_help">Le capteur de luminosité de cet appareil est « Non-wakeup » : il ne peut pas réveiller le processeur. FlipLock passe donc par un capteur de mouvement wake-up matériel, puis vérifie la lumière pendant 1,5 s. Aucun WakeLock permanent n\'est jamais pris.</string>
+
+    <string name="tech_internal_state">État interne</string>
+    <string name="tech_accessibility_connected">Service d\'accessibilité connecté</string>
+    <string name="tech_monitoring_active">Surveillance active</string>
+    <string name="tech_screen_interactive">Écran interactif</string>
+    <string name="tech_persistent_service">Service persistant</string>
+    <string name="tech_strategy">Stratégie</string>
+
+    <string name="tech_privacy">Confidentialité</string>
+    <string name="tech_privacy_body">FlipLock ne déclare aucune permission Internet, caméra, micro, contacts, SMS, téléphone, localisation, fichiers, comptes ou Bluetooth.\n\nAucune analyse, aucun Firebase, aucune télémétrie, aucun serveur. Les mesures et les journaux restent en mémoire sur l\'appareil et sont effaçables à tout moment. La sauvegarde cloud Android est désactivée.</string>
+</resources>

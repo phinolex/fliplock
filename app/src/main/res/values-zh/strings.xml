@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 简体中文 -->
+<resources>
+    <string name="accessibility_service_label">FlipLock — 锁定屏幕</string>
+    <string name="accessibility_service_summary">允许 FlipLock 锁定屏幕。</string>
+    <string name="accessibility_service_description">FlipLock 请求此权限只有一个用途：在您合上保护套时锁定屏幕。\n\n本服务不读取应用内容，不读取通知，不记录按键，也不截取屏幕。它只使用一个 Android 操作：“锁定屏幕”。</string>
+
+    <string name="fgs_channel_name">FlipLock 监测</string>
+    <string name="fgs_channel_description">FlipLock 监测光线传感器时显示的低调通知。</string>
+    <string name="fgs_notification_title">FlipLock 运行中</string>
+    <string name="fgs_notification_text">正在监测环境光传感器</string>
+
+    <string name="screen_diagnostic">传感器诊断</string>
+    <string name="screen_calibration">校准</string>
+    <string name="screen_advanced">高级设置</string>
+    <string name="screen_tech_info">技术信息</string>
+    <string name="action_back">返回</string>
+
+    <string name="value_yes">是</string>
+    <string name="value_no">否</string>
+    <string name="value_none">无</string>
+
+    <string name="strategy_light_only">仅光线</string>
+    <string name="strategy_light_proximity">光线 + 距离</string>
+
+    <string name="cover_open">已打开</string>
+    <string name="cover_closing">检测到合盖</string>
+    <string name="cover_cooldown">已锁定（冷却中）</string>
+    <string name="cover_screen_off">屏幕已关闭</string>
+    <string name="cover_monitoring_off">监测未启用</string>
+
+    <string name="origin_detection">自动检测</string>
+    <string name="origin_test_button">测试按钮</string>
+
+    <string name="home_status">状态</string>
+    <string name="home_status_active">🟢 FlipLock 已启用</string>
+    <string name="home_status_inactive">⚪ FlipLock 已关闭</string>
+    <string name="home_permission_missing">FlipLock 已开启，但缺少锁屏权限：合上保护套将无法关闭屏幕。</string>
+    <string name="home_monitoring">传感器监测</string>
+    <string name="home_monitoring_running">运行中</string>
+    <string name="home_monitoring_stopped">已停止</string>
+
+    <string name="section_sensor">传感器</string>
+    <string name="label_light">光照度</string>
+    <string name="label_baseline">基准值（保护套打开时）</string>
+    <string name="label_proximity">距离</string>
+    <string name="label_cover_state">保护套状态</string>
+
+    <string name="section_lock_permission">锁屏权限</string>
+    <string name="permission_granted">🟢 已启用</string>
+    <string name="permission_pending">🟠 已启用，等待连接</string>
+    <string name="permission_denied">🔴 未启用</string>
+    <string name="permission_explanation">FlipLock 请求此权限只有一个用途：在您合上保护套时锁定屏幕。本服务不读取您的应用、通知或屏幕内容。</string>
+    <string name="action_enable_permission">启用权限</string>
+    <string name="action_open_app_details">打开“应用信息”（受限设置）</string>
+
+    <string name="section_actions">操作</string>
+    <string name="action_calibrate">校准我的保护套</string>
+    <string name="action_test_lock">立即锁定屏幕</string>
+    <string name="label_last_lock">上次锁定</string>
+    <string name="lock_succeeded">成功（%1$s）</string>
+    <string name="lock_failed">失败（%1$s）</string>
+
+    <string name="section_how_it_works">工作原理</string>
+    <string name="how_it_works_body">1. 您合上翻盖：光照度骤降。\n2. FlipLock 确认这次下降足够快、足够深且持续（%1$d 毫秒）。\n3. 屏幕锁定。\n\n房间逐渐变暗，或有手从手机上方掠过，都不会触发锁定。</string>
+
+    <string name="msg_accessibility_off">无障碍服务未运行。请先启用锁屏权限。</string>
+    <string name="msg_lock_refused">Android 拒绝了锁屏操作。请查看日志。</string>
+    <string name="msg_defaults_restored">已恢复默认值。</string>
+    <string name="msg_calibration_applied">校准已应用。</string>
+    <string name="msg_diagnostic_copied">诊断信息已复制到剪贴板。</string>
+    <string name="msg_copy_failed">复制失败。</string>
+
+    <string name="diag_current_light">当前光照度</string>
+    <string name="diag_possible_close">检测到可能的合盖</string>
+    <string name="diag_baseline">基准值（滑动中位数）</string>
+    <string name="diag_baseline_samples">基准采样数</string>
+    <string name="diag_drop">下降幅度</string>
+    <string name="diag_engine_state">引擎状态</string>
+    <string name="diag_decision">判定</string>
+    <string name="diag_last_reading">最近一次测量</string>
+    <string name="diag_sensor_timestamp">传感器时间戳</string>
+    <string name="diag_preview_note">本页面只模拟 FlipLock 的判定，绝不会真的锁屏。</string>
+
+    <string name="diag_history">测量历史</string>
+    <string name="diag_history_empty">尚未收到任何测量数据。</string>
+    <string name="diag_history_candidate">[候选]</string>
+    <string name="diag_last_rejection">上次拒绝原因</string>
+
+    <string name="diag_probe_section">传感器实测</string>
+    <string name="diag_probe_explanation">FlipLock 绝不满足于“Android 声明存在该传感器”：它会真正注册监听器，并统计实际收到的事件数。</string>
+    <string name="diag_probe_declared">Android 已声明</string>
+    <string name="diag_probe_accepted">监听已被接受</string>
+    <string name="diag_probe_events">实际有事件</string>
+    <string name="diag_probe_count">事件数量</string>
+    <string name="diag_probe_verdict">结论</string>
+    <string name="diag_probe_running">正在实测…</string>
+    <string name="diag_probe_restart">重新实测</string>
+    <string name="diag_probe_all">实测全部传感器（3 秒）</string>
+    <string name="diag_proximity_value">距离读数</string>
+
+    <string name="diag_sensor_list">可用传感器（%1$d）</string>
+    <string name="diag_sensor_list_explanation">由 getSensorList(Sensor.TYPE_ALL) 返回的完整列表。标记为“相关”的传感器是有可能用于检测保护套的。</string>
+    <string name="diag_sensor_relevant">可能与保护套检测相关的传感器</string>
+
+    <string name="diag_log">日志（%1$d）</string>
+    <string name="diag_log_empty">（日志为空）</string>
+    <string name="diag_log_local">日志仅保存在手机内存中，没有任何数据离开本机。</string>
+    <string name="action_copy_diagnostic">复制诊断信息</string>
+    <string name="action_clear_logs">清除日志</string>
+
+    <string name="label_name">名称</string>
+    <string name="label_vendor">厂商</string>
+    <string name="label_version">版本</string>
+    <string name="label_type">类型</string>
+    <string name="label_max_range">最大量程</string>
+    <string name="label_resolution">分辨率</string>
+    <string name="label_power">功耗</string>
+    <string name="label_reporting_mode">上报模式</string>
+    <string name="label_wake_up">唤醒型</string>
+
+    <string name="calib_title">FlipLock 校准</string>
+    <string name="calib_intro_title">请让保护套完全打开。</string>
+    <string name="calib_intro_body">FlipLock 将测量 2 秒的光照度，随后请您合上翻盖以便对比。</string>
+    <string name="calib_start">开始</string>
+    <string name="calib_measuring_open">测量中 — 保护套打开</string>
+    <string name="calib_measuring_closed">测量中 — 保护套合上</string>
+    <string name="calib_measured_light">测得的光照度</string>
+    <string name="calib_close_now">现在，请完全合上翻盖。</string>
+    <string name="calib_countdown">倒计时</string>
+    <string name="calib_open_summary">保护套打开</string>
+    <string name="calib_no_result">没有结果。</string>
+
+    <string name="calib_quality_excellent">优秀 — 您的保护套很容易被检测到。</string>
+    <string name="calib_quality_good">良好 — 合盖能够被可靠地检测到。</string>
+    <string name="calib_quality_weak">一般 — 检测可能不太稳定。</string>
+    <string name="calib_quality_poor">不足 — 在此环境下传感器无法区分打开与合上。</string>
+
+    <string name="calib_advice_light_enough">在此条件下，“仅光线”模式已经足够。</string>
+    <string name="calib_advice_retry_brighter_prox">请在更明亮的房间重新校准。距离传感器可用：“光线 + 距离”模式将使检测更可靠。</string>
+    <string name="calib_advice_retry_brighter">请在更明亮的房间重新校准。距离传感器没有产生任何事件，因此只能依靠光线。</string>
+    <string name="calib_advice_poor_prox">翻盖打开时测得的光线与合上时太接近。距离传感器确实报告了 NEAR：请启用“光线 + 距离”模式。</string>
+    <string name="calib_advice_poor">翻盖打开时测得的光线与合上时太接近。请在有照明的房间重试，并让翻盖紧贴屏幕。</string>
+
+    <string name="calib_open_median">打开（中位数）</string>
+    <string name="calib_closed_median">合上（中位数）</string>
+    <string name="calib_closed_max">合上（最大值）</string>
+    <string name="calib_difference">差异</string>
+    <string name="calib_computed">为您的保护套计算出的设置</string>
+    <string name="calib_proximity_during">合盖过程中的距离传感器</string>
+    <string name="calib_proximity_absent">无此传感器</string>
+    <string name="calib_proximity_near_seen">检测到 NEAR</string>
+    <string name="calib_proximity_no_near">未出现 NEAR</string>
+    <string name="calib_apply">应用这些设置</string>
+    <string name="calib_applied">设置已应用</string>
+    <string name="calib_enable_hybrid">启用“光线 + 距离”模式</string>
+    <string name="calib_restart">重新开始</string>
+
+    <string name="dark_test_title">在黑暗中测试</string>
+    <string name="dark_test_body">在您想测试的光照条件下保持保护套打开，然后开始测量。</string>
+    <string name="dark_test_run">在黑暗中测试</string>
+    <string name="dark_test_running">测量中…</string>
+    <string name="dark_test_ambient">环境光照度</string>
+    <string name="dark_test_threshold">当前合盖阈值</string>
+    <string name="dark_test_reliable">环境光照度 %1$s lux：足够。光线传感器能清晰区分打开与合上。</string>
+    <string name="dark_test_unreliable">环境光照度 %1$s lux（至少需要 %2$s）。\n在这样的光照条件下，仅凭光线传感器可能无法区分打开与合上。</string>
+    <string name="dark_test_prox_works">好消息：距离传感器正在产生事件。建议使用“光线 + 距离”混合模式。</string>
+    <string name="dark_test_prox_silent">Android 声明了距离传感器，但测试期间它没有产生任何事件：无法作为备用方案。</string>
+    <string name="dark_test_prox_absent">没有可用的距离传感器：FlipLock 在全黑环境下不会锁屏（这是刻意设计，以避免误触发）。</string>
+    <string name="dark_test_switch_hybrid">切换到“光线 + 距离”混合模式</string>
+
+    <string name="calib_saved">已保存的校准</string>
+    <string name="calib_none">尚未保存任何校准。</string>
+    <string name="calib_open">打开</string>
+    <string name="calib_closed">合上</string>
+    <string name="calib_separation">区分度</string>
+    <string name="calib_active_threshold">当前阈值</string>
+
+    <string name="adv_detection">检测</string>
+    <string name="adv_close_threshold">合盖阈值</string>
+    <string name="adv_close_threshold_help">高于该数值时，FlipLock 认为翻盖未合上。</string>
+    <string name="adv_min_drop">最小下降比例</string>
+    <string name="adv_min_absolute_drop">最小绝对下降量</string>
+    <string name="adv_confirmation">确认时长</string>
+    <string name="adv_cooldown">冷却时间</string>
+    <string name="adv_min_baseline">可用基准值下限</string>
+    <string name="adv_min_baseline_help">当环境光低于此值时，仅凭光线无法区分“黑暗的房间”与“合上的翻盖”：此时 FlipLock 拒绝锁屏（除非距离传感器予以确认）。</string>
+
+    <string name="adv_mode">模式</string>
+    <string name="adv_mode_help">AUTO：当光线足以下结论时由光线决定；只有当房间太暗且距离传感器确实产生事件时，才由距离传感器接手。</string>
+
+    <string name="adv_background">后台可靠性</string>
+    <string name="adv_persistent_service">常驻服务</string>
+    <string name="adv_persistent_service_help">默认关闭。无障碍服务本身已在监测传感器，无需通知，也无需额外服务。\n\n仅当测试 C 失败时才启用此项，也就是当 FlipLock 不在前台时合上保护套无法锁屏。它会添加一条低调通知，防止 Android 在后台切断传感器。</string>
+
+    <string name="adv_wake_title">打开时唤醒</string>
+    <string name="adv_wake_unavailable">此设备不支持自动唤醒。</string>
+    <string name="adv_wake_unavailable_help">未找到任何能够唤醒处理器的“wake-up”传感器。屏幕关闭时，仅凭光线传感器无法做到这一点。</string>
+    <string name="adv_wake_switch">打开保护套时点亮屏幕</string>
+    <string name="adv_wake_threshold">唤醒阈值</string>
+    <string name="adv_wake_instant_window">锁屏后的即时守候</string>
+    <string name="adv_wake_instant_disabled">已关闭</string>
+    <string name="adv_wake_instant_seconds">%1$d 秒</string>
+    <string name="adv_wake_instant_help">在这段时间内，FlipLock 直接监听光照度：只要打开翻盖屏幕就会亮起，即使手机一直握在手里也一样。这一阶段正好覆盖“刚合上又马上打开”的情况。\n\n实测代价：阻止处理器进入休眠约消耗 50 mW，按 60 秒计算，每次锁屏约耗电 0.004%%。该唤醒锁是部分唤醒锁（屏幕保持关闭），并会自动过期。</string>
+    <string name="adv_wake_triggers_help">超过这段时间后，只保留硬件唤醒触发器（约 0.001 mA）：\n%1$s\n\n它们响应的是“手机静置一段时间后被重新拿起”；随后 FlipLock 最多检查 1.5 秒的光线。</string>
+    <string name="adv_wake_limits">屏幕会亮到锁屏界面：仍然需要您的密码、指纹或人脸。\n\n限制：在完全黑暗的房间里，打开翻盖不会改变光照度 — 屏幕不会亮起。而且只有在翻盖合上的状态下屏幕才会武装唤醒，以免手机放在桌上时自行亮屏。</string>
+
+    <string name="adv_reset">重置</string>
+    <string name="adv_reset_button">恢复默认值</string>
+    <string name="adv_reset_summary">阈值 2 lux · 下降 85%% · 绝对下降 5 lux · 确认 300 毫秒 · 冷却 1500 毫秒 · AUTO 模式</string>
+
+    <string name="tech_phone">手机</string>
+    <string name="tech_android">Android</string>
+    <string name="tech_light_sensor">光线传感器</string>
+    <string name="tech_proximity_sensor">距离传感器</string>
+    <string name="tech_sensor_absent">此设备没有该传感器。</string>
+    <string name="tech_events_probe">收到的事件数（实测）</string>
+    <string name="tech_events_service">收到的事件数（服务）</string>
+
+    <string name="tech_wake_title">打开时自动唤醒</string>
+    <string name="tech_wake_available">可用的唤醒触发器：\n%1$s</string>
+    <string name="tech_wake_light">唤醒型光线传感器</string>
+    <string name="tech_wake_enabled">已启用</string>
+    <string name="tech_wake_armed">触发器已武装</string>
+    <string name="tech_wake_last">上次唤醒</string>
+    <string name="tech_wake_ok">屏幕已点亮</string>
+    <string name="tech_wake_ko">失败（见日志）</string>
+    <string name="tech_wake_help">此设备的光线传感器是“Non-wakeup”类型：它无法唤醒处理器。因此 FlipLock 借助硬件唤醒型运动传感器，随后检查 1.5 秒的光线。全程绝不持有永久唤醒锁。</string>
+
+    <string name="tech_internal_state">内部状态</string>
+    <string name="tech_accessibility_connected">无障碍服务已连接</string>
+    <string name="tech_monitoring_active">监测运行中</string>
+    <string name="tech_screen_interactive">屏幕处于交互状态</string>
+    <string name="tech_persistent_service">常驻服务</string>
+    <string name="tech_strategy">策略</string>
+
+    <string name="tech_privacy">隐私</string>
+    <string name="tech_privacy_body">FlipLock 未声明任何网络、摄像头、麦克风、通讯录、短信、电话、位置、文件、账户或蓝牙权限。\n\n没有统计分析，没有 Firebase，没有遥测，没有服务器。测量数据与日志仅保存在本机内存中，随时可以清除。Android 云备份已禁用。</string>
+</resources>

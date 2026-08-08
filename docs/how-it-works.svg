@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="880" height="440"
+     font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" role="img"
+     aria-label="Chart comparing a flap closing (sharp light drop, triggers a lock) with a room dimming gradually (no lock)">
+
+  <title>Why FlipLock does not use a simple lux threshold</title>
+
+  <!-- No background rect on purpose: this renders on light and dark themes alike. -->
+
+  <text x="0" y="20" font-size="17" font-weight="700" fill="#7d8590">
+    A threshold cannot tell these two apart. An event can.
+  </text>
+
+  <!-- ---------------------------------------------------------------- grid -->
+  <g stroke="#7d8590" stroke-opacity="0.28" stroke-width="1">
+    <line x1="70" y1="60"  x2="850" y2="60"/>
+    <line x1="70" y1="125" x2="850" y2="125"/>
+    <line x1="70" y1="190" x2="850" y2="190"/>
+    <line x1="70" y1="255" x2="850" y2="255"/>
+  </g>
+  <line x1="70" y1="320" x2="850" y2="320" stroke="#7d8590" stroke-opacity="0.7" stroke-width="1.5"/>
+  <line x1="70" y1="60"  x2="70"  y2="320" stroke="#7d8590" stroke-opacity="0.7" stroke-width="1.5"/>
+
+  <g font-size="11" fill="#7d8590" text-anchor="end">
+    <text x="62" y="64">160</text>
+    <text x="62" y="129">120</text>
+    <text x="62" y="194">80</text>
+    <text x="62" y="259">40</text>
+    <text x="62" y="324">0</text>
+  </g>
+  <text x="20" y="200" font-size="12" fill="#7d8590" transform="rotate(-90 20 200)" text-anchor="middle">lux</text>
+  <text x="850" y="340" font-size="12" fill="#7d8590" text-anchor="end">time →</text>
+
+  <!-- ------------------------------------------------------ threshold band -->
+  <rect x="70" y="307" width="780" height="13" fill="#cf222e" fill-opacity="0.14"/>
+  <text x="845" y="303" font-size="11" fill="#cf222e" text-anchor="end">close threshold (≈ 8 lux)</text>
+
+  <!-- --------------------------------------------------- confirmation band -->
+  <rect x="425" y="60" width="78" height="260" fill="#2ea043" fill-opacity="0.12"/>
+  <text x="464" y="54" font-size="11" fill="#2ea043" text-anchor="middle" font-weight="600">300 ms</text>
+
+  <!-- ------------------------------------------------------------- curves -->
+  <!-- Case closing: flat, then a cliff. -->
+  <polyline fill="none" stroke="#2ea043" stroke-width="2.6" stroke-linejoin="round"
+    points="70,92 110,88 150,96 190,90 230,94 270,87 310,95 350,91 390,93 407,93 425,300 437,317 470,318 550,317 650,318 750,317 850,318"/>
+
+  <!-- Room dimming gradually: a long slope down to darkness. -->
+  <polyline fill="none" stroke="#bf8700" stroke-width="2.6" stroke-dasharray="7 4" stroke-linejoin="round"
+    points="70,92 160,110 250,133 340,158 430,188 520,220 610,250 700,278 790,301 850,312"/>
+
+  <!-- --------------------------------------------------------- annotations -->
+  <line x1="416" y1="60" x2="416" y2="320" stroke="#2ea043" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text x="410" y="76" font-size="12" fill="#2ea043" text-anchor="end" font-weight="600">flap closes</text>
+
+  <!-- Fall-window bracket under the cliff. -->
+  <path d="M 407 336 L 407 342 L 437 342 L 437 336" fill="none" stroke="#2ea043" stroke-width="1.4"/>
+  <text x="422" y="356" font-size="11" fill="#2ea043" text-anchor="middle">&lt; 900 ms</text>
+
+  <circle cx="503" cy="318" r="5" fill="#2ea043"/>
+  <text x="515" y="313" font-size="13" fill="#2ea043" font-weight="700">SCREEN LOCKED</text>
+
+  <circle cx="790" cy="301" r="5" fill="#bf8700"/>
+  <text x="778" y="296" font-size="12" fill="#bf8700" text-anchor="end" font-weight="600">no lock</text>
+
+  <!-- ------------------------------------------------------------- legend -->
+  <g font-size="12.5" fill="#7d8590">
+    <line x1="70" y1="386" x2="104" y2="386" stroke="#2ea043" stroke-width="2.6"/>
+    <text x="112" y="390">Flap closed — fast, deep, sustained drop → lock</text>
+
+    <line x1="70" y1="412" x2="104" y2="412" stroke="#bf8700" stroke-width="2.6" stroke-dasharray="7 4"/>
+    <text x="112" y="416">Room dimming, dusk, walking indoors — same final darkness, no lock</text>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Configuration volontairement minimale.
+
+  - accessibilityEventTypes n'est PAS declare : sa valeur par defaut est 0,
+    donc le service ne recoit AUCUN evenement d'accessibilite.
+  - canRetrieveWindowContent = false : impossible de lire le contenu des fenetres.
+  - canPerformGestures = false : aucun geste simule.
+  - packageNames n'est pas utilisable pour "aucune application", mais comme
+    accessibilityEventTypes vaut 0, aucun evenement n'est jamais transmis.
+  - notificationTimeout = 0 et aucun flag additionnel.
+
+  Le service n'utilise QU'UNE seule API : performGlobalAction(GLOBAL_ACTION_LOCK_SCREEN).
+-->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:canPerformGestures="false"
+    android:canRequestFilterKeyEvents="false"
+    android:canRetrieveWindowContent="false"
+    android:description="@string/accessibility_service_description"
+    android:notificationTimeout="0"
+    android:summary="@string/accessibility_service_summary" />

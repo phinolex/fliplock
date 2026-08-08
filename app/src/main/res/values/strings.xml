@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Default locale: ENGLISH.
+  Translations: values-fr (French), values-zh (Simplified Chinese).
+-->
+<resources>
+    <string name="app_name">FlipLock</string>
+
+    <!-- ============================ Android services ======================= -->
+    <string name="accessibility_service_label">FlipLock — screen lock</string>
+    <string name="accessibility_service_summary">Lets FlipLock lock the screen.</string>
+    <string name="accessibility_service_description">FlipLock needs this permission for one thing only: locking the screen when you close your case.\n\nThis service does not read app content, does not read your notifications, does not record keystrokes and does not capture the screen. It uses a single Android action: “lock screen”.</string>
+
+    <string name="fgs_channel_name">FlipLock monitoring</string>
+    <string name="fgs_channel_description">Quiet notification shown while FlipLock watches the light sensor.</string>
+    <string name="fgs_notification_title">FlipLock active</string>
+    <string name="fgs_notification_text">Watching the ambient light sensor</string>
+
+    <!-- ============================== Navigation ========================== -->
+    <string name="screen_home">FlipLock</string>
+    <string name="screen_diagnostic">Sensor diagnostics</string>
+    <string name="screen_calibration">Calibration</string>
+    <string name="screen_advanced">Advanced settings</string>
+    <string name="screen_tech_info">Technical information</string>
+    <string name="action_back">Back</string>
+
+    <!-- ============================== Shared ============================== -->
+    <string name="unit_lux">%1$s lux</string>
+    <string name="value_yes">YES</string>
+    <string name="value_no">NO</string>
+    <string name="value_none">none</string>
+    <string name="value_dash">—</string>
+    <string name="proximity_near">NEAR</string>
+    <string name="proximity_far">FAR</string>
+
+    <string name="strategy_auto">AUTO</string>
+    <string name="strategy_light_only">LIGHT ONLY</string>
+    <string name="strategy_light_proximity">LIGHT + PROXIMITY</string>
+
+    <string name="cover_open">OPEN</string>
+    <string name="cover_closing">CLOSING DETECTED</string>
+    <string name="cover_cooldown">LOCKED (cooldown)</string>
+    <string name="cover_screen_off">SCREEN OFF</string>
+    <string name="cover_monitoring_off">MONITORING OFF</string>
+
+    <string name="origin_detection">detection</string>
+    <string name="origin_test_button">test button</string>
+
+    <!-- ================================ Home ============================== -->
+    <string name="home_status">Status</string>
+    <string name="home_status_active">🟢 FlipLock active</string>
+    <string name="home_status_inactive">⚪ FlipLock off</string>
+    <string name="home_permission_missing">FlipLock is switched on but the lock permission is missing: closing the case will not be able to turn the screen off.</string>
+    <string name="home_monitoring">Sensor monitoring</string>
+    <string name="home_monitoring_running">running</string>
+    <string name="home_monitoring_stopped">stopped</string>
+
+    <string name="section_sensor">Sensor</string>
+    <string name="label_light">Light</string>
+    <string name="label_baseline">Baseline (case open)</string>
+    <string name="label_proximity">Proximity</string>
+    <string name="label_cover_state">Case state</string>
+
+    <string name="section_lock_permission">Lock permission</string>
+    <string name="permission_granted">🟢 Enabled</string>
+    <string name="permission_pending">🟠 Enabled, waiting for connection</string>
+    <string name="permission_denied">🔴 Disabled</string>
+    <string name="permission_explanation">FlipLock needs this permission for one thing only: locking the screen when you close your case. The service reads neither your apps, nor your notifications, nor your screen.</string>
+    <string name="action_enable_permission">Enable the permission</string>
+    <string name="action_open_app_details">Open “App info” (restricted settings)</string>
+
+    <string name="section_actions">Actions</string>
+    <string name="action_calibrate">Calibrate my case</string>
+    <string name="action_test_lock">Lock the screen now</string>
+    <string name="label_last_lock">Last lock</string>
+    <string name="lock_succeeded">succeeded (%1$s)</string>
+    <string name="lock_failed">failed (%1$s)</string>
+
+    <string name="section_how_it_works">How it works</string>
+    <string name="how_it_works_body">1. You close the flap: the light level collapses.\n2. FlipLock checks that the drop is fast, deep and sustained (%1$d ms).\n3. The screen locks.\n\nA room dimming gradually, or a hand passing over the phone, will not trigger a lock.</string>
+
+    <string name="msg_accessibility_off">The accessibility service is not running. Enable the lock permission first.</string>
+    <string name="msg_lock_refused">Android refused the lock action. Check the log.</string>
+    <string name="msg_defaults_restored">Default values restored.</string>
+    <string name="msg_calibration_applied">Calibration applied.</string>
+    <string name="msg_diagnostic_copied">Diagnostic copied to the clipboard.</string>
+    <string name="msg_copy_failed">Copy failed.</string>
+
+    <!-- ============================= Diagnostics ========================== -->
+    <string name="diag_current_light">Current light level</string>
+    <string name="diag_possible_close">POSSIBLE CLOSE DETECTED</string>
+    <string name="diag_baseline">Baseline (rolling median)</string>
+    <string name="diag_baseline_samples">Baseline samples</string>
+    <string name="diag_drop">Drop</string>
+    <string name="diag_engine_state">Engine state</string>
+    <string name="diag_decision">Decision</string>
+    <string name="diag_last_reading">Last reading</string>
+    <string name="diag_sensor_timestamp">Sensor timestamp</string>
+    <string name="diag_preview_note">This screen simulates what FlipLock would decide, without ever locking.</string>
+
+    <string name="diag_history">Reading history</string>
+    <string name="diag_history_empty">No reading received.</string>
+    <string name="diag_history_candidate">[CANDIDATE]</string>
+    <string name="diag_last_rejection">LAST REJECTION</string>
+
+    <string name="diag_probe_section">Real sensor probe</string>
+    <string name="diag_probe_explanation">FlipLock never settles for checking that Android advertises a sensor: it registers a real listener and counts the events actually received.</string>
+    <string name="diag_probe_declared">Advertised by Android</string>
+    <string name="diag_probe_accepted">Listener accepted</string>
+    <string name="diag_probe_events">Real events</string>
+    <string name="diag_probe_count">Event count</string>
+    <string name="diag_probe_verdict">Verdict</string>
+    <string name="diag_probe_running">Probing…</string>
+    <string name="diag_probe_restart">Run the probe again</string>
+    <string name="diag_probe_all">Probe ALL sensors (3 s)</string>
+    <string name="diag_proximity_value">Proximity value</string>
+
+    <string name="diag_sensor_list">Available sensors (%1$d)</string>
+    <string name="diag_sensor_list_explanation">Full list returned by getSensorList(Sensor.TYPE_ALL). Sensors marked “relevant” are those that could plausibly detect a case.</string>
+    <string name="diag_sensor_relevant">Possibly relevant for case detection</string>
+
+    <string name="diag_log">Log (%1$d)</string>
+    <string name="diag_log_empty">(log empty)</string>
+    <string name="diag_log_local">Logs stay in memory on the phone. No data leaves the device.</string>
+    <string name="action_copy_diagnostic">Copy diagnostic</string>
+    <string name="action_clear_logs">Clear logs</string>
+
+    <string name="label_name">Name</string>
+    <string name="label_vendor">Vendor</string>
+    <string name="label_version">Version</string>
+    <string name="label_type">Type</string>
+    <string name="label_max_range">Maximum range</string>
+    <string name="label_resolution">Resolution</string>
+    <string name="label_power">Power draw</string>
+    <string name="label_reporting_mode">Reporting mode</string>
+    <string name="label_wake_up">Wake-up</string>
+
+    <!-- ============================= Calibration ========================== -->
+    <string name="calib_title">FlipLock calibration</string>
+    <string name="calib_intro_title">Leave your case completely open.</string>
+    <string name="calib_intro_body">FlipLock will measure the light level for 2 seconds, then ask you to close the flap so it can compare.</string>
+    <string name="calib_start">Start</string>
+    <string name="calib_measuring_open">Measuring — case OPEN</string>
+    <string name="calib_measuring_closed">Measuring — case CLOSED</string>
+    <string name="calib_measured_light">Measured light level</string>
+    <string name="calib_close_now">Now close the flap completely.</string>
+    <string name="calib_countdown">Closing in</string>
+    <string name="calib_open_summary">Case open</string>
+    <string name="calib_no_result">No result.</string>
+
+    <string name="calib_quality_excellent">Excellent — your case is easy to detect.</string>
+    <string name="calib_quality_good">Good — closing will be detected reliably.</string>
+    <string name="calib_quality_weak">Fair — detection may be inconsistent.</string>
+    <string name="calib_quality_poor">Not good enough — the sensor cannot tell open from closed here.</string>
+
+    <string name="calib_advice_light_enough">The LIGHT mode is enough in these conditions.</string>
+    <string name="calib_advice_retry_brighter_prox">Redo the calibration in a brighter room. The proximity sensor works: LIGHT + PROXIMITY mode will make detection more reliable.</string>
+    <string name="calib_advice_retry_brighter">Redo the calibration in a brighter room. The proximity sensor produced no events, so only light is usable.</string>
+    <string name="calib_advice_poor_prox">The light measured with the flap open is too close to the flap-closed value. Proximity did report NEAR: switch on LIGHT + PROXIMITY mode.</string>
+    <string name="calib_advice_poor">The light measured with the flap open is too close to the flap-closed value. Try again in a lit room, with the flap pressed flat against the screen.</string>
+
+    <string name="calib_open_median">Open (median)</string>
+    <string name="calib_closed_median">Closed (median)</string>
+    <string name="calib_closed_max">Closed (maximum)</string>
+    <string name="calib_difference">Difference</string>
+    <string name="calib_computed">Settings computed for your case</string>
+    <string name="calib_proximity_during">Proximity while closing</string>
+    <string name="calib_proximity_absent">sensor absent</string>
+    <string name="calib_proximity_near_seen">NEAR detected</string>
+    <string name="calib_proximity_no_near">no NEAR</string>
+    <string name="calib_apply">Apply these settings</string>
+    <string name="calib_applied">Settings applied</string>
+    <string name="calib_enable_hybrid">Switch on LIGHT + PROXIMITY mode</string>
+    <string name="calib_restart">Start over</string>
+
+    <string name="dark_test_title">Test in the dark</string>
+    <string name="dark_test_body">Keep the case OPEN in the lighting conditions you want to test, then run the measurement.</string>
+    <string name="dark_test_run">Test in the dark</string>
+    <string name="dark_test_running">Measuring…</string>
+    <string name="dark_test_ambient">Ambient light</string>
+    <string name="dark_test_threshold">Current close threshold</string>
+    <string name="dark_test_reliable">Ambient light %1$s lux: enough. The light sensor tells opening and closing clearly apart.</string>
+    <string name="dark_test_unreliable">Ambient light %1$s lux (at least %2$s would be needed).\nIn these lighting conditions the light sensor alone may not tell opening from closing.</string>
+    <string name="dark_test_prox_works">Good news: the proximity sensor is producing events. Hybrid LIGHT + PROXIMITY mode is recommended.</string>
+    <string name="dark_test_prox_silent">The proximity sensor is advertised by Android but produced no events during the test: it cannot act as a fallback.</string>
+    <string name="dark_test_prox_absent">No proximity sensor is available: FlipLock will not lock in complete darkness (this is deliberate, to avoid false positives).</string>
+    <string name="dark_test_switch_hybrid">Switch to hybrid LIGHT + PROXIMITY mode</string>
+
+    <string name="calib_saved">Saved calibration</string>
+    <string name="calib_none">No calibration saved.</string>
+    <string name="calib_open">Open</string>
+    <string name="calib_closed">Closed</string>
+    <string name="calib_separation">Separation</string>
+    <string name="calib_active_threshold">Active threshold</string>
+
+    <!-- ========================== Advanced settings ======================= -->
+    <string name="adv_detection">Detection</string>
+    <string name="adv_close_threshold">Close threshold</string>
+    <string name="adv_close_threshold_help">Above this value, FlipLock considers the flap is not closed.</string>
+    <string name="adv_min_drop">Minimum drop</string>
+    <string name="adv_min_absolute_drop">Minimum absolute drop</string>
+    <string name="adv_confirmation">Confirmation time</string>
+    <string name="adv_cooldown">Cooldown</string>
+    <string name="adv_min_baseline">Minimum usable baseline</string>
+    <string name="adv_min_baseline_help">Below this ambient level, light alone cannot tell a dark room from a closed flap: FlipLock then refuses to lock (unless proximity confirms it).</string>
+
+    <string name="adv_mode">Mode</string>
+    <string name="adv_mode_help">AUTO: light decides when it is conclusive; proximity takes over only when the room is too dark and the sensor really produces events.</string>
+
+    <string name="adv_background">Background reliability</string>
+    <string name="adv_persistent_service">Persistent service</string>
+    <string name="adv_persistent_service_help">Off by default. The accessibility service already watches the sensors, with no notification and no extra service.\n\nSwitch this on ONLY if TEST C fails, that is if closing the case does not lock the screen while FlipLock is not on screen. It adds a quiet notification that stops Android from cutting off sensors in the background.</string>
+
+    <string name="adv_wake_title">Wake on open</string>
+    <string name="adv_wake_unavailable">Automatic wake is not available on this device.</string>
+    <string name="adv_wake_unavailable_help">No “wake-up” sensor able to wake the processor was found. The light sensor alone cannot do it while the screen is off.</string>
+    <string name="adv_wake_switch">Turn the screen on when opening</string>
+    <string name="adv_wake_threshold">Wake threshold</string>
+    <string name="adv_wake_instant_window">Instant watch after locking</string>
+    <string name="adv_wake_instant_disabled">off</string>
+    <string name="adv_wake_instant_seconds">%1$d s</string>
+    <string name="adv_wake_instant_help">During this window FlipLock listens to the light sensor directly: the screen comes back as soon as you open the flap, even with the phone still in your hand. This is the phase that covers “I close it then reopen it right away”.\n\nMeasured cost: keeping the processor out of suspend draws about 50 mW, roughly 0.004%% of the battery per lock for 60 s. The wake lock is partial (screen stays off) and expires on its own.</string>
+    <string name="adv_wake_triggers_help">After that window, only the hardware wake-up triggers stay armed (about 0.001 mA):\n%1$s\n\nThey react to picking the phone up after it has been at rest; FlipLock then checks the light for at most 1.5 s.</string>
+    <string name="adv_wake_limits">The screen turns on at the lock screen: your PIN, fingerprint or face is still required.\n\nLimits: in a completely dark room, opening the flap does not change the light level — the screen will not turn on. And the wake only arms if the screen went off while the flap was closed, so the phone does not light up by itself on a desk.</string>
+
+    <string name="adv_reset">Reset</string>
+    <string name="adv_reset_button">Restore default values</string>
+    <string name="adv_reset_summary">Threshold 2 lux · drop 85%% · absolute drop 5 lux · confirmation 300 ms · cooldown 1500 ms · AUTO mode</string>
+
+    <!-- ======================== Technical information ===================== -->
+    <string name="tech_phone">Phone</string>
+    <string name="tech_android">Android</string>
+    <string name="tech_light_sensor">Light sensor</string>
+    <string name="tech_proximity_sensor">Proximity sensor</string>
+    <string name="tech_sensor_absent">Sensor not present on this device.</string>
+    <string name="tech_events_probe">Events received (probe)</string>
+    <string name="tech_events_service">Events received (service)</string>
+
+    <string name="tech_wake_title">Automatic wake on open</string>
+    <string name="tech_wake_available">Wake-up triggers available:\n%1$s</string>
+    <string name="tech_wake_light">Wake-up light sensor</string>
+    <string name="tech_wake_enabled">Enabled</string>
+    <string name="tech_wake_armed">Triggers armed</string>
+    <string name="tech_wake_last">Last wake</string>
+    <string name="tech_wake_ok">screen turned on</string>
+    <string name="tech_wake_ko">failed (see log)</string>
+    <string name="tech_wake_help">The light sensor on this device is “Non-wakeup”: it cannot wake the processor. FlipLock therefore goes through a hardware wake-up motion sensor, then checks the light for 1.5 s. No permanent wake lock is ever taken.</string>
+
+    <string name="tech_internal_state">Internal state</string>
+    <string name="tech_accessibility_connected">Accessibility service connected</string>
+    <string name="tech_monitoring_active">Monitoring active</string>
+    <string name="tech_screen_interactive">Screen interactive</string>
+    <string name="tech_persistent_service">Persistent service</string>
+    <string name="tech_strategy">Strategy</string>
+
+    <string name="tech_privacy">Privacy</string>
+    <string name="tech_privacy_body">FlipLock declares no Internet, camera, microphone, contacts, SMS, phone, location, files, accounts or Bluetooth permission.\n\nNo analytics, no Firebase, no telemetry, no server. Readings and logs stay in memory on the device and can be cleared at any time. Android cloud backup is disabled.</string>
+</resources>

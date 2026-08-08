@@ -1,0 +1,21 @@
+# Normalise les fins de ligne : LF dans le dépôt, quel que soit l'OS de travail.
+* text=auto eol=lf
+
+# gradlew DOIT rester en LF, sinon il est inexécutable sous Linux/macOS et en CI.
+gradlew text eol=lf
+
+# Les scripts Windows ont besoin de CRLF.
+*.bat text eol=crlf
+
+# Binaires : jamais de conversion.
+*.jar   binary
+*.apk   binary
+*.aab   binary
+*.jks   binary
+*.keystore binary
+*.png   binary
+*.jpg   binary
+*.webp  binary
+
+# Statistiques GitHub : le SVG est de la documentation, pas du code.
+docs/*.svg linguist-documentation

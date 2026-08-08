@@ -1,0 +1,21 @@
+*.iml
+.gradle/
+.kotlin/
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Chemin local du SDK Android (contient un chemin utilisateur).
+local.properties
+
+# NE JAMAIS VERSIONNER : clé de signature et ses mots de passe.
+keystore.properties
+*.jks
+*.keystore
+
+# Les APK se distribuent via GitHub Releases, pas dans l'historique git.
+*.apk
+*.aab

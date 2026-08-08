@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      FlipLock est une application 100 % locale.
+      AUCUNE permission reseau, camera, micro, contacts, SMS, telephone,
+      localisation, fichiers, comptes ou Bluetooth n'est declaree.
+      Les trois permissions ci-dessous servent uniquement au service
+      persistant OPTIONNEL (desactive par defaut) decrit dans l'application.
+    -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!--
+      WAKE_LOCK : permission "normale" (aucune boite de dialogue), utilisee
+      uniquement par le reveil a l'ouverture, lui aussi desactive par defaut.
+      FlipLock ne prend JAMAIS de WakeLock permanent : au maximum 1,5 s pour
+      lire la luminosite, puis 3 s pour allumer l'ecran, avec expiration automatique.
+    -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.light"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.sensor.proximity"
+        android:required="false" />
+
+    <application
+        android:name=".FlipLockApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FlipLock">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.FlipLock">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          Activite invisible servant de repli pour allumer l'ecran
+          (setTurnScreenOn, API officielle). Elle ne deverrouille rien.
+        -->
+        <activity
+            android:name=".service.WakeUpActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true"
+            android:showOnLockScreen="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.FlipLock.Transparent"
+            android:turnScreenOn="true" />
+
+        <!--
+          Service d'accessibilite minimal : sa seule raison d'etre est
+          d'autoriser FlipLock a verrouiller l'ecran.
+          Il ne recoit aucun evenement d'accessibilite (accessibilityEventTypes
+          n'est pas declare => 0) et ne peut pas lire le contenu des fenetres
+          (canRetrieveWindowContent = false).
+        -->
+        <service
+            android:name=".service.FlipLockAccessibilityService"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!--
+          Service de premier plan OPTIONNEL (desactive par defaut).
+          Il ne lit aucun capteur : il maintient uniquement le processus en
+          etat "foreground" si Android/One UI coupe les capteurs en arriere-plan.
+        -->
+        <service
+            android:name=".service.FlipLockForegroundService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Keeps the ambient-light listener alive so closing the case can lock the screen while another app is in use." />
+        </service>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" width="880" height="300"
+     font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" role="img"
+     aria-label="Two flows: closing the flap locks the screen, opening it wakes the screen">
+
+  <title>FlipLock — close to lock, open to wake</title>
+
+  <defs>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2ea043"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2f81f7"/>
+    </marker>
+  </defs>
+
+  <!-- =========================== CLOSE  ->  LOCK =========================== -->
+  <text x="0" y="20" font-size="14" font-weight="700" fill="#2ea043">CLOSE → LOCK</text>
+
+  <g fill="none" stroke="#2ea043" stroke-width="1.8">
+    <rect x="0"   y="36" width="176" height="62" rx="10"/>
+    <rect x="228" y="36" width="176" height="62" rx="10"/>
+    <rect x="456" y="36" width="176" height="62" rx="10"/>
+    <rect x="684" y="36" width="176" height="62" rx="10"/>
+  </g>
+  <rect x="684" y="36" width="176" height="62" rx="10" fill="#2ea043" fill-opacity="0.13" stroke="none"/>
+
+  <g font-size="13" fill="#7d8590" text-anchor="middle">
+    <text x="88"  y="62">You close</text><text x="88"  y="80">the flap</text>
+    <text x="316" y="62">Light collapses</text><text x="316" y="80">140 → 0 lux</text>
+    <text x="544" y="62">Fast? Deep?</text><text x="544" y="80">Held 300 ms?</text>
+  </g>
+  <text x="772" y="62" font-size="13" fill="#2ea043" text-anchor="middle" font-weight="700">Screen locked</text>
+  <text x="772" y="80" font-size="11.5" fill="#7d8590" text-anchor="middle">GLOBAL_ACTION_LOCK_SCREEN</text>
+
+  <g stroke="#2ea043" stroke-width="1.8" marker-end="url(#arrowGreen)">
+    <line x1="180" y1="67" x2="222" y2="67"/>
+    <line x1="408" y1="67" x2="450" y2="67"/>
+    <line x1="636" y1="67" x2="678" y2="67"/>
+  </g>
+
+  <!-- =========================== OPEN  ->  WAKE ============================ -->
+  <text x="0" y="160" font-size="14" font-weight="700" fill="#2f81f7">OPEN → WAKE</text>
+
+  <g fill="none" stroke="#2f81f7" stroke-width="1.8">
+    <rect x="0"   y="176" width="176" height="62" rx="10"/>
+    <rect x="228" y="176" width="176" height="62" rx="10"/>
+    <rect x="456" y="176" width="176" height="62" rx="10"/>
+    <rect x="684" y="176" width="176" height="62" rx="10"/>
+  </g>
+  <rect x="684" y="176" width="176" height="62" rx="10" fill="#2f81f7" fill-opacity="0.13" stroke="none"/>
+
+  <g font-size="13" fill="#7d8590" text-anchor="middle">
+    <text x="88"  y="202">You open</text><text x="88"  y="220">the flap</text>
+    <text x="316" y="202">Instant watch,</text><text x="316" y="220">or wake-up trigger</text>
+    <text x="544" y="202">Light back</text><text x="544" y="220">above threshold?</text>
+  </g>
+  <text x="772" y="202" font-size="13" fill="#2f81f7" text-anchor="middle" font-weight="700">Screen on</text>
+  <text x="772" y="220" font-size="11.5" fill="#7d8590" text-anchor="middle">at the lock screen</text>
+
+  <g stroke="#2f81f7" stroke-width="1.8" marker-end="url(#arrowBlue)">
+    <line x1="180" y1="207" x2="222" y2="207"/>
+    <line x1="408" y1="207" x2="450" y2="207"/>
+    <line x1="636" y1="207" x2="678" y2="207"/>
+  </g>
+
+  <text x="0" y="272" font-size="12" fill="#7d8590">
+    No magnet · no root · no ADB · no Internet · no permanent wake lock
+  </text>
+  <text x="0" y="292" font-size="12" fill="#7d8590">
+    Waking never unlocks: your PIN, fingerprint or face is still required.
+  </text>
+</svg>
