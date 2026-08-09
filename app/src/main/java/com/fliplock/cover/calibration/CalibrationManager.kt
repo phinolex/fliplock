@@ -215,9 +215,12 @@ class CalibrationManager(
         // ~24 % (46 lux ouvert, 35 lux ferme), et un plancher a 45 % rendait ces
         // conditions definitivement indetectables. Le moteur compense en exigeant
         // une confirmation bien plus longue quand le contraste est faible.
-        val recommendedDrop = (separation * 0.6f).coerceIn(20f, 85f)
+        // Plancher a 50 % : en dessous, le signal ne se distingue plus du bruit
+        // ambiant et l'ecran se verrouille tout seul pendant l'usage. Descendre plus
+        // bas reste possible a la main, mais l'accueil previent alors du risque.
+        val recommendedDrop = (separation * 0.6f).coerceIn(50f, 85f)
         val recommendedAbsolute =
-            ((openStats.median - closedStats.median) * 0.25f).coerceIn(3f, 30f)
+            ((openStats.median - closedStats.median) * 0.25f).coerceIn(10f, 30f)
 
         val advice = when (quality) {
             CalibrationQuality.EXCELLENT, CalibrationQuality.GOOD ->

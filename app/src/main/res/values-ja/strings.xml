@@ -38,6 +38,7 @@
     <string name="home_permission_missing">FlipLock はオンですが、ロック権限がありません。ケースを閉じても画面を消せません。</string>
     <string name="home_hybrid_broken">照度 + 近接モードが有効ですが、キャリブレーションの結果、フタを閉じても近接センサーが NEAR を報告しないことが分かりました。このモードでは近接が必須のため、すべての閉じ操作が拒否されています。AUTO モードに戻してください。</string>
     <string name="home_switch_auto">AUTO モードに戻す</string>
+    <string name="home_sensitive_settings">しきい値が安全範囲を下回っています。使用中に画面が勝手にロックされる可能性があります。再キャリブレーションするか、詳細設定で最小低下率を上げてください。</string>
     <string name="home_features">機能</string>
     <string name="home_wake_label">開いたときに点灯</string>
     <string name="home_wake_desc">フタを開けると画面を再び点けます。部屋に明かりが必要です。</string>

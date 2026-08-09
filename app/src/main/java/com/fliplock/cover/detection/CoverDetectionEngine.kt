@@ -75,6 +75,8 @@ class CoverDetectionEngine(
     private var frozenBaseline = 0f
     private var frozenDropPercent = 0f
     private var frozenAbsoluteDrop = 0f
+    private var candidateMinLux = 0f
+    private var candidateMaxLux = 0f
     private var lastLockTimeMs = NEVER
     private var lastConfirmedAtMs = 0L
 
@@ -259,6 +261,8 @@ class CoverDetectionEngine(
 
         state = EngineState.CANDIDATE
         candidateStartMs = minOf(lastLuxTimeMs, nowMs)
+        candidateMinLux = lux
+        candidateMaxLux = lux
         frozenBaseline = baseline
         frozenDropPercent = dropPercent
         frozenAbsoluteDrop = absoluteDrop
@@ -268,6 +272,8 @@ class CoverDetectionEngine(
 
     private fun evaluateCandidate(lux: Float, nowMs: Long): EngineSnapshot {
         val cfg = config
+        candidateMinLux = minOf(candidateMinLux, lux)
+        candidateMaxLux = maxOf(candidateMaxLux, lux)
         if (lux > cfg.releaseLuxThreshold) {
             cancelCandidate("light came back (${fmt(lux)} lux) - artefact", nowMs)
             return publish(nowMs, "candidate cancelled: light came back")
@@ -279,6 +285,17 @@ class CoverDetectionEngine(
         val elapsed = nowMs - candidateStartMs
         val required = requiredConfirmationMs()
         if (elapsed >= required) {
+            // Un rabat ferme donne une droite ; un ecran qui joue une video, non.
+            val spread = candidateMaxLux - candidateMinLux
+            val allowed = maxOf(cfg.maxCandidateSpreadLux, cfg.closedLuxThreshold * 0.3f)
+            if (spread > allowed) {
+                cancelCandidate(
+                    "light unstable during confirmation (${fmt(spread)} lux spread > ${fmt(allowed)}) " +
+                        "- screen content, not a closed flap",
+                    nowMs,
+                )
+                return publish(nowMs, "candidate cancelled: light too unstable")
+            }
             confirm(lux, elapsed, nowMs)
             return publish(nowMs, "close confirmed after $elapsed ms")
         }

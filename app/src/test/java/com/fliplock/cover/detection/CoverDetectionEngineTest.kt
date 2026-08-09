@@ -341,6 +341,40 @@ class CoverDetectionEngineTest {
     }
 
     @Test
+    fun `scene sombre de video - la lumiere fluctue, aucun verrouillage`() {
+        // Capteur place sous la dalle : le contenu de l'ecran contamine la mesure.
+        // Une scene sombre fait chuter le niveau exactement comme une fermeture,
+        // mais elle continue de varier. Seule la stabilite les distingue.
+        val (engine, recorder) = newEngine()
+        feed(engine, 120f, from = 0L, count = 8, stepMs = 120L)
+
+        var time = 1000L
+        listOf(1f, 5f, 2f, 7f, 1f, 6f, 3f, 8f, 2f).forEach { lux ->
+            engine.onLightReading(lux, time)
+            time += 120L
+        }
+        engine.tick(time + 500L)
+
+        assertEquals(0, recorder.locks)
+    }
+
+    @Test
+    fun `rabat ferme - la lumiere ne bouge plus, verrouillage`() {
+        // Meme niveau que la video ci-dessus, mais plat : c'est une vraie fermeture.
+        val (engine, recorder) = newEngine()
+        feed(engine, 120f, from = 0L, count = 8, stepMs = 120L)
+
+        var time = 1000L
+        repeat(5) {
+            engine.onLightReading(1f, time)
+            time += 120L
+        }
+        engine.tick(time + 500L)
+
+        assertEquals(1, recorder.locks)
+    }
+
+    @Test
     fun `un refus est signale une seule fois par episode sombre`() {
         val (engine, recorder) = newEngine()
         // Piece deja sombre : aucune baseline exploitable, donc refus.

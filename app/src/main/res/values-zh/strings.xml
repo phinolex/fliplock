@@ -38,6 +38,7 @@
     <string name="home_permission_missing">FlipLock 已开启，但缺少锁屏权限：合上保护套将无法关闭屏幕。</string>
     <string name="home_hybrid_broken">「光线 + 距离」模式已开启，但校准显示：合上翻盖时你的距离传感器从不报告 NEAR。该模式下距离是必需的，因此所有合盖都会被拒绝。请切回 AUTO 模式。</string>
     <string name="home_switch_auto">切回 AUTO 模式</string>
+    <string name="home_sensitive_settings">你的阈值低于安全范围。使用手机时屏幕可能会自行锁定。请重新校准，或在高级设置中提高最小下降比例。</string>
     <string name="home_features">功能</string>
     <string name="home_wake_label">打开时唤醒</string>
     <string name="home_wake_desc">打开翻盖时重新点亮屏幕。需要房间里有光线。</string>

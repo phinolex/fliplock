@@ -92,6 +92,18 @@ data class DetectionConfig(
     /** Plafond absolu de la confirmation, meme a contraste tres faible. */
     val maxConfirmationMs: Long = 1600L,
 
+    /**
+     * Ecart maximal toleré entre la mesure la plus basse et la plus haute PENDANT
+     * la confirmation.
+     *
+     * Un rabat ferme donne une droite : la lumiere ne bouge plus du tout. Le contenu
+     * de l'ecran, lui, fluctue — une scene sombre de video fait chuter la mesure
+     * exactement comme une fermeture, mais elle continue de varier. Sur les capteurs
+     * places sous la dalle, c'est la principale source de faux positifs, et aucun
+     * seuil de niveau ne peut la distinguer : seule la STABILITE le peut.
+     */
+    val maxCandidateSpreadLux: Float = 4f,
+
     /** Strategie choisie par l'utilisateur. */
     val strategy: DetectionStrategy = DetectionStrategy.AUTO,
 

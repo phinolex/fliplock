@@ -125,6 +125,18 @@ fun HomeScreen(
                         Text(stringResource(R.string.home_switch_auto))
                     }
                 }
+                // Reglages sous le plancher de securite : le telephone risque de se
+                // verrouiller tout seul pendant l'usage.
+                if (settings.enabled &&
+                    (settings.minimumDropPercent < 50f || settings.minimumAbsoluteDropLux < 10f)
+                ) {
+                    ThinDivider()
+                    Text(
+                        text = stringResource(R.string.home_sensitive_settings),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = StatusColors.warn,
+                    )
+                }
                 InfoRow(
                     label = stringResource(R.string.home_monitoring),
                     value = stringResource(
