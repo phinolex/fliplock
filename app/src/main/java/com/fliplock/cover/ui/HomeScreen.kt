@@ -64,6 +64,7 @@ fun HomeScreen(
     val lastProximity by viewModel.lastProximity.collectAsStateWithLifecycle()
     val snapshot by viewModel.snapshot.collectAsStateWithLifecycle()
     val lastLock by FlipLockRuntime.lastLockAttempt.collectAsStateWithLifecycle()
+    val undoneLocks by FlipLockRuntime.undoneLockCount.collectAsStateWithLifecycle()
 
     val active = settings.enabled && accessibilityConnected
 
@@ -125,9 +126,22 @@ fun HomeScreen(
                         Text(stringResource(R.string.home_switch_auto))
                     }
                 }
-                // Reglages sous le plancher de securite : le telephone risque de se
-                // verrouiller tout seul pendant l'usage.
-                if (settings.enabled &&
+                // Faux positifs CONSTATES : l'ecran a ete rallume juste apres un
+                // verrouillage automatique. Plus fiable qu'un seuil theorique.
+                if (undoneLocks >= 2) {
+                    ThinDivider()
+                    Text(
+                        text = stringResource(R.string.home_false_positives, undoneLocks),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = StatusColors.alert,
+                    )
+                    Button(
+                        onClick = { viewModel.reduceSensitivity() },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text(stringResource(R.string.home_reduce_sensitivity))
+                    }
+                } else if (settings.enabled &&
                     (settings.minimumDropPercent < 50f || settings.minimumAbsoluteDropLux < 10f)
                 ) {
                     ThinDivider()

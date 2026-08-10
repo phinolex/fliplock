@@ -35,6 +35,15 @@ object FlipLockRuntime {
 
     val lastLockAttempt = MutableStateFlow<LockAttempt?>(null)
 
+    /**
+     * Verrouillages defaits presque aussitot par l'utilisateur.
+     *
+     * Un verrouillage suivi d'un rallumage en quelques secondes signifie que la
+     * personne n'avait pas ferme sa coque : c'est un faux positif, et c'est le seul
+     * moyen pour l'application de s'en rendre compte toute seule.
+     */
+    val undoneLockCount = MutableStateFlow(0)
+
     /** Reveil a l'ouverture : declencheurs wake-up actuellement armes. */
     val wakeOnOpenArmed = MutableStateFlow(false)
 

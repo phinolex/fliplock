@@ -37,6 +37,9 @@
     <string name="home_permission_missing">FlipLock est activé mais l\'autorisation de verrouillage est manquante : la fermeture de la coque ne pourra pas éteindre l\'écran.</string>
     <string name="home_hybrid_broken">Le mode LUMIÈRE + PROXIMITÉ est actif, mais la calibration a montré que votre capteur de proximité ne signale jamais NEAR quand le rabat est fermé. Dans ce mode la proximité est obligatoire : toutes les fermetures sont donc rejetées. Revenez au mode AUTO.</string>
     <string name="home_switch_auto">Revenir au mode AUTO</string>
+    <string name="home_false_positives">L\'écran a été rallumé juste après s\'être verrouillé seul %1$d fois. Votre coque n\'était presque sûrement pas fermée : les réglages sont trop sensibles.</string>
+    <string name="home_reduce_sensitivity">Rendre moins sensible</string>
+    <string name="msg_sensitivity_reduced">Seuils durcis. Si ça se reproduit, appuyez à nouveau.</string>
     <string name="home_sensitive_settings">Vos seuils sont sous la zone de sécurité. L\'écran risque de se verrouiller tout seul pendant que vous utilisez le téléphone. Recalibrez, ou remontez la chute minimale dans les réglages avancés.</string>
     <string name="home_features">Fonctions</string>
     <string name="home_wake_label">Réveil à l\'ouverture</string>

@@ -308,6 +308,30 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /**
+     * Durcit les seuils d'un cran. Reponse directe a « l'ecran se verrouille tout
+     * seul » : plutot qu'expliquer quels curseurs bouger, on le fait.
+     */
+    fun reduceSensitivity() {
+        viewModelScope.launch {
+            settingsRepo.update { current ->
+                current.copy(
+                    minimumDropPercent = (current.minimumDropPercent + 10f).coerceAtMost(92f),
+                    minimumAbsoluteDropLux = (current.minimumAbsoluteDropLux + 10f).coerceAtMost(60f),
+                    confirmationDurationMs = (current.confirmationDurationMs + 200L).coerceAtMost(1500L),
+                )
+            }
+            FlipLockRuntime.undoneLockCount.value = 0
+            val s = settingsRepo.current()
+            logger.log(
+                LogCategory.SYSTEM,
+                "sensitivity reduced: drop=${s.minimumDropPercent}% absolute=${s.minimumAbsoluteDropLux} " +
+                    "confirm=${s.confirmationDurationMs}ms",
+            )
+            _message.value = R.string.msg_sensitivity_reduced
+        }
+    }
+
     fun resetDefaults() {
         viewModelScope.launch {
             settingsRepo.update { FlipLockSettings.resetTuning(it) }

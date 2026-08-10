@@ -70,6 +70,7 @@ class FlipLockAccessibilityService : AccessibilityService() {
     private var proximityRegistered = false
     private var monitoring = false
     private var ticking = false
+    private var autoLockAtMs = 0L
 
     private val sensors: SensorRepository get() = AppGraph.sensors
 
@@ -293,6 +294,22 @@ class FlipLockAccessibilityService : AccessibilityService() {
     private fun onScreenStateChanged(interactive: Boolean) {
         FlipLockRuntime.screenInteractive.value = interactive
         AppGraph.logger.log(LogCategory.SCREEN, "interactive=$interactive")
+
+        // Ecran rallume juste apres un verrouillage automatique : la coque n'etait
+        // pas fermee. C'est un faux positif, et le seul signal qui permette a
+        // l'application de le savoir sans que l'utilisateur ait a le diagnostiquer.
+        if (interactive && autoLockAtMs > 0L) {
+            val delay = SystemClock.elapsedRealtime() - autoLockAtMs
+            autoLockAtMs = 0L
+            if (delay in 0L..UNDONE_LOCK_WINDOW_MS) {
+                val count = FlipLockRuntime.undoneLockCount.value + 1
+                FlipLockRuntime.undoneLockCount.value = count
+                AppGraph.logger.log(
+                    LogCategory.ACTION,
+                    "lock undone after $delay ms — likely FALSE POSITIVE (total: $count)",
+                )
+            }
+        }
         engine.setScreenInteractive(interactive, SystemClock.elapsedRealtime())
         if (!settings.enabled) {
             wakeController?.disarm()
@@ -408,6 +425,9 @@ class FlipLockAccessibilityService : AccessibilityService() {
             false
         }
         logger.log(LogCategory.ACTION, "result=$success")
+        if (success && origin == LockOrigin.DETECTION) {
+            autoLockAtMs = SystemClock.elapsedRealtime()
+        }
 
         // performGlobalAction ne renvoie qu'un booleen, sans motif. Quand il echoue,
         // on releve ce qui permet de distinguer les deux causes possibles :
@@ -431,6 +451,9 @@ class FlipLockAccessibilityService : AccessibilityService() {
 
     companion object {
         private const val TICK_INTERVAL_MS = 50L
+
+        /** En deca de ce delai, un rallumage signale que la coque n'etait pas fermee. */
+        private const val UNDONE_LOCK_WINDOW_MS = 12_000L
 
         @Volatile
         private var instance: FlipLockAccessibilityService? = null
